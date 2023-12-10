@@ -9,6 +9,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { styles } from './ScreensStyles/logIn';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+
 const LogIn=({ navigation })=> {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
@@ -110,9 +111,9 @@ const LogIn=({ navigation })=> {
               <Text style={[language?styles.needHelpR:styles.needHelp,darkMood&&styles.blackColor]}>{language?"هل تحتاج مساعده":"Need Help?"}</Text>
               </View>
             </View>
-              <View style={styles.bottomTextContainer}>
-                <Text style={[styles.signUp,language?styles.right25:styles.left25]} onPress={handleSignUp}>{language?"انشاء حساب جديد":"Create new account"}</Text>
-              </View>
+              <TouchableOpacity onPress={handleSignUp} style={styles.bottomTextContainer}>
+                <Text style={[styles.signUp,language?styles.right25:styles.left25]} >{language?"انشاء حساب جديد":"Create new account"}</Text>
+              </TouchableOpacity>
                 <StatusBar style="light" />
             </View>
         </TouchableWithoutFeedback>

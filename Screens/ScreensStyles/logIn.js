@@ -118,7 +118,6 @@ export const  styles = StyleSheet.create({
       fontWeight: '800',
     },
     bottomTextContainer: {
-      marginTop:'1%',
       alignSelf:'center',
       alignItems:'center',
       backgroundColor:'#4cb5f9',
@@ -126,7 +125,6 @@ export const  styles = StyleSheet.create({
       height:"8%",
       justifyContent: 'center',
       borderRadius: 30,
-     
     
     },
     signUp: {
@@ -183,5 +181,23 @@ right25:{
 },
 blackColor:{
   color:'#494949'
-}
+},
+SingUplogo: {
+  objectFit: 'contain',
+  height: '15%',
+  width: '35%',
+  marginBottom: '1%',
+  
+},
+bottomTextContainerSingUp: {
+  marginTop:'5%',
+  alignSelf:'center',
+  alignItems:'center',
+  backgroundColor:'#4cb5f9',
+  width: '80%',
+  height:"8%",
+  justifyContent: 'center',
+  borderRadius: 30,
+
+},
   });
