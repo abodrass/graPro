@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import LogIn from './Screens/LogIn';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
+import SignUp from './Screens/SignUp';
+import { PageProvider } from "./PageProvider";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 export default function App() {
+  const Stack = createStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PageProvider>
+    <NavigationContainer style={styles.container}>
+      <Stack.Navigator initialRouteName="LogIn">
+        <Stack.Screen name="LogIn" component={LogIn}   options={{ headerShown: false, tabBarVisible: false }}  />
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    </PageProvider>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    fontFamily: 'Roboto',
+    backgroundColor: '#ffff',
+    height: '100%',
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    justifyContent: 'flex-start',
+    position: 'relative',
+    
+  },})
+
