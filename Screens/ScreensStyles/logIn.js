@@ -83,6 +83,23 @@ export const  styles = StyleSheet.create({
       borderColor: '#B5E6FA',
     },
 
+    wrongInput: {
+      borderColor: 'rgb(206, 74, 74)',
+    },
+
+    wrongTextColorL:{
+      color:'rgb(206, 74, 74)',
+      textAlign:'left',
+      alignSelf:'flex-start',
+      paddingLeft:'5%'
+    },
+    wrongTextColorR:{
+      color:'rgb(206, 74, 74)',
+      textAlign:'right',
+      alignSelf:'flex-end',
+      paddingRight:'5%'
+    },
+
     signContener:{
       display:'flex',
       flexDirection:'row',
@@ -111,7 +128,8 @@ export const  styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       color: 'white',
-      alignSelf:'flex-start'
+      alignSelf:'flex-start',
+      
     },
     signInButtonText: {
       color: 'white',
@@ -142,7 +160,7 @@ export const  styles = StyleSheet.create({
       
       alignSelf:'flex-end',
       bottom:10,
-      paddingLeft:'27%',
+      paddingLeft:'20%',
       color: 'white',
       fontWeight:'500'
   },
@@ -200,4 +218,8 @@ bottomTextContainerSingUp: {
   borderRadius: 30,
 
 },
+navtext:{
+  fontSize:12,
+
+}
   });

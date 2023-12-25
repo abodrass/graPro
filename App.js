@@ -2,26 +2,28 @@ import LogIn from './Screens/LogIn';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
 import SignUp from './Screens/SignUp';
 import { PageProvider } from "./PageProvider";
-import { SharedTransition } from 'react-native-reanimated';
+import Try from "./Screens/Try"
+import Animated from 'react-native-reanimated';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator , CardStyleInterpolators} from '@react-navigation/stack';
+import MainAppPage from './Screens/MainAppPage';
 export default function App() {
   const Stack = createStackNavigator();
-  const customTransition = SharedTransition.custom((values) => {
-    'worklet';
-    return {
-      height: withSpring(values.targetHeight),
-      width: withSpring(values.targetWidth),
-      originX: withSpring(values.targetOriginX),
-      originY: withSpring(values.targetOriginY),
-    };
-  });
   return (
     <PageProvider>
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="LogIn">
-        <Stack.Screen name="LogIn" component={LogIn}   options={{ headerShown: false, tabBarVisible: false }}   sharedTransitionTag="tag"  />
-        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false, tabBarVisible: false }}   sharedTransitionTag="tag"/>
+      <Stack.Navigator 
+      initialRouteName="LogIn"
+      screenOptions={{
+        headerShown: false,
+        tabBarVisible: false,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}>
+      <Stack.Screen name="Try" component={Try}   options={{ headerShown: false, tabBarVisible: false }}   />
+        <Stack.Screen name="LogIn" component={LogIn}   options={{ headerShown: false, tabBarVisible: false }}   />
+        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false, tabBarVisible: false }}    />
+        <Stack.Screen name="MainAppPage" component={MainAppPage} options={{ headerShown: false, tabBarVisible: false }}    />
       </Stack.Navigator>
     </NavigationContainer>
     </PageProvider>

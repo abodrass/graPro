@@ -11,6 +11,7 @@ import { styles } from './ScreensStyles/logIn';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import Animated from 'react-native-reanimated';
 const SignUp = ({ navigation }) => {
 
 
@@ -20,6 +21,7 @@ const SignUp = ({ navigation }) => {
     const [isFocusedPass, setIsFocusedPass] = useState(false);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [wrongInput,setWrongInput]=useState(false);
     const mainTextColor = "rgba(182, 181, 181, 0.549)";
     const handleFocus = (inputId) => {
 
@@ -45,10 +47,18 @@ const SignUp = ({ navigation }) => {
         setIsFocusedEmail(false);
         setIsFocusedPass(false);
     };
+    const handelContinuationPress=()=>{
+        setWrongInput(true);
+        console.log('red');
+    }
+
+    const wrongSubmitHandel=()=>{
+        return <Text style={language?styles.wrongTextColorR:styles.wrongTextColorL}>{language?"معلومات غير صحيحه او مكرره":"the info is not correct or duplicated "}</Text>
+    }
     
     return (
         <LinearGradient
-        colors={darkMood?['#ffffff','#b8cbd3','#b8cbd3', '#a1bac4','#a1bac4','#8ac3da', '#6e9daf', '#579bb6']:['rgb(43, 39, 39)','rgb(43, 39, 39)','rgb(61, 58, 58)', 'rgb(61, 58, 58)','#6a818a','#8ac3da', '#6e9daf', '#579bb6']}
+        colors={darkMood?['#ffffff', '#579bb6']:['rgb(43, 39, 39)','rgb(43, 39, 39)','rgb(61, 58, 58)', 'rgb(61, 58, 58)','#6a818a','#8ac3da', '#6e9daf', '#579bb6']}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}
@@ -61,7 +71,7 @@ const SignUp = ({ navigation }) => {
         >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
         
-        <View style={styles.inner}>
+        <Animated.View sharedTransitionTag="tag" style={styles.inner}>
             <TouchableOpacity style={styles.darkmodeIcon} onPress={handelBackClick}>
                 <AntDesign name="arrowleft" size={24} color={darkMood?"#494949":'white'}/>
             </TouchableOpacity>
@@ -76,7 +86,7 @@ const SignUp = ({ navigation }) => {
                 <TextInput
                     id='email'
                     placeholder={language?"الاسم الكامل":'full name '}
-                    style={[styles.email, isFocusedEmail && styles.focusedInput]}
+                    style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
                     onChange={(email) => setUserName(email)}
                     value={userName}
                     onFocus={() => handleFocus('email')}
@@ -86,7 +96,7 @@ const SignUp = ({ navigation }) => {
                 <TextInput
                     id='email'
                     placeholder={language?"البريد الالكتروني":'email'}
-                    style={[styles.email, isFocusedEmail && styles.focusedInput]}
+                    style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
                     onChange={(email) => setUserName(email)}
                     value={userName}
                     onFocus={() => handleFocus('email')}
@@ -96,7 +106,7 @@ const SignUp = ({ navigation }) => {
                 <TextInput
                     id='pass'
                     placeholder={language?"كلمة السر":'password'}
-                    style={[styles.email, isFocusedPass && styles.focusedInput]}
+                    style={[styles.email, isFocusedPass && styles.focusedInput ,wrongInput&&styles.wrongInput]}
                     onChange={(e) => setPassword(e)}
                     onFocus={() => handleFocus('pass')}
                     onBlur={handleBlur}
@@ -106,24 +116,26 @@ const SignUp = ({ navigation }) => {
                 <TextInput
                     id='confirmpass'
                     placeholder={language?"تاكيد كلمة السر":'confirm password'}
-                    style={[styles.email, isFocusedPass && styles.focusedInput]}
+                    style={[styles.email, isFocusedPass && styles.focusedInput,wrongInput&&styles.wrongInput]}
                     onChange={(e) => setPassword(e)}
                     onFocus={() => handleFocus('pass')}
                     onBlur={handleBlur}
                     value={password}
                     placeholderTextColor={mainTextColor}
                 ></TextInput>
+                {wrongInput&&wrongSubmitHandel()}
                 <View style={styles.signContener}>
-                <TouchableOpacity style={language?styles.loginLeft:styles.signIn} >
+                <TouchableOpacity style={language?styles.loginLeft:styles.signIn} onPress={handelContinuationPress} >
                     <View style={styles.buttonGradient}>
-                        <Text style={[styles.signInButtonText]}>{language?"تسجيل الدخول":'Log in'}</Text>
+                        <Text style={[styles.signInButtonText]}>{language?"متابعة":'continuation'}</Text>
                     </View>
                 </TouchableOpacity>
-                <Text style={[language?styles.needHelpR:styles.needHelp,darkMood&&styles.blackColor]}>{language?"هل تحتاج مساعده":"Need Help?"}</Text>
+                <Text style={[language?styles.needHelpR:styles.needHelp,darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
                 </View>
                 </View>
+                
                 <StatusBar style="light" />
-            </View>
+            </Animated.View>
         </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
     </LinearGradient>
