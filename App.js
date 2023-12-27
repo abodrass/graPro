@@ -7,7 +7,7 @@ import Animated from 'react-native-reanimated';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator , CardStyleInterpolators} from '@react-navigation/stack';
-import MainAppPage from './Screens/MainAppPage';
+import MainAppPage from './Screens/MainAppNav';
 export default function App() {
   const Stack = createStackNavigator();
   return (

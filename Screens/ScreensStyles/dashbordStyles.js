@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-start',
     position: 'relative',
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgb(71, 69, 69)',
     flexDirection: 'column',
   },
   inner: {
@@ -42,11 +42,21 @@ export const styles = StyleSheet.create({
 box: {
     width: '42%', // Adjust width as needed, leaving some space for margin
     height: 200,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(71, 69, 69,.7)',
     marginLeft:'5%',
     marginTop:'10%',
     borderRadius:21,
     overflow:'hidden'
     
+},
+boxDark: {
+  width: '42%', // Adjust width as needed, leaving some space for margin
+  height: 200,
+  backgroundColor: 'rgba(255, 255, 255, 0.727)',
+  marginLeft:'5%',
+  marginTop:'10%',
+  borderRadius:21,
+  overflow:'hidden'
+  
 },
 });

@@ -1,7 +1,7 @@
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { usePageContext } from "../../PageProvider";
-import { styles } from './dashbordStyles';
+import { styles } from '../ScreensStyles/dashbordStyles';
 import { BlurView } from 'expo-blur';
 
 import { StyleSheet, ScrollView,Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
