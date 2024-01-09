@@ -38,9 +38,9 @@ const LogIn=({ navigation })=> {
         setIsFocusedPass(false);
     };
     
-    const handleLogin =  () => {
-      navigation.navigate('MainAppPage');
-    /* const requestBody = {
+    const handleLogin =async  () => {
+      
+      const requestBody = {
         email: userName,
         password: password,
       };
@@ -48,11 +48,11 @@ const LogIn=({ navigation })=> {
 
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');
-      headers.append('Origin','http://localhost:3000');
+      headers.append('Origin','http://localhost:19006');
       try {
         // Display loading indicator or disable the login button here
     
-        const response = await fetch('https://localhost:44318/UserAPI/Login', {
+        const response = await fetch('https://9ce1-212-34-13-199.ngrok-free.app/UserAPI/Login', {
           method: "POST",
           
           headers: headers,
@@ -60,12 +60,15 @@ const LogIn=({ navigation })=> {
         });
     
         if (response.ok) {
-          const responseData = await response.json();
+          console.log("reqest good")
+          const responseData = await response;
           console.log(responseData);
     
           const token = responseData.user;
+          console.log(token);
           // Store the token securely (e.g., using AsyncStorage)
-    
+          navigation.navigate('MainAppPage');
+          return;
           // Navigate to the next screen or perform other actions
         } else {
           console.error("Request failed with status:", response.status);
@@ -78,7 +81,7 @@ const LogIn=({ navigation })=> {
         // Handle unexpected errors
       } finally {
         // Hide loading indicator or enable the login button here
-      }*/
+      }
     };
     
     
