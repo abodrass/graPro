@@ -12,6 +12,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import Animated from 'react-native-reanimated';
+import { url } from '../APIURLS';
 const SignUp = ({ navigation }) => {
 
 
@@ -21,6 +22,7 @@ const SignUp = ({ navigation }) => {
     const [isFocusedPass, setIsFocusedPass] = useState(false);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setconfirmPassword ]= useState('');
     const [wrongInput,setWrongInput]=useState(false);
     const mainTextColor = "rgba(182, 181, 181, 0.549)";
     const handleFocus = (inputId) => {
@@ -48,8 +50,11 @@ const SignUp = ({ navigation }) => {
         setIsFocusedPass(false);
     };
     const handelContinuationPress=()=>{
-        setWrongInput(true);
-        console.log('red');
+        if(password!=confirmPassword){
+            setWrongInput(true);
+            return;
+        }
+        
     }
 
     const wrongSubmitHandel=()=>{
@@ -58,7 +63,7 @@ const SignUp = ({ navigation }) => {
     
     return (
         <LinearGradient
-        colors={darkMood?['#ffffff', '#579bb6']:['rgb(43, 39, 39)','rgb(43, 39, 39)','rgb(61, 58, 58)', 'rgb(61, 58, 58)','#6a818a','#8ac3da', '#6e9daf', '#579bb6']}
+        colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}
@@ -117,10 +122,20 @@ const SignUp = ({ navigation }) => {
                     id='confirmpass'
                     placeholder={language?"تاكيد كلمة السر":'confirm password'}
                     style={[styles.email, isFocusedPass && styles.focusedInput,wrongInput&&styles.wrongInput]}
-                    onChange={(e) => setPassword(e)}
+                    onChange={(e) => setconfirmPassword(e)}
                     onFocus={() => handleFocus('pass')}
                     onBlur={handleBlur}
-                    value={password}
+                    value={confirmPassword}
+                    placeholderTextColor={mainTextColor}
+                ></TextInput>
+                <TextInput
+                    id='email'
+                    placeholder={language?"رقم الهاتف":'phone Number '}
+                    style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
+                    onChange={(email) => setUserName(email)}
+                    value={userName}
+                    onFocus={() => handleFocus('email')}
+                    onBlur={handleBlur}
                     placeholderTextColor={mainTextColor}
                 ></TextInput>
                 {wrongInput&&wrongSubmitHandel()}

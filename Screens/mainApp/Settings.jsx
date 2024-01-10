@@ -12,7 +12,7 @@ const Settings = () => {
 
     return (
         <LinearGradient
-            colors={darkMood?['#ffffff', '#579bb6']:['rgb(43, 39, 39)', '#74c2e0']}
+            colors={darkMood?['#CACBC8',"#7B695B"]:['#A1A29D',"#3E3E3E"]}
             start={{ x: 1, y: .5 }}
             end={{ x: 0, y: 1 }}
             style={styles.container}

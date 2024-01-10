@@ -10,12 +10,12 @@ const CustomHeader = (props) => {
         paddingHorizontal: 15,
         paddingVertical: 10,
         width:"100%",
-        backgroundColor: "#C6C5C5", // Set your desired background color
+        backgroundColor: "#ececea", // Set your desired background color
         height:90
         }}
     >
         <Image
-        source={require("../../assets/logo-removebg-preview2.png")}
+        source={require("../../assets/logo-removebg-preview.png")}
         style={{
             top:15,
             width: 40,
@@ -39,7 +39,7 @@ const CustomHeader = (props) => {
             left:'97%',
             top:'64%',
             }}>
-            <Ionicons name="menu" size={24} color="white"/>
+            <Ionicons name="menu" size={24} color="black"/>
         </TouchableOpacity>
     </SafeAreaView>
     );

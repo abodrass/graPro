@@ -10,7 +10,9 @@ import { styles } from './ScreensStyles/logIn';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import Animated from 'react-native-reanimated';
-
+import axios from 'react-native-axios';
+import { url } from '../APIURLS';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const LogIn=({ navigation })=> {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
@@ -20,6 +22,7 @@ const LogIn=({ navigation })=> {
     const [password, setPassword] = useState('');
     const [wrongInput,setWrongInput]=useState(false);
     const mainTextColor = "rgba(182, 181, 181, 0.549)";
+    const STORAGE_KEY_TOKEN = 'token';
     const handleFocus = (inputId) => {
 
         if (inputId === 'email') {
@@ -38,33 +41,32 @@ const LogIn=({ navigation })=> {
         setIsFocusedPass(false);
     };
     
-    const handleLogin =async  () => {
-      
+    const handleLogin = async () => {
       const requestBody = {
-        email: userName,
-        password: password,
+        Email: userName,
+        Password: password,
       };
-      let headers = new Headers();
-
-      headers.append('Content-Type', 'application/json');
-      headers.append('Accept', 'application/json');
-      headers.append('Origin','http://localhost:19006');
+    
+      const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Origin': 'http://localhost:19006',
+      };
+    
       try {
         // Display loading indicator or disable the login button here
     
-        const response = await fetch('https://9ce1-212-34-13-199.ngrok-free.app/UserAPI/Login', {
-          method: "POST",
-          
+        const response = await axios.post(url.LoginURL, requestBody, {
           headers: headers,
-          body: JSON.stringify(requestBody),
         });
     
-        if (response.ok) {
-          console.log("reqest good")
-          const responseData = await response;
+        if (response.status === 200) {
+          console.log("request good");
+          const responseData = response.data;
           console.log(responseData);
     
           const token = responseData.user;
+          AsyncStorage.setItem(STORAGE_KEY_TOKEN, JSON.stringify(token));
           console.log(token);
           // Store the token securely (e.g., using AsyncStorage)
           navigation.navigate('MainAppPage');
@@ -83,7 +85,6 @@ const LogIn=({ navigation })=> {
         // Hide loading indicator or enable the login button here
       }
     };
-    
     
     const handleUserNameChange = (text) => {
       console.log('Username:', text);
@@ -123,7 +124,7 @@ const LogIn=({ navigation })=> {
       
 
       <LinearGradient
-      colors={darkMood?['#ffffff', '#579bb6']:['rgb(43, 39, 39)','rgb(43, 39, 39)','rgb(61, 58, 58)', 'rgb(61, 58, 58)','#6a818a','#8ac3da', '#6e9daf', '#579bb6']}
+      colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
       start={{ x: 1, y: .5 }}
       end={{ x: 0, y: 1 }}
       style={styles.container}

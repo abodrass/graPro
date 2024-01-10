@@ -31,7 +31,7 @@ const Dashbord = () => {
     }
     return (
         <LinearGradient
-        colors={darkMood?['#ffffff', '#579bb6']:['rgb(43, 39, 39)','rgb(43, 39, 39)', '#74c2e0']}
+        colors={darkMood?['#D0D1CD',"#7B695B"]:['#A1A29D',"#292929"]}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}
