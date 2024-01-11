@@ -173,6 +173,7 @@ const LogIn=({ navigation })=> {
                     placeholderTextColor={mainTextColor}
               ></TextInput>
               {wrongInput&& wrongSubmitHandel()}
+              
               <View style={styles.signContener}>
               <TouchableOpacity style={language?styles.loginLeft:styles.signIn} onPress={handleLogin}>
                   <View style={styles.buttonGradient}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text,SafeAreaView ,View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
+import { StyleSheet, Text,SafeAreaView ,Picker,View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard, Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useContext } from 'react';
 import { PageProvider } from "../PageProvider";
@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import Animated from 'react-native-reanimated';
 import { url } from '../APIURLS';
+import  DateTimePicker  from '@react-native-community/datetimepicker';
 const SignUp = ({ navigation }) => {
 
 
@@ -22,8 +23,13 @@ const SignUp = ({ navigation }) => {
     const [isFocusedPass, setIsFocusedPass] = useState(false);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [email,setEmail]=useState("");
     const [confirmPassword, setconfirmPassword ]= useState('');
     const [wrongInput,setWrongInput]=useState(false);
+    const [date,setDate]=useState( new Date());
+    const [showDateBox,setShowDateBox]=useState(false);
+    const [phone ,setPhone]=useState("");
+    const [selectedGender, setSelectedGender] = useState('');
     const mainTextColor = "rgba(182, 181, 181, 0.549)";
     const handleFocus = (inputId) => {
 
@@ -49,18 +55,96 @@ const SignUp = ({ navigation }) => {
         setIsFocusedEmail(false);
         setIsFocusedPass(false);
     };
-    const handelContinuationPress=()=>{
-        if(password!=confirmPassword){
+    const handelContinuationPress=async()=>{
+        console.log(date);
+        if(password!=confirmPassword||userName==""||phone.length>10||phone.length<8||email==""){
             setWrongInput(true);
             return;
         }
+        const requestBody = {
+            fullName: userName,
+            password: password,
+            confirmationPassword: confirmPassword,
+            email:email,
+            phoneNumber: phone,
+            age: age,
+            "nationalId": 0,
+            "genderId": 0
+        };
         
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Origin': 'http://localhost:19006',
+        };
+        
+        try {
+            // Display loading indicator or disable the login button here
+        
+            const response = await axios.post(url.LoginURL, requestBody, {
+                headers: headers,
+            });
+        
+            if (response.status === 200) {
+                console.log("request good");
+                const responseData = response.data;
+                console.log(responseData);
+        
+                const token = responseData.user;
+                AsyncStorage.setItem(STORAGE_KEY_TOKEN, JSON.stringify(token));
+                console.log(token);
+              // Store the token securely (e.g., using AsyncStorage)
+                navigation.navigate('MainAppPage');
+                return;
+              // Navigate to the next screen or perform other actions
+            } else {
+                console.error("Request failed with status:", response.status);
+                setWrongInput(true);
+              // Handle specific error cases based on response status or content
+            }
+        } catch (error) {
+            console.error("An error occurred", error);
+            setWrongInput(true);
+            // Handle unexpected errors
+        } finally {
+            // Hide loading indicator or enable the login button here
+        }
+        
+
+    }
+    const handelagePress=()=>{
+        setShowDateBox(true);
     }
 
     const wrongSubmitHandel=()=>{
         return <Text style={language?styles.wrongTextColorR:styles.wrongTextColorL}>{language?"معلومات غير صحيحه او مكرره":"the info is not correct or duplicated "}</Text>
     }
-    
+
+    const onTimeChange=(event,selectedDate)=>{
+        
+        const {
+            type,
+            nativeEvent: { timestamp, utcOffset },
+        } = event;
+        
+          // Handle the date change or dismissal here
+        if (type === 'set') {
+            // User selected a date
+            console.log('Selected Date:', date);
+            setDate(selectedDate);
+            setShowDateBox(false);
+            console.log('UTC Offset:', utcOffset);
+        } else if (type === 'dismissed') {
+            // User dismissed the picker
+            console.log('Picker Dismissed');
+            setShowDateBox(false);
+        } else if (type === 'neutralButtonPressed') {
+            // This is only available on Android when a neutral button is pressed
+            setShowDateBox(false);
+            console.log('Neutral Button Pressed');
+        }
+    }
+    console.log(date);
     return (
         <LinearGradient
         colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
@@ -86,13 +170,13 @@ const SignUp = ({ navigation }) => {
             </TouchableOpacity>
     
             <Image source={darkMood?require("../assets/logo-removebg-preview.png"):require("../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
-            <View style={styles.box}>
+            <View style={styles.signUpbox}>
                 <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"انشاء حسابك":"Sign Up"}</Text>
                 <TextInput
-                    id='email'
+                    id='name'
                     placeholder={language?"الاسم الكامل":'full name '}
                     style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
-                    onChange={(email) => setUserName(email)}
+                    onChange={(name) => setUserName(name)}
                     value={userName}
                     onFocus={() => handleFocus('email')}
                     onBlur={handleBlur}
@@ -102,8 +186,8 @@ const SignUp = ({ navigation }) => {
                     id='email'
                     placeholder={language?"البريد الالكتروني":'email'}
                     style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
-                    onChange={(email) => setUserName(email)}
-                    value={userName}
+                    onChange={(email) => setEmail(email)}
+                    value={email}
                     onFocus={() => handleFocus('email')}
                     onBlur={handleBlur}
                     placeholderTextColor={mainTextColor}
@@ -129,17 +213,45 @@ const SignUp = ({ navigation }) => {
                     placeholderTextColor={mainTextColor}
                 ></TextInput>
                 <TextInput
-                    id='email'
+                    id='phone'
                     placeholder={language?"رقم الهاتف":'phone Number '}
                     style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
-                    onChange={(email) => setUserName(email)}
+                    onChange={(phone) => setPhone(phone)}
                     value={userName}
-                    onFocus={() => handleFocus('email')}
+                    keyboardType="numeric"
+                    onFocus={() => handleFocus('phone')}
                     onBlur={handleBlur}
                     placeholderTextColor={mainTextColor}
                 ></TextInput>
+                <TouchableOpacity style={language?styles.Leftage:styles.signInage } onPress={handelagePress} >
+                    <View style={styles.buttonGradient}>
+                        <Text style={[styles.signInButtonText]}>{language?"تاريخ الميلاد":'age'}</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.up, !language ? styles.Leftage : styles.signInage] } onPress={handelagePress} >
+                    <View style={styles.buttonGradient}>
+                        <Text style={[styles.signInButtonText]}>{language?"الجنس":'gender'}</Text>
+                        <Picker
+                            selectedValue={selectedGender}
+                            onValueChange={(itemValue) => setSelectedGender(itemValue)}
+                            style={styles.picker}
+                        >
+                            <Picker.Item label="Select" value="" />
+                            <Picker.Item label="Male" value="male" />
+                            <Picker.Item label="Female" value="female" />
+                            <Picker.Item label="Other" value="other" />
+                        </Picker>
+                    </View>
+                </TouchableOpacity>
                 {wrongInput&&wrongSubmitHandel()}
-                <View style={styles.signContener}>
+
+                {showDateBox&&
+                <DateTimePicker
+                value={date}
+                onChange={onTimeChange}
+                ></DateTimePicker>
+                }
+                <View style={styles.signContener1}>
                 <TouchableOpacity style={language?styles.loginLeft:styles.signIn} onPress={handelContinuationPress} >
                     <View style={styles.buttonGradient}>
                         <Text style={[styles.signInButtonText]}>{language?"متابعة":'continuation'}</Text>

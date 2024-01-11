@@ -60,6 +60,14 @@ export const  styles = StyleSheet.create({
       paddingTop:'20%',
       borderRadius:25
     },
+    signUpbox:{
+      height:'65%',  
+      width:'90%',
+      alignItems:'center',
+      padding:'2%',
+      paddingTop:'10%',
+      borderRadius:25
+    },
     logo: {
       objectFit: 'contain',
       height: '15%',
@@ -78,6 +86,20 @@ export const  styles = StyleSheet.create({
       paddingLeft: 30,
       paddingRight: 30,
       marginBottom: '3%',
+    },
+    age:{
+      right:"25%",
+      width: '45%',
+      height: 55,
+      backgroundColor: 'white',
+      borderStyle: 'solid',
+      borderColor: '#bec3c996',
+      borderWidth: 2,
+      borderRadius: 15,
+      paddingLeft: 30,
+      paddingRight: 30,
+      marginBottom: '3%',
+      color:"#4cb5f9"
     },
     focusedInput: {
       borderColor: '#B5E6FA',
@@ -106,6 +128,14 @@ export const  styles = StyleSheet.create({
       width:'100%',
       position:'relative'
     },
+    
+    signContener1:{
+      display:'flex',
+      flexDirection:'row',
+      width:'100%',
+      position:'relative',
+      bottom:"10%"
+    },
     signIn: {
       width: '45%',
       borderRadius: 50,
@@ -116,6 +146,18 @@ export const  styles = StyleSheet.create({
       alignSelf:'flex-start',
       marginLeft:4,
       marginTop:25,
+      
+    },
+    signInage: {
+      width: '35%',
+      borderRadius: 50,
+      height: 45,
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'white',
+      alignSelf:'flex-start',
+      marginLeft:4,
+      marginTop:10,
       
     },
     buttonGradient: {
@@ -154,7 +196,6 @@ export const  styles = StyleSheet.create({
       height:'60',
       alignItems:'center',
       justifyContent:'center',
-     
     },
     needHelp: {
       
@@ -181,6 +222,18 @@ export const  styles = StyleSheet.create({
     color: 'white',
     marginRight:4,
     marginTop:25,
+  },
+  Leftage:{
+    width: '35%',
+    borderRadius: 50,
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    alignSelf:'flex-start',
+    left:"70%",
+    marginLeft:4,
+    marginTop:10,
   },
   needHelpR: {
     position:'absolute',
@@ -221,5 +274,8 @@ bottomTextContainerSingUp: {
 navtext:{
   fontSize:12,
 
+},
+up:{
+  bottom:"14%"
 }
   });
