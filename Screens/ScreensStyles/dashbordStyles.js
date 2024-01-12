@@ -43,7 +43,7 @@ box: {
     width: '42%', // Adjust width as needed, leaving some space for margin
     height: 200,
     backgroundColor: 'rgba(71, 69, 69,.7)',
-    marginLeft:'5%',
+    marginLeft:'6.5%',
     marginTop:'10%',
     borderRadius:21,
     overflow:'hidden'
@@ -53,7 +53,7 @@ boxDark: {
   width: '42%', // Adjust width as needed, leaving some space for margin
   height: 200,
   backgroundColor: 'rgba(255, 255, 255, 0.727)',
-  marginLeft:'5%',
+  marginLeft:'6.5%',
   marginTop:'10%',
   borderRadius:21,
   overflow:'hidden'

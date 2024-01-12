@@ -3,15 +3,15 @@ import { StyleSheet, Text, Pressable,View, Image, TextInput, TouchableOpacity, K
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native';
 import { PageProvider } from '../PageProvider';
-import { styles } from './ScreensStyles/logIn';
-import Dashbords from './mainApp/Dashbords';
+import { styles } from './ScreensStyles/logInAndSignUp';
+import Dashbords from './mainApp/Dashbord/Dashbords';
 import { Ionicons } from '@expo/vector-icons';
-import Profile from './mainApp/profile';
+import Profile from './mainApp/Profile/profile';
 import { FontAwesome } from '@expo/vector-icons';
 import { usePageContext } from "../PageProvider";
 import React, { useEffect } from 'react';
-import Settings from './mainApp/Settings';
-import {TopTabsGroup} from './mainApp/Appotment';
+import Settings from './mainApp/Settings/Settings';
+import {TopTabsGroup} from './mainApp/Appointment/Appotment';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import CustomHeader from './layout/Header';
 const Tab = createBottomTabNavigator();

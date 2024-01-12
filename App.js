@@ -1,6 +1,6 @@
-import LogIn from './Screens/LogIn';
+import LogIn from './Screens/login and sginUp/LogIn';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
-import SignUp from './Screens/SignUp';
+import SignUp from './Screens/login and sginUp/SignUp';
 import { PageProvider } from "./PageProvider";
 import Try from "./Screens/Try"
 import Animated from 'react-native-reanimated';
@@ -8,24 +8,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator , CardStyleInterpolators} from '@react-navigation/stack';
 import MainAppPage from './Screens/MainAppNav';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { STORAGE_KEY_TOKEN } from './Screens/login and sginUp/LogIn';
+import { usePageContext } from "./PageProvider";
+import Nav from './Nav';
 export default function App() {
-  const Stack = createStackNavigator();
   return (
     <PageProvider>
-    <NavigationContainer style={styles.container}>
-      <Stack.Navigator 
-      initialRouteName="LogIn"
-      screenOptions={{
-        headerShown: false,
-        tabBarVisible: false,
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      }}>
-      <Stack.Screen name="Try" component={Try}   options={{ headerShown: false, tabBarVisible: false }}   />
-        <Stack.Screen name="LogIn" component={LogIn}   options={{ headerShown: false, tabBarVisible: false }}   />
-        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false, tabBarVisible: false }}    />
-        <Stack.Screen name="MainAppPage" component={MainAppPage} options={{ headerShown: false, tabBarVisible: false }}    />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Nav></Nav>
     </PageProvider>
   );
 }

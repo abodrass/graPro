@@ -1,5 +1,5 @@
 import React from 'react'
-import {styles}  from "../ScreensStyles/appomentStyles.js"
+import {styles}  from "../../ScreensStyles/appomentStyles.js"
 import { StyleSheet,SafeAreaView , ScrollView,Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
 const AppointmentBoxs = (props) => {
     let boxType=styles.dateBox;

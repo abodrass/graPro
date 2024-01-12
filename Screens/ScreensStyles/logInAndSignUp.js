@@ -65,7 +65,7 @@ export const  styles = StyleSheet.create({
       width:'90%',
       alignItems:'center',
       padding:'2%',
-      paddingTop:'10%',
+      paddingTop:'9%',
       borderRadius:25
     },
     logo: {
@@ -109,17 +109,32 @@ export const  styles = StyleSheet.create({
       borderColor: 'rgb(206, 74, 74)',
     },
 
+    wrongTextColorSignUpL:{
+      color:'rgb(206, 74, 74)',
+      textAlign:'left',
+      alignSelf:'flex-start',
+      paddingLeft:'5%',
+      bottom:"28%"
+    },
     wrongTextColorL:{
       color:'rgb(206, 74, 74)',
       textAlign:'left',
       alignSelf:'flex-start',
-      paddingLeft:'5%'
+      paddingLeft:'5%',
+   
     },
     wrongTextColorR:{
       color:'rgb(206, 74, 74)',
       textAlign:'right',
       alignSelf:'flex-end',
       paddingRight:'5%'
+    },
+    wrongTextColorSignUpR:{
+      color:'rgb(206, 74, 74)',
+      textAlign:'right',
+      alignSelf:'flex-end',
+      paddingRight:'5%',
+      bottom:"28%"
     },
 
     signContener:{
@@ -232,6 +247,18 @@ export const  styles = StyleSheet.create({
     color: 'white',
     alignSelf:'flex-start',
     left:"70%",
+    marginLeft:4,
+    marginTop:10,
+  },
+  Leftgender:{
+    width: '35%',
+    borderRadius: 50,
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    alignSelf:'flex-start',
+    left:"60%",
     marginLeft:4,
     marginTop:10,
   },

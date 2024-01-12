@@ -1,11 +1,9 @@
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
-import { usePageContext } from "../../PageProvider";
-import { styles } from '../ScreensStyles/dashbordStyles';
-import { BlurView } from 'expo-blur';
-
+import { usePageContext } from "../../../PageProvider";
+import { styles } from '../../ScreensStyles/dashbordStyles';
 import { StyleSheet, ScrollView,Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
-import { boxData } from './boxData';
+import { boxData } from '../boxData';
 const Dashbord = () => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
@@ -22,20 +20,20 @@ const Dashbord = () => {
 
             boxs.push(
 
-                <View   style={darkMood?styles.box:styles.boxDark}>
+                <TouchableOpacity  style={darkMood?styles.box:styles.boxDark}>
                     <Text>{boxData[i].value}</Text>
-                </View>
+                </TouchableOpacity>
             )
         }
         return boxs;
     }
     return (
         <LinearGradient
-        colors={darkMood?['#D0D1CD',"#7B695B"]:['#A1A29D',"#292929"]}
+        colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}
-    >  
+        >  
             <ScrollView style={styles.container} contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
             {boxGen() }
             </ScrollView>

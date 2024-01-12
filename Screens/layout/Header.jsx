@@ -10,23 +10,24 @@ const CustomHeader = (props) => {
         paddingHorizontal: 15,
         paddingVertical: 10,
         width:"100%",
-        backgroundColor: "#ececea", // Set your desired background color
-        height:90
+        backgroundColor: "#fff", // Set your desired background color
+        height:70,
+        alignItems:"center",
+
         }}
     >
         <Image
         source={require("../../assets/logo-removebg-preview.png")}
         style={{
-            top:15,
             width: 40,
             height: 40,
             borderRadius: 100,
             marginRight: 15,
+     
         }}
         />
         <Text
         style={{
-            top:15,
             fontSize:18,
             fontWeight:400,
             left:100,
@@ -37,7 +38,7 @@ const CustomHeader = (props) => {
         <TouchableOpacity  style={{
             position:'absolute',
             left:'97%',
-            top:'64%',
+            top:'49%',
             }}>
             <Ionicons name="menu" size={24} color="black"/>
         </TouchableOpacity>

@@ -1,0 +1,50 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Picker } from "@react-native-picker/picker";
+const GenderSelection = ({ selectedGender, onGenderChange }) => {
+   // State to store selected gender
+
+return (
+    <View style={styles.container}>
+        <Picker
+        selectedValue={selectedGender}
+        onValueChange={(itemValue) => onGenderChange(itemValue)}
+        style={styles.picker}
+        >
+            <Picker.Item label="Gender" value={1} style={styles.label} />
+            <Picker.Item label="Male" value={1} style={styles.label} />
+            <Picker.Item label="Female" value={2} style={styles.label} />
+        
+        </Picker>
+
+    </View>
+);
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    left:10,
+    top:5
+  },
+  label: {
+    fontSize: 15,
+    marginBottom: 10,
+    color:'#494949',
+  },
+  picker: {
+    width: 150,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    
+  },
+  selectedGender: {
+    marginTop: 20,
+    fontSize: 16,
+  },
+});
+
+export default GenderSelection;

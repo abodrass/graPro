@@ -2,27 +2,28 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text,SafeAreaView ,View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useContext } from 'react';
-import { PageProvider } from "../PageProvider";
-import { usePageContext } from "../PageProvider";
+import { usePageContext } from "../../PageProvider";
 import { FontAwesome } from '@expo/vector-icons';
-import { styles } from './ScreensStyles/logIn';
-import { Entypo } from '@expo/vector-icons';
+import { styles } from '../ScreensStyles/logInAndSignUp';
 import { Ionicons } from '@expo/vector-icons';
 import Animated from 'react-native-reanimated';
 import axios from 'react-native-axios';
-import { url } from '../APIURLS';
+import { StorageKey } from '../../StorageKey';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { url } from '../../APIURLS';
+
+const isBrowser = typeof window !== 'undefined';
 const LogIn=({ navigation })=> {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
+    const {token,setToken}= usePageContext();
     const [isFocusedEmail, setIsFocusedEmail] = useState(false);
     const [isFocusedPass, setIsFocusedPass] = useState(false);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [wrongInput,setWrongInput]=useState(false);
     const mainTextColor = "rgba(182, 181, 181, 0.549)";
-    const STORAGE_KEY_TOKEN = 'token';
+  
     const handleFocus = (inputId) => {
 
         if (inputId === 'email') {
@@ -64,21 +65,21 @@ const LogIn=({ navigation })=> {
           console.log("request good");
           const responseData = response.data;
           console.log(responseData);
-    
-          const token = responseData.user;
-          AsyncStorage.setItem(STORAGE_KEY_TOKEN, JSON.stringify(token));
-          console.log(token);
+          await AsyncStorage.setItem(StorageKey.STORAGE_KEY_TOKEN, JSON.stringify(responseData));
+          
           // Store the token securely (e.g., using AsyncStorage)
           navigation.navigate('MainAppPage');
           return;
           // Navigate to the next screen or perform other actions
         } else {
           console.error("Request failed with status:", response.status);
+          navigation.navigate('MainAppPage');
           setWrongInput(true);
           // Handle specific error cases based on response status or content
         }
       } catch (error) {
         console.error("An error occurred", error);
+        navigation.navigate('MainAppPage');
         setWrongInput(true);
         // Handle unexpected errors
       } finally {
@@ -102,6 +103,8 @@ const LogIn=({ navigation })=> {
       console.log('hi');
       navigation.navigate('SignUp');
     };
+
+
     const handelDarkMoodClick=()=>{
       console.log("hi");
       setDarkMood((prev)=>{
@@ -148,7 +151,7 @@ const LogIn=({ navigation })=> {
             <TouchableOpacity style={styles.langu} onPress={handelLangugeClick}>
             <FontAwesome name="language" size={27}  color={darkMood?"#494949":'white'} />
             </TouchableOpacity>
-            <Image source={darkMood?require("../assets/logo-removebg-preview.png"):require("../assets/logo-removebg-preview2.png")} style={styles.logo}></Image>
+            <Image source={darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.logo}></Image>
             <View style={styles.box}>
               <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"تسجيل الدخول لحسابك":"Login to your account"}</Text>
               <TextInput

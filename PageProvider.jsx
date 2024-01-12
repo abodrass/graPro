@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StorageKey } from './StorageKey';
 
-const STORAGE_KEY_DARK_MODE = 'darkMode';
-const STORAGE_KEY_LANGUAGE = 'language';
 
 const PageContext = createContext();
 
@@ -16,31 +15,34 @@ export const PageProvider = ({ children }) => {
   useEffect(() => {
     if (isBrowser) {
       // Load stored dark mode value
-      AsyncStorage.getItem(STORAGE_KEY_DARK_MODE).then((storedDarkMode) => {
+      AsyncStorage.getItem(StorageKey.STORAGE_KEY_DARK_MODE).then((storedDarkMode) => {
         if (storedDarkMode !== null) {
           setDarkMood(JSON.parse(storedDarkMode));
         }
       });
 
       // Load stored language value
-      AsyncStorage.getItem(STORAGE_KEY_LANGUAGE).then((storedLanguage) => {
+      AsyncStorage.getItem(StorageKey.STORAGE_KEY_LANGUAGE).then((storedLanguage) => {
         if (storedLanguage !== null) {
           setLanguage(JSON.parse(storedLanguage));
         }
       });
+
+      
     }
   }, [isBrowser]);
 
   // Update local storage whenever darkMode or language changes (only on the client side)
   useEffect(() => {
     if (isBrowser) {
-      AsyncStorage.setItem(STORAGE_KEY_DARK_MODE, JSON.stringify(darkMood));
-      AsyncStorage.setItem(STORAGE_KEY_LANGUAGE, JSON.stringify(language));
+      AsyncStorage.setItem(StorageKey.STORAGE_KEY_DARK_MODE, JSON.stringify(darkMood));
+      AsyncStorage.setItem(StorageKey.STORAGE_KEY_LANGUAGE, JSON.stringify(language));
+      
     }
   }, [darkMood, language, isBrowser]);
 
   return (
-    <PageContext.Provider value={{ darkMood, setDarkMood, language, setLanguage }}>
+    <PageContext.Provider value={{ darkMood, setDarkMood, language, setLanguage  }}>
       {children}
     </PageContext.Provider>
   );
