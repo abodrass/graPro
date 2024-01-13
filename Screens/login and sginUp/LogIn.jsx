@@ -11,10 +11,12 @@ import axios from 'react-native-axios';
 import { StorageKey } from '../../StorageKey';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { url } from '../../APIURLS';
+import Nav from '../../Nav';
 
 const isBrowser = typeof window !== 'undefined';
 const LogIn=({ navigation })=> {
     const {darkMood,setDarkMood}= usePageContext();
+    const {tokenFlag, setTokenFlag}= usePageContext();
     const {language,setLanguage}= usePageContext();
     const {token,setToken}= usePageContext();
     const [isFocusedEmail, setIsFocusedEmail] = useState(false);
@@ -22,6 +24,7 @@ const LogIn=({ navigation })=> {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [wrongInput,setWrongInput]=useState(false);
+    
     const mainTextColor = "rgba(182, 181, 181, 0.549)";
   
     const handleFocus = (inputId) => {
@@ -64,22 +67,23 @@ const LogIn=({ navigation })=> {
         if (response.status === 200) {
           console.log("request good");
           const responseData = response.data;
-          console.log(responseData);
-          await AsyncStorage.setItem(StorageKey.STORAGE_KEY_TOKEN, JSON.stringify(responseData));
+          
+          console.log(responseData)
+
+          await AsyncStorage.setItem(StorageKey.STORAGE_KEY_TOKEN, JSON.stringify(responseData.token));
           
           // Store the token securely (e.g., using AsyncStorage)
-          navigation.navigate('MainAppPage');
+          setTokenFlag(true);
           return;
           // Navigate to the next screen or perform other actions
         } else {
-          console.error("Request failed with status:", response.status);
-          navigation.navigate('MainAppPage');
+          console.error("Request failed with status:", response.status);   
           setWrongInput(true);
           // Handle specific error cases based on response status or content
         }
       } catch (error) {
         console.error("An error occurred", error);
-        navigation.navigate('MainAppPage');
+
         setWrongInput(true);
         // Handle unexpected errors
       } finally {

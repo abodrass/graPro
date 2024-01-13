@@ -11,7 +11,7 @@ export const PageProvider = ({ children }) => {
   // Retrieve initial value from local storage or use a default value
   const [darkMood, setDarkMood] = useState(false);
   const [language, setLanguage] = useState(false); //false ENG true arabic
-
+  const [tokenFlag, setTokenFlag] = useState(false);
   useEffect(() => {
     if (isBrowser) {
       // Load stored dark mode value
@@ -42,7 +42,7 @@ export const PageProvider = ({ children }) => {
   }, [darkMood, language, isBrowser]);
 
   return (
-    <PageContext.Provider value={{ darkMood, setDarkMood, language, setLanguage  }}>
+    <PageContext.Provider value={{ darkMood, setDarkMood, language, setLanguage ,tokenFlag, setTokenFlag }}>
       {children}
     </PageContext.Provider>
   );

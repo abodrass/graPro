@@ -16,7 +16,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import CustomHeader from './layout/Header';
 const Tab = createBottomTabNavigator();
 
-const TabGroup =()=>{
+const TabGroup =(props)=>{
   const {darkMood,setDarkMood}= usePageContext();
   const {language,setLanguage}= usePageContext();
   let tabBarBackground=darkMood?'#fff':'#fff';
@@ -72,7 +72,7 @@ const TabGroup =()=>{
                 header: () => <CustomHeader />,
               }}
       />
-      <Tab.Screen name ="Settings" component={Settings}
+      <Tab.Screen name ="Settings" component={Settings} logIN={props.navigation}
               options={{
                 header: () => <CustomHeader />,
               }}
@@ -103,7 +103,7 @@ const MainAppPage=({ navigation })=> {
   return (
     <PageProvider>
     <NavigationContainer style={styles.container} independent={true}>
-      <TabGroup></TabGroup>
+      <TabGroup logIN={navigation}></TabGroup>
     </NavigationContainer>
     </PageProvider>
   );

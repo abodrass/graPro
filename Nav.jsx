@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Nav() {
-
+    const {tokenFlag, setTokenFlag}= usePageContext();
     const Stack = createStackNavigator();
     const [tokenExists, setTokenExists] = useState(false);
 
@@ -22,7 +22,7 @@ export default function Nav() {
         };
 
         checkToken();
-    }, []);
+    }, [tokenFlag]);
 
     return (
         <NavigationContainer style={styles.container}>
@@ -34,7 +34,7 @@ export default function Nav() {
                         tabBarVisible: false,
                         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     }}>
-                    <Stack.Screen name="MainAppPage" component={MainAppPage} options={{ headerShown: false, tabBarVisible: false }} />
+                    <Stack.Screen name="MainAppNav" component={MainAppPage} options={{ headerShown: false, tabBarVisible: false }} />
                 </Stack.Navigator>
             ) : (
                 <Stack.Navigator
