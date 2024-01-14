@@ -57,21 +57,23 @@ const TabGroup =(props)=>{
         },
       })}
     > 
-      <Tab.Screen name ="Profile" component={Profile}
-              options={{
-                header: () => <CustomHeader name={"Profile"} />,
-              }}
-      />
       <Tab.Screen name ="Dashbord" component={Dashbords}
               options={{
                 header: () => <CustomHeader />,
               }}
       />
+
       <Tab.Screen name ="appointment" component={TopTabsGroup}
               options={{
                 header: () => <CustomHeader />,
               }}
       />
+      <Tab.Screen name ="Profile" component={Profile}
+              options={{
+                header: () => <CustomHeader name={"Profile"} />,
+              }}
+      />
+    
       <Tab.Screen name ="Settings" component={Settings} logIN={props.navigation}
               options={{
                 header: () => <CustomHeader />,

@@ -15,10 +15,14 @@ export const styles = StyleSheet.create({
     },
     row :{
         width:"100%",
-        height:70,
+        height:80,
         padding:20,
         paddingLeft:40,
         justifyContent:"center",
-        backgroundColor:"#e9e9e9"
+        backgroundColor:"#e9e9e9",
+        borderColor:"#7c7c7c40",
+        borderStyle:"solid",
+        borderWidth:1,
+        borderTopColor:"transparent"
     }
 })

@@ -5,7 +5,7 @@ import { styles } from '../../ScreensStyles/dashbordStyles';
 import { BlurView } from 'expo-blur';
 
 import { StyleSheet,SafeAreaView , ScrollView,Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
-import { boxData } from '../boxData';
+import { boxData } from '../Dashbord/boxData';
 const Profile = () => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();

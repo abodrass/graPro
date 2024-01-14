@@ -25,6 +25,19 @@ export const styles = StyleSheet.create({
         backgroundColor:"#c6d8cd81",
         color:"#c6d8cd",
     },
+    dateBoxSAr:{
+        borderRadius:500,  
+        width:110,
+        height:110,
+        borderStyle:"solid",
+        borderWidth:2,
+        alignItems:'center',
+        justifyContent:'center',
+        borderColor:"#c6d8cd",
+        backgroundColor:"#c6d8cd81",
+        color:"#c6d8cd",
+        left:"70%"
+    },
     dateBoxPur:{
         borderRadius:500,  
         width:110,
@@ -35,7 +48,20 @@ export const styles = StyleSheet.create({
         justifyContent:'center',
         borderColor:"#9697C8",
         backgroundColor:"#d2d6e6",
+        color:"#9697C8"
+    },
+    dateBoxPurAr:{
+        borderRadius:500,  
+        width:110,
+        height:110,
+        borderStyle:"solid",
+        borderWidth:2,
+        alignItems:'center',
+        justifyContent:'center',
+        borderColor:"#9697C8",
+        backgroundColor:"#d2d6e6",
         color:"#9697C8",
+        left:"70%"
     },
     dateBoxRed:{
         borderRadius:500,  
@@ -49,10 +75,29 @@ export const styles = StyleSheet.create({
         backgroundColor:"#EED2D4",
         color:"#F3BCBB",
     },
+    dateBoxRedAr:{
+        borderRadius:500,  
+        width:110,
+        height:110,
+        borderStyle:"solid",
+        borderWidth:2,
+        alignItems:'center',
+        justifyContent:'center',
+        borderColor:"#F3BCBB",
+        backgroundColor:"#EED2D4",
+        color:"#F3BCBB",
+        left:"70%"
+    },
     name:{
         fontSize:18,
         position:"absolute",
         left:"50%",
+        top:'70%'
+    },
+    nameAr:{
+        fontSize:18,
+        position:"absolute",
+        left:"66%",
         top:'70%'
     },
     time:{
@@ -63,10 +108,25 @@ export const styles = StyleSheet.create({
         fontWeight:"bold",
 
     },
+    timeAr:{
+        fontSize:18,
+        position:"absolute",
+        left:"62%",
+        top:'20%',
+        fontWeight:"bold",
+
+    },
     phone:{
         fontSize:15,
         position:"absolute",
         left:"50%",
+        top:'120%',
+        color:'#C3C5F3',
+    },
+    phoneAr:{
+        fontSize:15,
+        position:"absolute",
+        left:"58%",
         top:'120%',
         color:'#C3C5F3',
     }

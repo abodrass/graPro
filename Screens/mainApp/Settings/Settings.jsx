@@ -5,6 +5,8 @@ import { StorageKey } from '../../../StorageKey';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Nav from '../../../Nav';
 import { useNavigation } from '@react-navigation/native';
+import * as Updates from 'expo-updates';
+import RNRestart from 'react-native-restart';
 import { StyleSheet, ScrollView,Text, SafeAreaView,View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
 const Settings = () => {
     const {darkMood,setDarkMood}= usePageContext();
@@ -16,21 +18,43 @@ const Settings = () => {
             await AsyncStorage.removeItem(StorageKey.STORAGE_KEY_TOKEN);
             console.log('Data removed successfully');
             setTokenFlag(false);
+            await Updates.reloadAsync();
             return;
             } catch (error) {
-            console.error('Error removing data from AsyncStorage:', error);
+            console.error( error);
             }
     }
+
+    const handelDarkMoodClick=()=>{
+        console.log("hi");
+        setDarkMood((prev)=>{
+            return !prev;
+        });
+    }
+    const handelLangugeClick=()=>{
+        setLanguage((prev)=>{
+            return !prev;
+        })
+    }
     return (
-        <SafeAreaView
+        <ScrollView
         style={{
             backgroundColor:darkMood?"#fff":"#3E3E3E"
         }}
         >
-            <TouchableOpacity onPress={handleLogOut} style={styles.row} >
-                    <Text >{language?"تسجيل الخروج":"logout"}</Text>
+            <TouchableOpacity onPress={handelDarkMoodClick} style={styles.row} >
+                    <Text >{!language?"النمط الاسود":"Dark Mode"}</Text>
             </TouchableOpacity>
-        </SafeAreaView>
+
+            <TouchableOpacity onPress={handelLangugeClick} style={styles.row} >
+                    <Text >{!language?" اللغه":"language"}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={handleLogOut} style={styles.row} >
+                    <Text >{!language?"تسجيل الخروج":"logout"}</Text>
+            </TouchableOpacity>
+
+        </ScrollView>
     )
 }
 
