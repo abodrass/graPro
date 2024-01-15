@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
+        flex: 1,
         fontFamily: 'Roboto',
         height: '100%',
         width: '100%',
@@ -12,12 +13,13 @@ export const styles = StyleSheet.create({
         paddingTop:"5%"
     },
     darkContainer: {
+        flex: 1,
         fontFamily: 'Roboto',
         height: '100%',
         width: '100%',
         justifyContent: 'flex-start',
         position: 'relative',
-        backgroundColor: 'rgb(71, 69, 69)',
+        backgroundColor: '#161616',
         flexDirection: 'column',
         padding: '2%',
         paddingTop:"5%"
@@ -35,6 +37,7 @@ export const styles = StyleSheet.create({
 
     title:{
         width:"100%",
+        marginTop:"10%",
         height:55,
         borderColor:"black",
         borderStyle:"solid",
@@ -47,49 +50,89 @@ export const styles = StyleSheet.create({
     des:{
 
         width:"100%",
-        height:100,
-        borderColor:"black",
-        borderStyle:"solid",
-        borderWidth:2,
-        borderRadius:10,
-        marginTop:30,
+        height:140,
         paddingLeft:15,
-        paddingRight:20
+        paddingRight:20,
+        color:"white",
+        fontSize:18,
     },
-
-    catagory:{
-        width:"100%",
-        height:55,
-        borderColor:"black",
-        borderStyle:"solid",
-        borderWidth:2,
-        borderRadius:10,
-        marginTop:30,
-        justifyContent:"center",
-        paddingLeft:20,
-        paddingRight:20
-    },
-
-    photo:{
-        width:"100%",
-        height:170,
-        borderColor:"black",
-        borderStyle:"solid",
-        borderWidth:2,
+    Date:{
+        alignSelf:'center',
+        justifyContent:'center',
+        width:"30%",
+        height:70,
+        backgroundColor:"#4cb5f9",
+        color:"white",
         borderRadius:10,
         marginTop:30,
         justifyContent:'center',
         alignItems:"center",
-        padding:15
+        padding:15,
+        margin:10
+    },
+
+    catagory:{
+        borderStyle:"solid",
+        width:'26%',
+        height:26,
+        backgroundColor:"#4cb5f9",
+        borderRadius:10,
+        position: 'absolute',
+        bottom: 9,
+        left: 50,
+        right: 0,
+        alignItems:"center",
+        justifyContent:"center"
+    },
+    DateValue:{
+        borderStyle:"solid",
+        width:'26%',
+        height:26,
+        backgroundColor:"#4cb5f9",
+        borderRadius:10,
+        position: 'absolute',
+        bottom: 9,
+        left: 170,
+        right: 0,
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"center",
+
+    },
+    TimeValue:{
+        borderStyle:"solid",
+        width:'26%',
+        height:26,
+        backgroundColor:"#4cb5f9",
+        borderRadius:10,
+        position: 'absolute',
+        bottom: 9,
+        left: 290,
+        right: 0,
+        alignItems:"center",
+        justifyContent:"center",
+        flexDirection:"row",
+    },
+
+    photo:{
+        alignSelf:'center',
+        width:"90%",
+        height:300,
+        borderRadius:25,
+        justifyContent:'center',
+        alignItems:"center",
+        padding:15,
+        left:5,
+        overflow:'hidden'
     },
     uploadText:{
         alignSelf:"flex-start",
-        bottom:50,
+        bottom:30,
         
     },
     uploadTextAr:{
         alignSelf:"flex-end",
-        bottom:50,
+        bottom:10,
         color:"rgba(182, 181, 181, 0.549)"
     },
     uploadIcon:{
@@ -98,17 +141,19 @@ export const styles = StyleSheet.create({
     },
 
     postbo:{
-        alignSelf:'center',
-        width:"30%",
-        height:45,
-        borderColor:"black",
-        borderStyle:"solid",
-        borderWidth:2,
-        borderRadius:10,
+        position:"absolute",
+        backgroundColor:"#4cb5f9",
+        left:"80%",
+        width:"20%",
+        height:35,
+        borderRadius:20,
         justifyContent:'center',
         alignItems:"center",
-        marginTop:30,
-        top:60
+        color:"#fff"
+    },
+    PostInButtonText: {
+        color: 'white',
+        fontWeight: '800',
     },
     box: {
         width: '42%', // Adjust width as needed, leaving some space for margin
@@ -120,6 +165,19 @@ export const styles = StyleSheet.create({
         overflow:'hidden'
     
     },
+    pickers:{
+        width:"100%",
+        flexDirection:'row',
+        alignItems:"center",
+        justifyContent:'center'
+    },
+    pic:{
+
+        position: 'absolute',
+        bottom: 10,
+        left: 10,
+        right: 0,
+    },
     boxDark: {
         width: '42%', // Adjust width as needed, leaving some space for margin
         height: 200,
@@ -129,4 +187,7 @@ export const styles = StyleSheet.create({
         borderRadius:21,
         overflow:'hidden' 
         },
+        allview:{
+            flex:1
+        }
 });

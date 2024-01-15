@@ -46,8 +46,21 @@ box: {
     marginLeft:'6.5%',
     marginTop:'10%',
     borderRadius:21,
-    overflow:'hidden'
+    overflow:'hidden',
+    alignItems:"center",
+
     
+},
+
+boxText:{
+  position:"absolute",
+  top:10,
+  fontSize:16,
+  fontWeight:"500",
+
+},
+boxImage:{
+  borderRadius:20
 },
 boxDark: {
   width: '42%', // Adjust width as needed, leaving some space for margin

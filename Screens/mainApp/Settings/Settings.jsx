@@ -12,18 +12,22 @@ const Settings = () => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
     const {tokenFlag, setTokenFlag}= usePageContext();
-
-    const handleLogOut= async()=>{
+    const {setToken}=usePageContext();
+    const handleLogOut = async () => {
         try {
-            await AsyncStorage.removeItem(StorageKey.STORAGE_KEY_TOKEN);
-            console.log('Data removed successfully');
-            setTokenFlag(false);
-            await Updates.reloadAsync();
-            return;
-            } catch (error) {
-            console.error( error);
-            }
-    }
+          await AsyncStorage.removeItem(StorageKey.STORAGE_KEY_TOKEN);
+          console.log('Data removed successfully');
+          setToken(""); // Update token state
+          setTokenFlag(false);
+          await Updates.reloadAsync();
+          return;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+
+    
 
     const handelDarkMoodClick=()=>{
         console.log("hi");

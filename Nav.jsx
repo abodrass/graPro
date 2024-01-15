@@ -17,12 +17,13 @@ export default function Nav() {
 
     useEffect(() => {
         const checkToken = async () => {
-            const storedToken = await AsyncStorage.getItem(StorageKey.STORAGE_KEY_TOKEN);
-            setTokenExists(storedToken !== null);
+          const storedToken = await AsyncStorage.getItem(StorageKey.STORAGE_KEY_TOKEN);
+          setTokenExists(storedToken !== null);
         };
-
+      
         checkToken();
-    }, [tokenFlag]);
+      }, [tokenFlag]);
+      
 
     return (
         <NavigationContainer style={styles.container}>

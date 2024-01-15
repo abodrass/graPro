@@ -69,7 +69,8 @@ const LogIn=({ navigation })=> {
           const responseData = response.data;
           
           console.log(responseData)
-
+          
+          if(tokenFlag!=true)
           await AsyncStorage.setItem(StorageKey.STORAGE_KEY_TOKEN, JSON.stringify(responseData.token));
           
           // Store the token securely (e.g., using AsyncStorage)

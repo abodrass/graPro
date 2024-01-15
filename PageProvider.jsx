@@ -1,48 +1,62 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StorageKey } from './StorageKey';
-
 
 const PageContext = createContext();
 
 export const PageProvider = ({ children }) => {
-  const isBrowser = typeof window !== 'undefined';
-
   // Retrieve initial value from local storage or use a default value
-  const [darkMood, setDarkMood] = useState(false);
-  const [language, setLanguage] = useState(false); //false ENG true arabic
+  const [language, setLanguage] = useState(false); // false for ENG, true for Arabic
   const [tokenFlag, setTokenFlag] = useState(false);
+  const [darkMood, setDarkMood] = useState(true); // Set to true to match the stored value
+  const [token, setToken] = useState(""); // Keep an empty string for token initially
+  
+
   useEffect(() => {
-    if (isBrowser) {
-      // Load stored dark mode value
-      AsyncStorage.getItem(StorageKey.STORAGE_KEY_DARK_MODE).then((storedDarkMode) => {
+    console.log("Loading values from AsyncStorage...");
+  
+    AsyncStorage.getItem(StorageKey.STORAGE_KEY_DARK_MODE)
+      .then((storedDarkMode) => {
+        console.log("Stored Dark Mode:", storedDarkMode);
         if (storedDarkMode !== null) {
           setDarkMood(JSON.parse(storedDarkMode));
         }
+      })
+      .catch((error) => {
+        console.error('Error loading dark mode from AsyncStorage:', error);
       });
-
-      // Load stored language value
-      AsyncStorage.getItem(StorageKey.STORAGE_KEY_LANGUAGE).then((storedLanguage) => {
-        if (storedLanguage !== null) {
-          setLanguage(JSON.parse(storedLanguage));
+  
+    AsyncStorage.getItem(StorageKey.STORAGE_KEY_TOKEN)
+      .then((storedToken) => {
+        console.log("Stored Token:", storedToken);
+        if (storedToken !== null) {
+          setToken(storedToken); // Don't parse as JSON
         }
+      })
+      .catch((error) => {
+        console.error('Error loading token from AsyncStorage:', error);
       });
+  }, []);
+  
 
-      
-    }
-  }, [isBrowser]);
+
 
   // Update local storage whenever darkMode or language changes (only on the client side)
   useEffect(() => {
-    if (isBrowser) {
-      AsyncStorage.setItem(StorageKey.STORAGE_KEY_DARK_MODE, JSON.stringify(darkMood));
-      AsyncStorage.setItem(StorageKey.STORAGE_KEY_LANGUAGE, JSON.stringify(language));
-      
-    }
-  }, [darkMood, language, isBrowser]);
+    AsyncStorage.setItem(StorageKey.STORAGE_KEY_DARK_MODE, JSON.stringify(darkMood))
+      .catch((error) => {
+        console.error('Error saving dark mode to AsyncStorage:', error);
+      });
+
+    AsyncStorage.setItem(StorageKey.STORAGE_KEY_LANGUAGE, JSON.stringify(language))
+      .catch((error) => {
+        console.error('Error saving language to AsyncStorage:', error);
+      });
+
+  }, [darkMood, language]);
 
   return (
-    <PageContext.Provider value={{ darkMood, setDarkMood, language, setLanguage ,tokenFlag, setTokenFlag }}>
+    <PageContext.Provider value={{ darkMood, setDarkMood, language, setLanguage, tokenFlag, setTokenFlag, token, setToken }}>
       {children}
     </PageContext.Provider>
   );

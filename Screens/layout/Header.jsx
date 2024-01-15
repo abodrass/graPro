@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, View, SafeAreaView,Text ,TouchableOpacity} from "react-native";
+
 import { Ionicons } from '@expo/vector-icons';
 const CustomHeader = (props) => {
     return (
@@ -23,7 +24,6 @@ const CustomHeader = (props) => {
             height: 40,
             borderRadius: 100,
             marginRight: 15,
-     
         }}
         />
         <Text
@@ -40,7 +40,7 @@ const CustomHeader = (props) => {
             left:'97%',
             top:'49%',
             }}>
-            <Ionicons name="menu" size={24} color="black"/>
+            <Ionicons name="notifications" size={24} color="black" />
         </TouchableOpacity>
     </SafeAreaView>
     );
