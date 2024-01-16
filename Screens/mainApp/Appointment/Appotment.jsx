@@ -36,7 +36,7 @@ export function TopTabsGroup() {
 const appointmentGenrate =(type)=>{
     //must be the number of the appotment in the database 
     let appointments=[];
-    for(let i=0;i<3;i++){
+    for(let i=0;i<10;i++){
         appointments.push(
             <AppointmentBoxs name={""} date={""} time={""} phone={""} type={type} ></AppointmentBoxs>
         )

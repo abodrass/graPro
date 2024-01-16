@@ -11,6 +11,7 @@ import axios from 'react-native-axios';
 import { StorageKey } from '../../StorageKey';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { url } from '../../APIURLS';
+import * as SecureStore from 'expo-secure-store';
 import Nav from '../../Nav';
 
 const isBrowser = typeof window !== 'undefined';
@@ -70,9 +71,10 @@ const LogIn=({ navigation })=> {
           
           console.log(responseData)
           
-          if(tokenFlag!=true)
+          if(tokenFlag!=true){
           await AsyncStorage.setItem(StorageKey.STORAGE_KEY_TOKEN, JSON.stringify(responseData.token));
-          
+          await SecureStore.setItemAsync(StorageKey.STORAGE_KEY_Role,JSON.stringify(responseData.userRole));
+          }
           // Store the token securely (e.g., using AsyncStorage)
           setTokenFlag(true);
           return;

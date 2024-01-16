@@ -9,14 +9,23 @@ import { usePageContext } from "../../../PageProvider";
 const Boxs = (props) => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
-    console.log(props.keys);
-    console.log(props.imgurl);
+    const {userRole,setUserRole}=usePageContext();
+    console.log(userRole);
     return (
         <TouchableOpacity  style={darkMood?styles.box:styles.boxDark } 
             onPress={() => {
+                console.log(userRole);
+                if(userRole==="\"Dentist\""){
                 props.navigations.navigate('DocPost', {
-                boxValue: props.EnName,
-                });
+                boxValue: language? props.EnName:props.ARname,
+                }); 
+                }
+                else if(userRole=="\"patient\""){
+                    props.navigations.navigate('MainPostNav', {
+                        boxValue: language? props.EnName:props.ARname,
+                        }); 
+                }
+
             }}>
                 
             <View
@@ -31,7 +40,7 @@ const Boxs = (props) => {
                 source={{ uri: `data:image/jpeg;base64,${props.imgurl}` }}
                 style={{ width: '100%', height: '100%', position: 'absolute' }}
                 />
-                <Text style={styles.boxText}>{props.EnName}</Text>
+                <Text style={styles.boxText}>{language? props.EnName:props.ARname}</Text>
             </View>
 
         </TouchableOpacity>

@@ -1,5 +1,6 @@
 {
   "expo": {
+    
     "plugins": [
       [
         "expo-image-picker",
@@ -8,6 +9,7 @@
         }
       ]
     ],
+
     "name": "graduationProject3",
     "slug": "graduationProject3",
     "version": "1.0.0",
@@ -24,7 +26,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
