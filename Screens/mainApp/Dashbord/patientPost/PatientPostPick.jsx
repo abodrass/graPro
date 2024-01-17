@@ -166,7 +166,7 @@ const PatientPostPick = ({ navigation, route  }) => {
         }
 
         const handelBackClick=()=>{
-            navigation.navigate('Asborde')
+            navigation.navigate('AppointmentPost')
         }
 
 

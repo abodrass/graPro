@@ -15,22 +15,21 @@ const Settings = () => {
     const {setToken}=usePageContext();
     const handleLogOut = async () => {
         try {
-          await AsyncStorage.removeItem(StorageKey.STORAGE_KEY_TOKEN);
-          console.log('Data removed successfully');
-          setToken(""); // Update token state
-          setTokenFlag(false);
-          await Updates.reloadAsync();
-          return;
+            await AsyncStorage.removeItem(StorageKey.STORAGE_KEY_TOKEN);
+            console.log('Data removed successfully');
+            setToken(""); // Update token state
+            setTokenFlag(false);
+            await Updates.reloadAsync();
+            return;
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
-      }
+    }
 
 
     
 
     const handelDarkMoodClick=()=>{
-        console.log("hi");
         setDarkMood((prev)=>{
             return !prev;
         });
@@ -43,19 +42,19 @@ const Settings = () => {
     return (
         <ScrollView
         style={{
-            backgroundColor:darkMood?"#fff":"#3E3E3E"
+            backgroundColor:darkMood?"#3E3E3E":"#fff"
         }}
         >
             <TouchableOpacity onPress={handelDarkMoodClick} style={styles.row} >
-                    <Text >{!language?"النمط الاسود":"Dark Mode"}</Text>
+                    <Text >{language?"النمط الاسود":"Dark Mode"}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={handelLangugeClick} style={styles.row} >
-                    <Text >{!language?" اللغه":"language"}</Text>
+                    <Text >{language?" اللغه":"language"}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={handleLogOut} style={styles.row} >
-                    <Text >{!language?"تسجيل الخروج":"logout"}</Text>
+                    <Text >{language?"تسجيل الخروج":"logout"}</Text>
             </TouchableOpacity>
 
         </ScrollView>

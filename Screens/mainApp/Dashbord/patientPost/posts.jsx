@@ -20,22 +20,18 @@ const Posts = (props) => {
     return (
     
         <TouchableOpacity style={props.isImageE?styles.mainBox:styles.mainBox1} onPress={handelPostClick}>
-
-            <Image source={require("../../../../assets/x.jpg")} style={styles.profilePic} ></Image>  
+            <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl}` }} style={props.isImageE?styles.profilePic:styles.profilePic1} ></Image>  
                 <View style={props.isImageE?styles.nameAndDateV:styles.nameAndDateV1}>
                 <View style={styles.nameAndDateVPos}>
                     <Text  style={styles.name}>abod aboras</Text>
                     <Text  style={styles.date}>3:30 am </Text>
                 </View>
                 </View>  
-                    <Text  style={props.isImageE?styles.des:styles.des1}> I think Ramsay is wrong, react native have a fully support on base64 image. I found this
-
-                    https://facebook.github.io/react-native/docs/tabbarios.html
-                    this is a official example of how to create a iOS TabBarController, and they use a base64 image as one of the TabBar's icon.
-                    I think yo
+                    <Text  style={props.isImageE?styles.des:styles.des1}> 
+                        {props.des.substring(0, 200)}
                 </Text>
             <View style={styles.postImage}>
-                { props.isImageE&&<Image source={require("../../../../assets/x.jpg")} style={{width:"100%",height:"100%"}}></Image>}
+                { props.isImageE&&<Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl}` }} style={{width:"100%",height:"100%"}}></Image>}
             </View>
         </TouchableOpacity>
     )

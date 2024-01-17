@@ -17,13 +17,13 @@ const Boxs = (props) => {
                 console.log(userRole);
                 if(userRole==="\"Dentist\""){
                 props.navigations.navigate('DocPost', {
-                boxValue: language? props.EnName:props.ARname,
+                    catgoryId:props.id,
                 }); 
                 }
-                else if(userRole=="\"patient\""){
+                else if(userRole=="\"Patient\""){
                     props.navigations.navigate('MainPostNav', {
-                        boxValue: language? props.EnName:props.ARname,
-                        }); 
+                        catgoryId:props.id
+                    }); 
                 }
 
             }}>
@@ -40,7 +40,7 @@ const Boxs = (props) => {
                 source={{ uri: `data:image/jpeg;base64,${props.imgurl}` }}
                 style={{ width: '100%', height: '100%', position: 'absolute' }}
                 />
-                <Text style={styles.boxText}>{language? props.EnName:props.ARname}</Text>
+                <Text style={styles.boxText}>{language? props.ARname:props.EnName}</Text>
             </View>
 
         </TouchableOpacity>

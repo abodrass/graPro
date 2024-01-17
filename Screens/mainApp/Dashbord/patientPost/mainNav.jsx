@@ -8,11 +8,11 @@ import { StyleSheet, ScrollView,Text, View, Image, TextInput, TouchableOpacity, 
 import PatientPostPick from './PatientPostPick';
 import AppointmentPost from './AppointmentPost';
 
-const MainPostNav = () => {
+const MainPostNav = ({route}) => {
     const Stack = createStackNavigator();
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
-
+    const {catgoryId} = route.params;
     return (
         <NavigationContainer independent={true} >
             <Stack.Navigator
@@ -22,7 +22,7 @@ const MainPostNav = () => {
                     tabBarVisible: false,
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                 }}>
-                <Stack.Screen name="AppointmentPost" component={AppointmentPost} options={{ headerShown: false, tabBarVisible: false }} />
+                <Stack.Screen name="AppointmentPost" component={AppointmentPost}  initialParams={{ catgoryId: catgoryId }}  options={{ headerShown: false, tabBarVisible: false }} />
                 <Stack.Screen name="PatientPostPick" component={PatientPostPick} options={{ headerShown: false, tabBarVisible: false }} />
             </Stack.Navigator>
         </NavigationContainer> 

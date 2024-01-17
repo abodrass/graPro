@@ -33,7 +33,7 @@ const Ashbord = ({ navigation }) => {
                 headers: headers,
                 });
             if (response.status === 200) {
-                console.log("request good");
+                console.log("GetAllCategorys request good");
                 const responseData = response.data;
                 
                 console.log(responseData[0])
@@ -63,7 +63,7 @@ const Ashbord = ({ navigation }) => {
         
 
             boxs.push(
-                <Boxs keys={data[i].id} ARname={data[i].arabicName} EnName={data[i].englishName} imgurl={data[i].image} navigations={navigation}></Boxs>
+                <Boxs keys={data[i].id}  id={data[i].id} ARname={data[i].arabicName} EnName={data[i].englishName} imgurl={data[i].image} navigations={navigation}></Boxs>
             )
         }
         return boxs;
@@ -72,7 +72,7 @@ const Ashbord = ({ navigation }) => {
 
     return (
         <LinearGradient
-        colors={darkMood?['#ececea',"#5F6B6F"]:["#161616","#161616"]}
+        colors={darkMood?["#161616","#161616"]:['#ececea',"#5F6B6F"]}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}

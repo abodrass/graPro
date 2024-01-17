@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     },
     mainBox:{
         width:"100%",
-        height:"109%",
+        height:"90%",
         padding:47,
         justifyContent:'center',
         position:'relative',
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     },
     mainBox1:{
         width:"100%",
-        height:"40%",
+        height:"25%",
         padding:47,
         justifyContent:'center',
         position:'relative',
@@ -40,6 +40,14 @@ export const styles = StyleSheet.create({
     profilePic:{
         position:"absolute",
         top:"2%",
+        left:"5%",
+        borderRadius:50,
+        width:45,
+        height:45,
+    },
+    profilePic1:{
+        position:"absolute",
+        top:"7%",
         left:"5%",
         borderRadius:50,
         width:45,
@@ -59,7 +67,7 @@ export const styles = StyleSheet.create({
         height:30,
         flexDirection:"row",
         position:"absolute",
-        top:"7%",
+        top:"14%",
         left:"25%",
     },
     nameAndDateVPos:{
@@ -76,7 +84,7 @@ export const styles = StyleSheet.create({
     },
     date:{
         position:'absolute',
-        left:"79%",
+        left:"87%",
         fontSize:12,
         top:0,
         
@@ -86,7 +94,7 @@ export const styles = StyleSheet.create({
     des:{
         position:"absolute",
         top:"5%",
-        borderRadius:50,
+
         left:"25%",
         width:"100%",
         height:"100%",
@@ -94,8 +102,8 @@ export const styles = StyleSheet.create({
     },
     des1:{
         position:"absolute",
-        top:"19%",
-        borderRadius:50,
+        top:"39%",
+ 
         left:"25%",
         width:"100%",
         height:"100%",
@@ -103,7 +111,7 @@ export const styles = StyleSheet.create({
     },
     postImage:{
         position:"absolute",
-        top:'21%',
+        top:'18%',
         left:'22%',
         width:310,
         height:250,

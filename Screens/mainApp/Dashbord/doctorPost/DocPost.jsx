@@ -15,6 +15,7 @@ const DocPost = ({ route, navigation  }) => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
     const [image, setImage] = useState(null);
+    const [image64, setImage64] = useState([]);
     const [showDateBox,setShowDateBox]=useState(false);
     const [showTimeBox,setShowTimeBox]=useState(false);
     const [imgPicked,setImgPicked]= useState(false);
@@ -23,7 +24,7 @@ const DocPost = ({ route, navigation  }) => {
     const [des,setDes]=useState("");
     const {token,setToken}=usePageContext();
     const[text,setText]=useState("Empty");
-    const { boxValue } = route.params;
+    const {catgoryId} = route.params;
     const mainTextColor= darkMood?"black":"white";
 
 
@@ -32,8 +33,9 @@ const DocPost = ({ route, navigation  }) => {
 
         const requestBody = {
             date: date,
-            categoryId: 1,
-            categoryName: "Withdrawal of nerve"
+            dentistDescription: des.substring(0, 200),
+            categoryId: catgoryId,
+            images:image64
         };
         const bar="Bearer "
         console.log("Bearer "+token.replace(/"/g, ''));
@@ -80,21 +82,23 @@ const DocPost = ({ route, navigation  }) => {
     
 
     const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
+            base64: true,
+            multiple: true, // Enable multiple image selection
         });
     
-        console.log(result);
-    
-        if (!result.canceled) {
-            setImage(result.assets[0].uri);
+        if (!result.cancelled) {
+            const imageArray = result.assets.map((image) => image.base64);
+            setImage64(imageArray);
+            setImage(result.assets[0].uri); // Assuming you want to display the first selected image
             setImgPicked(true);
         }
-        };
+    };
+    
 
         const handelDatePress=()=>{
             setShowDateBox(true);
@@ -188,7 +192,7 @@ const DocPost = ({ route, navigation  }) => {
             
             </View>
             <TextInput 
-            style={styles.des}
+            style={darkMood?styles.des:styles.desBlack}
             placeholderTextColor={mainTextColor}
             placeholder={!language?"اكتب الوصف الذي تريده"  :'Description|'}
             value={des}
@@ -234,7 +238,7 @@ const DocPost = ({ route, navigation  }) => {
             </TouchableOpacity>
 
             <View style={styles.catagory}>
-                <Text style={styles.PostInButtonText}>{boxValue}</Text>
+                <Text style={styles.PostInButtonText}>{catgoryId}</Text>
             </View>
             
             <View style={styles.DateValue}>

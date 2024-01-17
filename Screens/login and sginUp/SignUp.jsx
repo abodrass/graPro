@@ -76,7 +76,7 @@ const SignUp = ({ navigation }) => {
             password: password,
             confirmationPassword: confirmPassword,
             email:email,
-            phoneNumber:"+962"+phone,
+            phoneNumber:phone,
             age: date ,
             nationalId: 0,
             genderId: selectedGender
