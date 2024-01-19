@@ -30,7 +30,7 @@ const DocPost = ({ route, navigation  }) => {
 
 
     const handelPostPress = async () => {
-
+        
         const requestBody = {
             date: date,
             dentistDescription: des.substring(0, 200),
@@ -152,7 +152,9 @@ const DocPost = ({ route, navigation  }) => {
             if (type === 'set') {
                // User selected a date
                 console.log('Selected Date:', selectedDate);
-                setTime(selectedDate);  // Assuming setDate is defined elsewhere
+                date.setHours(selectedDate.getHours());
+                date.setMinutes(selectedDate.getMinutes());
+                // Assuming setDate is defined elsewhere
                  // Assuming setShowDateBox is defined elsewhere
                 console.log('UTC Offset:', utcOffset);
                 setShowTimeBox(false); 
@@ -173,7 +175,7 @@ const DocPost = ({ route, navigation  }) => {
 
 
     return (
-        <SafeAreaView style={darkMood?styles.container:styles.darkContainer} >
+        <SafeAreaView style={!darkMood?styles.container:styles.darkContainer} >
 
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -184,17 +186,17 @@ const DocPost = ({ route, navigation  }) => {
             <View style={styles.rowv}>
             
             <TouchableOpacity onPress={handelBackClick}>
-                <Feather name="x" size={27} color={darkMood?"black":"white"} />
+                <Feather name="x" size={27} color={!darkMood?"black":"white"} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.postbo} onPress={handelPostPress}>
-                <Text style={styles.PostInButtonText}>{language?"Post":"انشر"}</Text>
+                <Text style={styles.PostInButtonText}>{!language?"Post":"انشر"}</Text>
             </TouchableOpacity>
             
             </View>
             <TextInput 
-            style={darkMood?styles.des:styles.desBlack}
-            placeholderTextColor={mainTextColor}
-            placeholder={!language?"اكتب الوصف الذي تريده"  :'Description|'}
+            style={!darkMood?styles.des:styles.desBlack}
+            placeholderTextColor={!darkMood?mainTextColor:"#fff"}
+            placeholder={language?"اكتب الوصف الذي تريده"  :'Description|'}
             value={des}
             onChangeText={handelDesChange}
             ></TextInput>
@@ -217,7 +219,7 @@ const DocPost = ({ route, navigation  }) => {
             <TouchableOpacity style={styles.photo} onPress={pickImage} >
                 
                 { !imgPicked?
-                <Feather style={styles.uploadIcon} name="upload" size={24} color={darkMood?"#494949":'white'} />:
+                <Feather style={styles.uploadIcon} name="upload" size={24} color={!darkMood?"#494949":'white'} />:
                 <Image source={{ uri: image }} style={{ width: 370, height: 320 }} />
                 }
             </TouchableOpacity>
@@ -225,16 +227,16 @@ const DocPost = ({ route, navigation  }) => {
             <View style={styles.pickers}>
 
                 <TouchableOpacity style={styles.Date} onPress={handelDatePress} >
-                    <Text style={styles.PostInButtonText}>{language?"Add a date" :"اضف التاريخ"}</Text>
+                    <Text style={styles.PostInButtonText}>{!language?"Add a date" :"اضف التاريخ"}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.Date} onPress={handelTimePress} >
-                    <Text style={styles.PostInButtonText}>{language?"Add a Time" :"اضف وقت"}</Text>
+                    <Text style={styles.PostInButtonText}>{!language?"Add a Time" :"اضف وقت"}</Text>
                 </TouchableOpacity>
             
             </View>
             <TouchableOpacity style={styles.pic} onPress={pickImage}>
-            <AntDesign name="picture"  size={24} color={darkMood?"black":"white"} />
+            <AntDesign name="picture"  size={24} color={!darkMood?"black":"white"} />
             </TouchableOpacity>
 
             <View style={styles.catagory}>
@@ -247,8 +249,8 @@ const DocPost = ({ route, navigation  }) => {
                 <Text style={styles.PostInButtonText}>{date.getDate()}</Text>
             </View>
             <View style={styles.TimeValue}>
-                <Text style={styles.PostInButtonText}>{time.getHours()}:</Text>
-                <Text style={styles.PostInButtonText}>{time.getMinutes() }</Text>
+                <Text style={styles.PostInButtonText}>{date.getHours()}:</Text>
+                <Text style={styles.PostInButtonText}>{date.getMinutes() }</Text>
             </View>
             </KeyboardAvoidingView>
         </SafeAreaView>

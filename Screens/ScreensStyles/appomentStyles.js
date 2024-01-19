@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
     nameAr:{
         fontSize:18,
         position:"absolute",
-        left:"66%",
+        left:"38%",
         top:'70%'
     },
     time:{
@@ -111,9 +111,9 @@ export const styles = StyleSheet.create({
     timeAr:{
         fontSize:18,
         position:"absolute",
-        left:"62%",
+        left:"40%",
         top:'20%',
-        fontWeight:"bold",
+        fontWeight:"400",
 
     },
     phone:{
@@ -126,8 +126,18 @@ export const styles = StyleSheet.create({
     phoneAr:{
         fontSize:15,
         position:"absolute",
-        left:"58%",
+        left:"53%",
         top:'120%',
         color:'#C3C5F3',
-    }
+    },
+    deleteAr:{
+        position:'absolute' ,
+        top:"70%", 
+        left:"10%",
+    },
+    delete:{
+        position:'absolute' ,
+        top:"70%", 
+        left:"95%",
+    },
 })

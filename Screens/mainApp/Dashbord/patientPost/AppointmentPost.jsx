@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Dimensions, SafeAreaView,ScrollView,Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
+import { StyleSheet, Dimensions, SafeAreaView,ScrollView,Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard, ActivityIndicator } from 'react-native';
 import Posts from './posts';
 import { styles } from './postsStyles';
 import { url } from '../../../../APIURLS';
@@ -59,27 +59,33 @@ const AppointmentPost = ({  navigation ,route  }) => {
         let posts=[];
         let flag=true;
         for (let i = 0; i < data.appointmentDates.length; i++) {
+            if(!data.appointmentDates[i].images[0]?.imageData){
+                flag=false
+            }
             posts.push(
                 <Posts
                     key={data.appointmentDates[i].appointmentId}
                     date={data.appointmentDates[i].date}
-                    imageUrl={data.appointmentDates[i].images[0]}
+                    imageUrl={data.appointmentDates[i].images[0]?.imageData}
                     isImageE={flag}
                     navigations={navigation}
                     des={data.appointmentDates[i].dentistDescription} // Corrected access to dentistDescription
                 />
             );
-            flag=!flag;
-
+            
+            flag=true;
         }
     
         return posts;
     }
 
         return (
+            <View>
+                {!flag && <ActivityIndicator color={"#4cb5f9"} style={{top:"5%",left:"2%", }}></ActivityIndicator>}
             <ScrollView  style={styles.container} contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
-                {flag&&allposts()}
+                {flag &&allposts()}
             </ScrollView>
+            </View>
             )
 
     

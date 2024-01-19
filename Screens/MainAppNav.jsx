@@ -35,11 +35,8 @@ const TabGroup =(props)=>{
           iconName = focused ? 'home' : 'home-outline';
           color = focused ? 'rgb(43, 39, 39)' : 'rgb(119, 115, 115)';
           return <Ionicons name={iconName} size={size} color={color}></Ionicons>
-        }   else if (route.name === 'Profile') {
-          iconName = focused ? 'user' : 'user-o';
-          color = focused ? 'rgb(43, 39, 39)' : 'rgb(119, 115, 115)';
-        
-        } else if (route.name === 'Settings') {
+        }   
+        else if (route.name === 'Settings') {
           iconName = focused ? 'settings' : 'settings-outline';
           color = focused ? 'rgb(43, 39, 39)' : 'rgb(119, 115, 115)';
           return <Ionicons name={iconName} size={size} color={color}></Ionicons>
@@ -66,11 +63,6 @@ const TabGroup =(props)=>{
       <Tab.Screen name ="appointment" component={TopTabsGroup}
               options={{
                 header: () => <CustomHeader />,
-              }}
-      />
-      <Tab.Screen name ="Profile" component={Profile}
-              options={{
-                header: () => <CustomHeader name={"Profile"} />,
               }}
       />
     
