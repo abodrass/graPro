@@ -72,7 +72,7 @@ const Ashbord = ({ navigation }) => {
 
     return (
         <LinearGradient
-        colors={darkMood?["#161616","#161616"]:['#ececea',"#5F6B6F"]}
+        colors={darkMood?["#161616","#161616"]:['#ececea',"#ececea"]}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}

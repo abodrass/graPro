@@ -167,18 +167,19 @@ const SignUp = ({ navigation }) => {
     console.log(phone);
     console.log(selectedGender);
     return (
-        <LinearGradient
-        colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
-        start={{ x: 1, y: .5 }}
-        end={{ x: 0, y: 1 }}
-        style={styles.container}
-        >
         <KeyboardAvoidingView
         style={darkMood?styles.container:styles.darkContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
         enabled={Platform.OS === "ios" ? true : false}
         >
+        <LinearGradient
+        colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
+        start={{ x: 1, y: .5 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.container}
+        >
+       
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
         
         <Animated.View sharedTransitionTag="tag" style={styles.inner}>
@@ -291,8 +292,9 @@ const SignUp = ({ navigation }) => {
                 <StatusBar style="light" />
             </Animated.View>
         </TouchableWithoutFeedback>
+        </LinearGradient>
     </KeyboardAvoidingView>
-    </LinearGradient>
+   
     )
 }
 

@@ -6,21 +6,27 @@ import { usePageContext } from "../../../PageProvider";
 import { url } from '../../../APIURLS';
 import axios from 'react-native-axios';
 import { useEffect } from 'react';
-
+import PopUpSys from '../../component/PopUpSys';
 const TopTabs = createMaterialTopTabNavigator();
 
 export function TopTabsGroup() {
+    const {darkMood,setDarkMood}= usePageContext();
+
     return (
         <TopTabs.Navigator
         screenOptions={{
             tabBarLabelStyle: {
             textTransform: "capitalize",
             fontWeight: "bold",
+            color: !darkMood ? '#161616' : 'white',    
         },
         tabBarIndicatorStyle: {
             height: 5,
             borderRadius: 5,
             backgroundColor: "#1DA1F2",
+        },
+        tabBarStyle: {
+            backgroundColor: darkMood ? '#161616' : 'white', // Set background color based on dark mode
         },
         }}
         >
@@ -52,6 +58,11 @@ const Appotment = () => {
         const {token,setToken}= usePageContext();
         const [data,setData]=useState();
         const [flag,setFlag]=useState();
+        const [showPopUp,setShowPopUp]=useState();
+        const {darkMood,setDarkMood}= usePageContext();
+        const {showDelete, setShowDelete}= usePageContext();
+        const {appotmentId,setappotmentId}= usePageContext();
+        const backGround=darkMood?" #161616":"#fff"
         useEffect(() => {
             const fetchData = async () => {
                 console.log("Bearer " + token.replace(/"/g, ''));
@@ -91,30 +102,35 @@ const Appotment = () => {
         
             // Cleanup the interval when the component unmounts
             return () => clearInterval(intervalId);
-        }, [token]); // Include 'token' as a dependency to update the interval when token changes
+        }, [token,appotmentId]); // Include 'token' as a dependency to update the interval when token changes
         
 
 
-
 return (
-    <ScrollView  contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
+    
+    <ScrollView style={{backgroundColor:darkMood ? '#161616' : 'white'}}  contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row'}} >
+
+        {showDelete&&<PopUpSys></PopUpSys>}   
         {flag?appointmentGenrate("act",data):<ActivityIndicator color={"#4cb5f9"} style={{top:"5%",left:"2%", }}></ActivityIndicator>}
+        
     </ScrollView>
     )
 }
 
 
 const AppotmentPast = () => {
+    const {darkMood,setDarkMood}= usePageContext();
     return (
-        <ScrollView  contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
+        <ScrollView style={{backgroundColor:darkMood ? '#161616' : 'white'}}  contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
             {appointmentGenrate("past")}
         </ScrollView>
         )
     }
 
 const AppotmentCancelled = () => {
+    const {darkMood,setDarkMood}= usePageContext();
     return (
-        <ScrollView  contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
+        <ScrollView  style={{backgroundColor:darkMood ? '#161616' : 'white'}} contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
             {appointmentGenrate("can")}
         </ScrollView>
         )

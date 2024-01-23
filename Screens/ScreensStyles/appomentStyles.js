@@ -13,6 +13,19 @@ export const styles = StyleSheet.create({
         borderLeftColor:'transparent',
         borderRightColor:"transparent"
     },
+    darkContener:{
+        width:"100%",
+        height:150,
+        padding:30,
+        justifyContent:'center',
+        position:'relative',
+        borderStyle:"solid",
+        borderWidth:1,
+        backgroundColor:"#161616",
+        borderColor:"#b6b6b638",
+        borderLeftColor:'transparent',
+        borderRightColor:"transparent"
+    },
     dateBox:{
         borderRadius:500,  
         width:110,
@@ -132,12 +145,22 @@ export const styles = StyleSheet.create({
     },
     deleteAr:{
         position:'absolute' ,
-        top:"70%", 
+        top:"115%", 
         left:"10%",
     },
     delete:{
         position:'absolute' ,
-        top:"70%", 
+        top:"115%", 
+        left:"95%",
+    },
+    editAr:{
+        position:'absolute' ,
+        top:"20%", 
+        left:"10%",
+    },
+    edit:{
+        position:'absolute' ,
+        top:"20%", 
         left:"95%",
     },
 })

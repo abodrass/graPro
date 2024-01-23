@@ -1,8 +1,10 @@
 import React from "react";
+import { usePageContext } from "../../PageProvider";
 import { Image, View, SafeAreaView,Text ,TouchableOpacity} from "react-native";
-
 import { Ionicons } from '@expo/vector-icons';
 const CustomHeader = (props) => {
+    const {darkMood,setDarkMood}= usePageContext();
+    let backGround=darkMood?"#161616":"#fff";
     return (
     <SafeAreaView
         style={{
@@ -11,14 +13,14 @@ const CustomHeader = (props) => {
         paddingHorizontal: 15,
         paddingVertical: 10,
         width:"100%",
-        backgroundColor: "#fff", // Set your desired background color
+        backgroundColor: backGround, // Set your desired background color
         height:70,
         alignItems:"center",
 
         }}
     >
         <Image
-        source={require("../../assets/logo-removebg-preview.png")}
+        source={darkMood?require("../../assets/logo-removebg-preview2.png"):require("../../assets/logo-removebg-preview.png")}
         style={{
             width: 40,
             height: 40,
@@ -40,7 +42,7 @@ const CustomHeader = (props) => {
             left:'97%',
             top:'49%',
             }}>
-            <Ionicons name="notifications" size={24} color="black" />
+            <Ionicons name="notifications" size={24} color={darkMood?"white":"black"} />
         </TouchableOpacity>
     </SafeAreaView>
     );

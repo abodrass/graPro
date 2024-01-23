@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 const TabGroup =(props)=>{
   const {darkMood,setDarkMood}= usePageContext();
   const {language,setLanguage}= usePageContext();
-  let tabBarBackground=darkMood?'#fff':'#fff';
+  let tabBarBackground=darkMood?'#161616':'#fff';
   return(
       <Tab.Navigator
       initialRouteName="Dashbord"
@@ -33,17 +33,17 @@ const TabGroup =(props)=>{
 
         if (route.name === 'Dashbord') {
           iconName = focused ? 'home' : 'home-outline';
-          color = focused ? 'rgb(43, 39, 39)' : 'rgb(119, 115, 115)';
+          color = focused ? '#2374E1' : 'rgb(119, 115, 115)';
           return <Ionicons name={iconName} size={size} color={color}></Ionicons>
         }   
         else if (route.name === 'Settings') {
           iconName = focused ? 'settings' : 'settings-outline';
-          color = focused ? 'rgb(43, 39, 39)' : 'rgb(119, 115, 115)';
+          color = focused ? '#2374E1' : 'rgb(119, 115, 115)';
           return <Ionicons name={iconName} size={size} color={color}></Ionicons>
         }
         else if (route.name === 'appointment') {
           iconName = focused ? 'calendar' : 'calendar-outline';
-          color = focused ? 'rgb(43, 39, 39)' : 'rgb(119, 115, 115)';
+          color = focused ? '#2374E1' : 'rgb(119, 115, 115)';
           return <Ionicons name={iconName} size={size} color={color}></Ionicons>
         }
 

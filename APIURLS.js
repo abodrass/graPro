@@ -8,4 +8,5 @@ export const url={
     GetALLPostForThisCategory:"http://192.168.1.241:5126/AppointmentAPI/",
     allActiveAppotments:"http://192.168.1.241:5126/AppointmentAPI/MyAppointments",
     AppointmentDelete:"http://192.168.1.241:5126/AppointmentAPI",
+    AppointmentBook:"http://192.168.1.241:5126/AppointmentBookedAPI/CreateAppointmentBooked"
 }

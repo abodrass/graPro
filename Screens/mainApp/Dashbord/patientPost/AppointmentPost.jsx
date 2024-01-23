@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import axios from 'react-native-axios';
 const AppointmentPost = ({  navigation ,route  }) => {
     const {token}=usePageContext();
+    const{darkMood}=usePageContext();
     const {catgoryId} = route.params;
     const [data,setData]=useState();
     const [flag,setFlag]=useState(false);
@@ -65,6 +66,7 @@ const AppointmentPost = ({  navigation ,route  }) => {
             posts.push(
                 <Posts
                     key={data.appointmentDates[i].appointmentId}
+                    id={data.appointmentDates[i].appointmentId}
                     date={data.appointmentDates[i].date}
                     imageUrl={data.appointmentDates[i].images[0]?.imageData}
                     isImageE={flag}
@@ -82,7 +84,7 @@ const AppointmentPost = ({  navigation ,route  }) => {
         return (
             <View>
                 {!flag && <ActivityIndicator color={"#4cb5f9"} style={{top:"5%",left:"2%", }}></ActivityIndicator>}
-            <ScrollView  style={styles.container} contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
+            <ScrollView  style={!darkMood?styles.container:styles.containerDark} contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
                 {flag &&allposts()}
             </ScrollView>
             </View>

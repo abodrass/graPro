@@ -42,7 +42,7 @@ const Settings = () => {
     return (
         <ScrollView
         style={{
-            backgroundColor:darkMood?"#3E3E3E":"#fff"
+            backgroundColor:darkMood?"#161616":"#fff"
         }}
         >
             <TouchableOpacity onPress={handelDarkMoodClick} style={styles.row} >

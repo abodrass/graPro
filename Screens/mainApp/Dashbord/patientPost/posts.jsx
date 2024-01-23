@@ -12,22 +12,38 @@ import { useEffect } from 'react';
 import { url } from '../../../../APIURLS';
 import { styles } from './postsStyles';
 const Posts = (props) => {
+    const {darkMood}=usePageContext();
     const handelPostClick=()=>{
         props.navigations.navigate('PatientPostPick', {
-            boxValue:  props.id,
+            appointmentId:  props.id,
             }); 
+    }
+
+    function hasArabicCharacters(str) {
+        // Arabic Unicode range
+        const arabicRegex = /[\u0600-\u06FF]/;
+    
+        // English Unicode range
+        const englishRegex = /[a-zA-Z]/;
+    
+        // Check if the string contains Arabic or English characters
+        return arabicRegex.test(str) ;
     }
     return (
     
-        <TouchableOpacity style={props.isImageE?styles.mainBox:styles.mainBox1} onPress={handelPostClick}>
-            <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl}` }} style={props.isImageE?styles.profilePic:styles.profilePic1} ></Image>  
+        <TouchableOpacity style={!darkMood?props.isImageE?styles.mainBox:styles.mainBox1:props.isImageE?styles.mainBoxDark:styles.mainBox1Dark} onPress={handelPostClick}>
+            <Image source={require("../../../../assets/585e4beacb11b227491c3399.png")} style={props.isImageE?styles.profilePic:styles.profilePic1} ></Image>  
                 <View style={props.isImageE?styles.nameAndDateV:styles.nameAndDateV1}>
-                <View style={styles.nameAndDateVPos}>
-                    <Text  style={styles.name}>abod aboras</Text>
-                    <Text  style={styles.date}>3:30 am </Text>
-                </View>
                 </View>  
-                    <Text  style={props.isImageE?styles.des:styles.des1}> 
+                    <Text  style={!darkMood?
+                        hasArabicCharacters(props.des)?
+                        props.isImageE?styles.des:styles.des1:props.isImageE?
+                        styles.desEn:styles.des1:
+                        hasArabicCharacters(props.des)?
+                        props.isImageE?
+                        styles.desDark:styles.des1Dark
+                        :props.isImageE?
+                        styles.desEnDark:styles.des1Dark}> 
                         {props.des.substring(0, 200)}
                 </Text>
             <View style={styles.postImage}>

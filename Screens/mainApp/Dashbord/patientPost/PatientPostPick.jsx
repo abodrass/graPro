@@ -23,19 +23,20 @@ const PatientPostPick = ({ navigation, route  }) => {
     const [time ,setTime]=useState(new Date())
     const [date,setDate]=useState( new Date());
     const [des,setDes]=useState("");
+    let images=[];
     const {token,setToken}=usePageContext();
     const[text,setText]=useState("Empty");
-    const { boxValue } = route.params;
-    const mainTextColor= darkMood?"black":"white";
+    const { appointmentId } = route.params;
+    const mainTextColor= darkMood?"white":"black";
 
 
 
     const handelPostPress = async () => {
 
         const requestBody = {
-            date: date,
-            categoryId: 1,
-            categoryName: "Withdrawal of nerve"
+            appointmentId: appointmentId ,
+            patientDescription: des.substring(0, 200),
+            images:images
         };
         const bar="Bearer "
         console.log("Bearer "+token.replace(/"/g, ''));
@@ -48,7 +49,7 @@ const PatientPostPick = ({ navigation, route  }) => {
     
         try {
             // Display loading indicator or disable the button here
-            const response = await axios.post(url.CreateApptment, requestBody, {
+            const response = await axios.post(url.AppointmentBook, requestBody, {
                 headers: headers,
             });
     
@@ -57,7 +58,7 @@ const PatientPostPick = ({ navigation, route  }) => {
             // Check if the response status is successful (2xx range)
             if (response.status >= 200 && response.status < 300) {
                 console.log("Request successful");
-                navigation.navigate('Asborde');
+                navigation.navigate('AppointmentPost');
                 return;
                 // Perform actions on successful response
             } else {
@@ -95,19 +96,22 @@ const PatientPostPick = ({ navigation, route  }) => {
     
         if (!result.cancelled) {
             setImage(result.assets[0].uri);
-    
+            images.push(result.assets[0].uri);
             if (result.assets[1] && result.assets[1].uri !== null) {
                 setImage1(result.assets[1].uri);
+                images.push(result.assets[1].uri);
                 setNumImg(2);
             }
     
             if (result.assets[2] && result.assets[2].uri !== null) {
                 setImage2(result.assets[2].uri);
+                images.push(result.assets[2].uri);
                 setNumImg(3);
             }
     
             if (result.assets[3] && result.assets[3].uri !== null) {
                 setImage3(result.assets[3].uri);
+                images.push(result.assets[3].uri);
                 setNumImg(4);
             }
     
@@ -172,7 +176,7 @@ const PatientPostPick = ({ navigation, route  }) => {
 
 
     return (
-        <SafeAreaView style={darkMood?styles.container:styles.darkContainer} >
+        <SafeAreaView style={darkMood?styles.darkContainer:styles.container} >
 
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -183,10 +187,10 @@ const PatientPostPick = ({ navigation, route  }) => {
             <View style={styles.rowv}>
             
             <TouchableOpacity onPress={handelBackClick}>
-                <Feather name="x" size={27} color={darkMood?"black":"white"} />
+                <Feather name="x" size={27} color={darkMood?"white":"black"} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.postbo} onPress={handelPostPress}>
-                <Text style={styles.PostInButtonText}>{language?"request":"اطلب"}</Text>
+                <Text style={styles.PostInButtonText}>{language?"Book":"احجز"}</Text>
             </TouchableOpacity>
             
             </View>
@@ -200,7 +204,7 @@ const PatientPostPick = ({ navigation, route  }) => {
             
             <TouchableOpacity style={styles.photo} onPress={pickImage} >   
                 { !imgPicked?
-                <Feather style={styles.uploadIcon} name="upload" size={24} color={darkMood?"#494949":'white'} />:
+                <Feather style={styles.uploadIcon} name="upload" size={24} color={darkMood?'white':"#494949"} />:
                 imageShow()
                 }
             </TouchableOpacity>

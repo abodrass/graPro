@@ -131,7 +131,12 @@ const LogIn=({ navigation })=> {
     
     return (
       
-      
+      <KeyboardAvoidingView
+      style={darkMood?styles.container:styles.darkContainer}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 30}
+      enabled={Platform.OS === "ios" ? true : false}
+      >
 
       <LinearGradient
       colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
@@ -140,12 +145,7 @@ const LogIn=({ navigation })=> {
       style={styles.container}
       >
       
-        <KeyboardAvoidingView
-        style={darkMood?styles.container:styles.darkContainer}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 30}
-        enabled={Platform.OS === "ios" ? true : false}
-        >
+    
     
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
     
@@ -202,9 +202,9 @@ const LogIn=({ navigation })=> {
             </Animated.View>
         </TouchableWithoutFeedback>
         
-    </KeyboardAvoidingView>
+
     </LinearGradient>
-  
+    </KeyboardAvoidingView>
     );
     }
 export default LogIn

@@ -11,6 +11,17 @@ export const styles = StyleSheet.create({
         flexWrap:'wrap',
         overflow:'visible',
     },
+    containerDark: {
+        fontFamily: 'Roboto',
+        backgroundColor: 'transparent',
+        height: '100%',
+        width: '100%',
+        position: 'relative',
+        flexDirection: 'row',
+        flexWrap:'wrap',
+        overflow:'visible',
+        backgroundColor:'#161616'
+    },
     mainBox:{
         width:"100%",
         height:"90%",
@@ -22,6 +33,23 @@ export const styles = StyleSheet.create({
         borderColor:"#b6b6b628",
         borderLeftColor:'transparent',
         borderRightColor:"transparent",
+        borderTopColor:"transparent",
+        overflow:'scroll',
+    },
+    mainBoxDark:{
+        width:"100%",
+        height:"90%",
+        padding:47,
+        justifyContent:'center',
+
+        position:'relative',
+        borderStyle:"solid",
+        borderWidth:1,
+        borderColor:"#b6b6b628",
+        borderLeftColor:'transparent',
+        borderRightColor:"transparent",
+        borderTopColor:"transparent",
+        backgroundColor:'#161616',
         overflow:'scroll',
     },
     mainBox1:{
@@ -35,6 +63,23 @@ export const styles = StyleSheet.create({
         borderColor:"#b6b6b628",
         borderLeftColor:'transparent',
         borderRightColor:"transparent",
+        borderTopColor:"transparent",
+        overflow:'scroll',
+    },
+    mainBox1Dark:{
+        width:"100%",
+        height:"25%",
+        padding:47,
+        justifyContent:'center',
+        position:'relative',
+        borderStyle:"solid",
+        borderWidth:1,
+        backgroundColor:'#161616',
+        borderColor:"#b6b6b628",
+        borderLeftColor:'transparent',
+        borderRightColor:"transparent",
+        borderTopColor:"transparent",
+
         overflow:'scroll',
     },
     profilePic:{
@@ -95,19 +140,55 @@ export const styles = StyleSheet.create({
         position:"absolute",
         top:"5%",
 
-        left:"25%",
-        width:"100%",
+        left:"30%",
+        width:"90%",
         height:"100%",
 
     },
+    desDark:{
+        position:"absolute",
+        top:"5%",
+
+        left:"30%",
+        width:"90%",
+        height:"100%",
+        color:"white"
+    },
     des1:{
         position:"absolute",
-        top:"39%",
- 
-        left:"25%",
-        width:"100%",
+        top:"5%",
+
+        left:"30%",
+        width:"90%",
         height:"100%",
 
+    },
+    des1Dark:{
+        position:"absolute",
+        top:"15%",
+
+        left:"30%",
+        width:"90%",
+        height:"100%",
+        color:"white"
+    },
+    desEn:{
+        position:"absolute",
+        top:"5%",
+
+        left:"24%",
+        width:"90%",
+        height:"100%",
+
+    },
+    desEnDark:{
+        position:"absolute",
+        top:"5%",
+
+        left:"24%",
+        width:"90%",
+        height:"100%",
+        color:"white"
     },
     postImage:{
         position:"absolute",

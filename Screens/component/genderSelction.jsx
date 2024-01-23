@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from "@react-native-picker/picker";
+import { usePageContext } from '../../PageProvider';
 const GenderSelection = ({ selectedGender, onGenderChange }) => {
    // State to store selected gender
-
+  const {darkMood}=usePageContext();
 return (
     <View style={styles.container}>
         <Picker
@@ -32,8 +33,9 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 15,
     marginBottom: 10,
-    color:'#494949',
+    color:'#4cb5f9',
   },
+
   picker: {
     width: 150,
     height: 40,

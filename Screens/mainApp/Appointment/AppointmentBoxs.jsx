@@ -10,60 +10,59 @@ const AppointmentBoxs = (props) => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
     const {token}=usePageContext();
+    const {showDelete, setShowDelete}= usePageContext();
+    const {appotmentId,setappotmentId}= usePageContext();
     let boxType=!language?styles.dateBox:styles.dateBoxSAr;
-    let dateTextColor="#8da393";
+    let dateTextColor=darkMood?"#fff":"#8da393";
     if(props.type=="can"){
         boxType=!language?styles.dateBoxRed:styles.dateBoxRedAr
-        dateTextColor="#d89695";
+        dateTextColor=darkMood?"#fff":"#d89695";
     }
     else if(props.type=="past"){
         boxType=!language?styles.dateBoxPur:styles.dateBoxPurAr
-        dateTextColor="#9697C8";
+        dateTextColor=darkMood?"#fff":"#9697C8";
     }
     const handelDelete=async()=>{
-            console.log("Bearer "+token.replace(/"/g, ''));
-            // Your asynchronous code here
-            console.log("Bearer "+token.replace(/"/g, ''));
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Origin': 'http://localhost:19006',
-                'Authorization': "Bearer "+token.replace(/"/g, ''),
-            };
-            try {
-              // Display loading indicator or disable the login button here
-                const response = await axios.delete(url.AppointmentDelete+`/${props.id}`, {
-                headers: headers,
-                });
-            if (response.status === 200) {
-                return;
-                // Navigate to the next screen or perform other actions
-            } else {
-                console.error("delet faild with status:", response.status);   
-                
-                // Handle specific error cases based on response status or content
-            }
-            } catch (error) {
-                console.error("An error occurred", error);
-              // Handle unexpected errors
-            } finally {
-              // Hide loading indicator or enable the login button here
-            }
+            setappotmentId(props.id);
+            setShowDelete(true);
+            
         };
+
+        const handelEdit=()=>{
+
+        }
     
 
     return (
-        <View style={styles.contener}>
-            <View style={boxType} >
-                <Text style={{ color: dateTextColor }}> {`${props.date.getFullYear()}/${props.date.getMonth()+1}/${props.date.getDate()}`}</Text>
+        <View style={darkMood?styles.darkContener:styles.contener}>
+            <View style={boxType}>
+                <Text style={{ color: dateTextColor }}>
+                    {`${props.date.getFullYear()}/${props.date.getMonth() + 1}/${props.date.getDate()}`}
+                </Text>
             </View>
+            
             <View style={styles.delete}></View>
-            <Text style={!language?styles.time:styles.timeAr}>{language?`وقت الموعد: ${props.date.getHours()}:${props.date.getMinutes()}`:`Time:${props.date.getHours()}:${props.date.getMinutes()}`}</Text>
-            <Text style={!language?styles.name:styles.nameAr}>{!language?`Name`:`الاجراء :${props.name}` }</Text>
-            <Text style={!language?styles.phone:styles.phoneAr}>{!language?"Phone Number":`رقم الموعد: ${props.id}`}</Text>
-            <TouchableOpacity style={!language?styles.delete:styles.deleteAr} onPress={handelDelete}>
+            
+            <Text style={!language ? [styles.time, { color: darkMood ? 'white' : 'black' }] : [styles.timeAr, { color: darkMood ? 'white' : 'black' }]}>
+                {language ? `وقت الموعد: ${props.date.getHours()}:${props.date.getMinutes()}` : `Time:${props.date.getHours()}:${props.date.getMinutes()}`}
+            </Text>
+            
+            <Text style={!language ? [styles.name, { color: darkMood ? 'white' : 'black' }] : [styles.nameAr, { color: darkMood ? 'white' : 'black' }]}>
+                {!language ? `Name` : `الاجراء :${props.name}`}
+            </Text>
+            
+            <Text style={!language ? [styles.phone, { color: darkMood ? 'white' : 'black' }] : [styles.phoneAr, { color: darkMood ? 'white' : 'black' }]}>
+                {!language ? "Phone Number" : `رقم الموعد: ${props.id}`}
+            </Text>
+            
+            <TouchableOpacity style={!language ? [styles.delete, { color: darkMood ? 'white' : 'black' }] : [styles.deleteAr, { color: darkMood ? 'white' : 'black' }]} onPress={handelDelete}>
                 <AntDesign name="delete" size={24} color="red"  />
             </TouchableOpacity>
+            
+            <TouchableOpacity style={!language ? [styles.edit, { color: darkMood ? 'white' : 'black' }] : [styles.editAr, { color: darkMood ? 'white' : 'black' }]} onPress={handelEdit}>
+                <AntDesign name="edit" size={24} color={darkMood ? 'white' : 'black' } />
+            </TouchableOpacity>
+
         </View>
     )
 }
