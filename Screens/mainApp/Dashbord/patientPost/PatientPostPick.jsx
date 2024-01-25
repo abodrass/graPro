@@ -23,10 +23,11 @@ const PatientPostPick = ({ navigation, route  }) => {
     const [time ,setTime]=useState(new Date())
     const [date,setDate]=useState( new Date());
     const [des,setDes]=useState("");
-    let images=[];
+    const [images, setImages] = useState([]);
     const {token,setToken}=usePageContext();
     const[text,setText]=useState("Empty");
     const { appointmentId } = route.params;
+    const {date1}= route.params;
     const mainTextColor= darkMood?"white":"black";
 
 
@@ -34,6 +35,7 @@ const PatientPostPick = ({ navigation, route  }) => {
     const handelPostPress = async () => {
 
         const requestBody = {
+
             appointmentId: appointmentId ,
             patientDescription: des.substring(0, 200),
             images:images
@@ -89,29 +91,31 @@ const PatientPostPick = ({ navigation, route  }) => {
             aspect: [4, 3],
             quality: 1,
             allowsMultipleSelection: true,
+            base64: true,
         });
     
-        console.log("this is the");
-        console.log(result);
-    
+        
         if (!result.cancelled) {
+            const imageArray = result.assets.map((image) => image.base64);
+            setImages(imageArray);
+        
             setImage(result.assets[0].uri);
-            images.push(result.assets[0].uri);
+            images.push(image);
             if (result.assets[1] && result.assets[1].uri !== null) {
                 setImage1(result.assets[1].uri);
-                images.push(result.assets[1].uri);
+                images.push(image1);
                 setNumImg(2);
             }
     
             if (result.assets[2] && result.assets[2].uri !== null) {
                 setImage2(result.assets[2].uri);
-                images.push(result.assets[2].uri);
+                images.push(image2);
                 setNumImg(3);
             }
     
             if (result.assets[3] && result.assets[3].uri !== null) {
                 setImage3(result.assets[3].uri);
-                images.push(result.assets[3].uri);
+                images.push(image3);
                 setNumImg(4);
             }
     
@@ -209,18 +213,15 @@ const PatientPostPick = ({ navigation, route  }) => {
                 }
             </TouchableOpacity>
 
-            <View style={styles.catagory}>
-                <Text style={styles.PostInButtonText}>nothing</Text>
-            </View>
             
             <View style={styles.DateValue}>
-                <Text style={styles.PostInButtonText}>{date.getFullYear()}/</Text>
-                <Text style={styles.PostInButtonText}>{date.getMonth() + 1}/</Text>
-                <Text style={styles.PostInButtonText}>{date.getDate()}</Text>
+                <Text style={styles.PostInButtonText}>{date1.getFullYear()}/</Text>
+                <Text style={styles.PostInButtonText}>{date1.getMonth() + 1}/</Text>
+                <Text style={styles.PostInButtonText}>{date1.getDate()}</Text>
             </View>
             <View style={styles.TimeValue}>
-                <Text style={styles.PostInButtonText}>{time.getHours()}:</Text>
-                <Text style={styles.PostInButtonText}>{time.getMinutes() }</Text>
+                <Text style={styles.PostInButtonText}>{date1.getHours()}:</Text>
+                <Text style={styles.PostInButtonText}>{date1.getMinutes() }</Text>
             </View>
             </KeyboardAvoidingView>
         </SafeAreaView>

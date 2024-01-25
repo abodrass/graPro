@@ -33,14 +33,14 @@ const Boxs = (props) => {
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
-                position: 'relative',
                 }}
             >
-            <Image
-                source={{ uri: `data:image/jpeg;base64,${props.imgurl}` }}
-                style={{ width: '100%', height: '100%', position: 'absolute' }}
+                <Image
+                    source={{ uri: `data:image/jpeg;base64,${props.imgurl}` }}
+                    style={{ width: '100%', height: '80%', position:"absolute",top:0 }}
                 />
-                <Text style={styles.boxText}>{language? props.ARname:props.EnName}</Text>
+                <Text style={darkMood?styles.boxText:styles.DarkboxText}>{language? props.ARname:props.EnName}</Text>
+
             </View>
 
         </TouchableOpacity>

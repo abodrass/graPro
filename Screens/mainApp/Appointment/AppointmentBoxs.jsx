@@ -62,7 +62,7 @@ const AppointmentBoxs = (props) => {
             <TouchableOpacity style={!language ? [styles.edit, { color: darkMood ? 'white' : 'black' }] : [styles.editAr, { color: darkMood ? 'white' : 'black' }]} onPress={handelEdit}>
                 <AntDesign name="edit" size={24} color={darkMood ? 'white' : 'black' } />
             </TouchableOpacity>
-
+    
         </View>
     )
 }

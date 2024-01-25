@@ -28,12 +28,6 @@ export const styles = StyleSheet.create({
         padding:47,
         justifyContent:'center',
         position:'relative',
-        borderStyle:"solid",
-        borderWidth:1,
-        borderColor:"#b6b6b628",
-        borderLeftColor:'transparent',
-        borderRightColor:"transparent",
-        borderTopColor:"transparent",
         overflow:'scroll',
     },
     mainBoxDark:{
@@ -43,12 +37,6 @@ export const styles = StyleSheet.create({
         justifyContent:'center',
 
         position:'relative',
-        borderStyle:"solid",
-        borderWidth:1,
-        borderColor:"#b6b6b628",
-        borderLeftColor:'transparent',
-        borderRightColor:"transparent",
-        borderTopColor:"transparent",
         backgroundColor:'#161616',
         overflow:'scroll',
     },
@@ -58,12 +46,8 @@ export const styles = StyleSheet.create({
         padding:47,
         justifyContent:'center',
         position:'relative',
-        borderStyle:"solid",
-        borderWidth:1,
-        borderColor:"#b6b6b628",
-        borderLeftColor:'transparent',
-        borderRightColor:"transparent",
-        borderTopColor:"transparent",
+
+       
         overflow:'scroll',
     },
     mainBox1Dark:{
@@ -72,14 +56,27 @@ export const styles = StyleSheet.create({
         padding:47,
         justifyContent:'center',
         position:'relative',
-        borderStyle:"solid",
-        borderWidth:1,
         backgroundColor:'#161616',
-        borderColor:"#b6b6b628",
-        borderLeftColor:'transparent',
-        borderRightColor:"transparent",
-        borderTopColor:"transparent",
 
+        overflow:'scroll',
+    },
+
+    aprovelmainBoxDark:{
+        width:"100%",
+        height:"120%",
+        padding:47,
+        justifyContent:'center',
+
+        position:'relative',
+        backgroundColor:'#161616',
+        overflow:'scroll',
+    },
+    aprovelmainBox:{
+        width:"100%",
+        height:"120%",
+        padding:47,
+        justifyContent:'center',
+        position:'relative',
         overflow:'scroll',
     },
     profilePic:{
@@ -199,5 +196,46 @@ export const styles = StyleSheet.create({
         borderRadius:21,
         overflow:'hidden',
         alignItems:"center",
+    },
+    postDate:{
+        flexDirection:'row',
+        position:"absolute",
+        top:"13%",
+        color:'#fff',
+        left:"25%",
+        width:"90%",
+        height:"100%",
+    },
+    DarkpostDate:{
+        flexDirection:'row',
+        position:"absolute",
+        top:"13%",
+        color:'#161616',
+        left:"25%",
+        width:"90%",
+        height:"100%",
+    },
+    time:{
+        left:'23%',
+        color:'#fff'
+    },
+    timeDark:{
+        left:'23%',
+        color:'#161616'
+    },
+    horizontalLine: {
+        borderBottomColor: '#b6b6b638', // Change the color as needed
+        borderBottomWidth: 1,       // Change the thickness as needed
+        marginVertical: 10,
+        width:"100%"         // Adjust the vertical spacing as needed
+    },
+    postDateNoImg:{
+        flexDirection:'row',
+        position:"absolute",
+        top:"150%",
+        color:'#fff',
+        left:"31%",
+        width:"90%",
+        height:"100%",
     },
 })

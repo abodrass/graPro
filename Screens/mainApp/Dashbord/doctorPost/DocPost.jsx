@@ -61,7 +61,7 @@ const DocPost = ({ route, navigation  }) => {
                 return;
                 // Perform actions on successful response
             } else {
-                console.error("Request failed with status:", response.status);
+                console.error("Request failed with status:", response);
                 // Handle specific error cases based on response status or content
                 // Example: if (response.status === 401) { /* handle unauthorized */ }
             }
@@ -195,7 +195,7 @@ const DocPost = ({ route, navigation  }) => {
             </View>
             <TextInput 
             style={!darkMood?styles.des:styles.desBlack}
-            placeholderTextColor={!darkMood?mainTextColor:"#fff"}
+            placeholderTextColor={!darkMood?"#161616":"#fff"}
             placeholder={language?"اكتب الوصف الذي تريده"  :'Description|'}
             value={des}
             onChangeText={handelDesChange}

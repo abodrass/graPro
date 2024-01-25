@@ -6,7 +6,8 @@ export const url={
     CreateApptment:"http://192.168.1.241:5126/AppointmentAPI/Create appointment",
     GetAllCategorys:"http://192.168.1.241:5126/CategoryAPI/GetAllCategorys",
     GetALLPostForThisCategory:"http://192.168.1.241:5126/AppointmentAPI/",
-    allActiveAppotments:"http://192.168.1.241:5126/AppointmentAPI/MyAppointments",
+    allActiveAppotments:"http://192.168.1.241:5126/AppointmentAPI/MyAppointmentsByDintistToken",
     AppointmentDelete:"http://192.168.1.241:5126/AppointmentAPI",
-    AppointmentBook:"http://192.168.1.241:5126/AppointmentBookedAPI/CreateAppointmentBooked"
+    AppointmentBook:"http://192.168.1.241:5126/AppointmentBookedAPI/CreateAppointmentBooked",
+    GetAllWaitingApprovalAppointments:"http://192.168.1.241:5126/AppointmentBookedAPI/GetAllWaitingApprovalAppointments"
 }

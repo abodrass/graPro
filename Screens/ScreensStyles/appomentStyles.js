@@ -7,11 +7,7 @@ export const styles = StyleSheet.create({
         padding:30,
         justifyContent:'center',
         position:'relative',
-        borderStyle:"solid",
-        borderWidth:1,
-        borderColor:"#b6b6b638",
-        borderLeftColor:'transparent',
-        borderRightColor:"transparent"
+
     },
     darkContener:{
         width:"100%",
@@ -19,12 +15,13 @@ export const styles = StyleSheet.create({
         padding:30,
         justifyContent:'center',
         position:'relative',
-        borderStyle:"solid",
-        borderWidth:1,
         backgroundColor:"#161616",
-        borderColor:"#b6b6b638",
-        borderLeftColor:'transparent',
-        borderRightColor:"transparent"
+    },
+    horizontalLine: {
+        borderBottomColor: '#b6b6b638', // Change the color as needed
+        borderBottomWidth: 1,       // Change the thickness as needed
+        marginVertical: 10,
+        width:"100%"         // Adjust the vertical spacing as needed
     },
     dateBox:{
         borderRadius:500,  
@@ -110,7 +107,7 @@ export const styles = StyleSheet.create({
     nameAr:{
         fontSize:18,
         position:"absolute",
-        left:"38%",
+        right:"42%",
         top:'70%'
     },
     time:{
@@ -124,7 +121,7 @@ export const styles = StyleSheet.create({
     timeAr:{
         fontSize:18,
         position:"absolute",
-        left:"40%",
+        right:"42%",
         top:'20%',
         fontWeight:"400",
 
@@ -139,7 +136,7 @@ export const styles = StyleSheet.create({
     phoneAr:{
         fontSize:15,
         position:"absolute",
-        left:"53%",
+        right:"42%",
         top:'120%',
         color:'#C3C5F3',
     },
@@ -163,4 +160,10 @@ export const styles = StyleSheet.create({
         top:"20%", 
         left:"95%",
     },
+    noResult:{
+        height:'100%',
+        width:"100%",
+        alignSelf:'center'
+        
+    }
 })

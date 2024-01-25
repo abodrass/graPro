@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     height: 27,
     objectFit: 'contain',
     width: 27,
- 
+
   },
 
 
@@ -54,10 +54,17 @@ box: {
 
 boxText:{
   position:"absolute",
-  top:10,
+  top:"85%",
   fontSize:16,
   fontWeight:"500",
-
+  color:"#fff"
+},
+DarkboxText:{
+  position:"absolute",
+  top:"85%",
+  fontSize:16,
+  fontWeight:"500",
+  color:"#161616"
 },
 boxImage:{
   borderRadius:20

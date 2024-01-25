@@ -92,9 +92,10 @@ export const styles = StyleSheet.create({
         borderRadius:10,
         position: 'absolute',
         bottom: 9,
-        left: 145,
+        left: 10,
         right: 0,
         flexDirection:"row",
+        alignSelf:'flex-start',
         alignItems:"center",
         justifyContent:"center",
 
