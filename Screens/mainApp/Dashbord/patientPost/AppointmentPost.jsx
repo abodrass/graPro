@@ -17,6 +17,7 @@ const AppointmentPost = ({  navigation ,route  }) => {
     const [flag,setFlag]=useState(false);
     const [NoPost,setNoPost]= useState(false);
     useEffect(() => {
+        
         console.log("this is the catgory id in the app post "+catgoryId)
         console.log("Bearer "+token.replace(/"/g, ''));
         const fetchData = async () => {

@@ -13,12 +13,14 @@ import { url } from '../../APIURLS';
 import { styles } from './postsStyles';
 const Posts = (props) => {
     const {darkMood}=usePageContext();
+    const {language}=usePageContext();
     const dateObject = new Date(props.date);
     const handelPostClick=()=>{
         props.navigations.navigate('PatientPostPick', {
             appointmentId:  props.id,
             date1:dateObject,
         }); 
+        
     }
 
     function hasArabicCharacters(str) {
@@ -34,53 +36,14 @@ const Posts = (props) => {
         if(props.type!=true){
             return <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl}` }} style={{width:"100%",height:"100%"}}></Image>
         }
-
-        console.log(props.imageUrl.length);
-        if(props.imageUrl.length==0){
-            return
-        }
-        if(props.imageUrl.length==1){ 
-            return(<Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[0].imageData}`  }}  style={{ width: 370, height: 320 }} />);
-        }
-        else if(props.imageUrl.length==2){
-            return(
-                <View style={{flexDirection:'row'}}>
-                    <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[0].imageData}` }} style={{ width: 185, height: 320 }} />
-                    <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[1].imageData}` }} style={{ width: 185, height: 320 }} />
-                </View>
-            )
-        }
-        else if(props.imageUrl.length==3){
-            return(
-                <View style={{flexDirection:'row'}}>
-                    <View>
-                    <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[0].imageData}` }} style={{ width: 185, height: 160 }} />
-                    <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[1].imageData}` }} style={{ width: 185, height: 160 }} />
-                    </View>
-                    <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[2].imageData}` }} style={{ width: 185, height: 320 }} />
-                </View>
-            )
-        }
-        else if(props.imageUrl.length==4){
-            return(
-                <View style={{flexDirection:'row'}}>
-                    <View>
-                        <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[0].imageData}` }} style={{ width: 185, height: 160}} />
-                        <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[1].imageData}` }} style={{ width: 185, height: 160}} />
-                    </View>
-                    <View>
-                        <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[2].imageData}` }} style={{ width: 185, height: 160}} />
-                        <Image source={{ uri: `data:image/jpeg;base64,${props.imageUrl[3].imageData}` }} style={{ width: 185, height: 160}} />
-                    </View>
-                </View>
-            )
-        }
         
 }
 
 
-    return (
     
+
+    return (
+        
         <TouchableOpacity style={
         !props.type?
         !darkMood?
@@ -112,9 +75,6 @@ const Posts = (props) => {
                 <View style={props.isImageE?styles.postDate:styles.postDateNoImg}>
                     <Text style={{color:!darkMood?'#161616':'#fff'}}>date: {dateObject.getFullYear()}/{dateObject.getMonth() + 1}/{dateObject.getDate()}</Text>
                     <Text style={darkMood?styles.time:styles.darkTime}>time: {dateObject.getHours()}:{dateObject.getMinutes() }</Text>
-                </View>
-                <View>
-                    <Text style={{color:!darkMood?'#161616':'#fff'}}>{props.patientUser.gender}</Text>
                 </View>
             <View style={styles.postImage}>
                 { props.isImageE&& imageShow()}

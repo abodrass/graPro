@@ -11,8 +11,10 @@ export const PageProvider = ({ children }) => {
   const [darkMood, setDarkMood] = useState(false); // Set to true to match the stored value dark true 
   const [token, setToken] = useState(""); // Keep an empty string for token initially
   const [userRole,setUserRole]=useState();
+  const [headerTitel,setHeaderTitel]=useState("main page");
   const [showDelete, setShowDelete] = useState(false); // Keep an empty string for token initially
   const [appotmentId,setappotmentId]=useState();
+  const [changeAprvelApp,setchangeAprvelApp]=useState(false);
   useEffect(() => {
     console.log("Loading values from AsyncStorage...");
   
@@ -80,7 +82,7 @@ export const PageProvider = ({ children }) => {
 
 
   return (
-    <PageContext.Provider value={{ darkMood, setDarkMood, language, setLanguage, tokenFlag, setTokenFlag, token, setToken,userRole,setUserRole,appotmentId,setappotmentId,showDelete, setShowDelete }}>
+    <PageContext.Provider value={{ darkMood, setDarkMood, language, setLanguage, tokenFlag, setTokenFlag, token, setToken,userRole,setUserRole,appotmentId,setappotmentId,showDelete, setShowDelete,changeAprvelApp,setchangeAprvelApp ,headerTitel,setHeaderTitel}}>
       {children}
     </PageContext.Provider>
   );

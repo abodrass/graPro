@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { StyleSheet, Dimensions, SafeAreaView,ScrollView,Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard, ActivityIndicator } from 'react-native';
-import Posts from '../../../component/posts';
-import { styles } from '../../../component/postsStyles';
-import { url } from '../../../../APIURLS';
-import { usePageContext } from "../../../../PageProvider";
+import Posts from '../../component/posts';
+import { styles } from '../../component/postsStyles';
+import { url } from '../../../APIURLS';
+import { usePageContext } from "../../../PageProvider";
 import { useEffect } from 'react';
 import axios from 'react-native-axios';
-import NoResult from '../../../component/NoResult';
-
+import NoResult from '../../component/NoResult';
+import DoctorPost from '../../component/DoctorPost';
+import { FontAwesome } from '@expo/vector-icons';
+import Refresh from '../../component/Refresh';
     const  Aprovel = ({  navigation ,route  }) => {
         const {token}=usePageContext();
         const{darkMood}=usePageContext();
@@ -16,8 +18,14 @@ import NoResult from '../../../component/NoResult';
         const [flag,setFlag]=useState(false);
         const [NoPost,setNoPost]= useState(false);
         const [numImg,setnumImg]=useState(1);
+        const{changeAprvelApp,setchangeAprvelApp}=usePageContext();
+        const {headerTitel,setHeaderTitel}= usePageContext();
+        const [refresh ,setRefresh]=useState(0);
+
+
         useEffect(() => {
             console.log("Bearer "+token.replace(/"/g, ''));
+            
             const fetchData = async () => {
                 const headers = {
                     'Content-Type': 'application/json',
@@ -51,16 +59,19 @@ import NoResult from '../../../component/NoResult';
                     setNoPost(true);
                 }
             };
-            
+            if (headerTitel === "aprovel page"||headerTitel ==="المواعيد المطلوبه"){ 
             fetchData();
-
-            const intervalId = setInterval(fetchData, 100000);
-        
-            // Cleanup the interval when the component unmounts
-            return () => clearInterval(intervalId);
-        },[] );
+            }
 
 
+        },[changeAprvelApp,headerTitel,refresh] );
+
+
+        const handelRefresh=()=>{
+            setRefresh((prev)=>{
+                return prev+1;
+            })
+        }
     
         
         const allposts=()=>{
@@ -70,10 +81,11 @@ import NoResult from '../../../component/NoResult';
                 if(!data[i].images[0]?.imageData){
                     flag=false
                 }
+                posts.push(<Refresh handelRefresh={handelRefresh} type={false}></Refresh>)
     
                 console.log(data[i].date);
                 posts.push(
-                    <Posts
+                    <DoctorPost
                         key={data[i].appointmentBookedId}
                         id={data[i].appointmentBookedId}
                         date={data[i].date}
@@ -82,6 +94,8 @@ import NoResult from '../../../component/NoResult';
                         patientUser={data[i].patientUser}
                         status={data[i].status}
                         navigations={navigation}
+                        categoryEnglishName={data[i].category.englishName}
+                        categoryArabicName={data[i].category.arabicName}
                         des={data[i].patientDescription}
                         type={true}
                         // Corrected access to dentistDescription
@@ -93,7 +107,7 @@ import NoResult from '../../../component/NoResult';
                 
                 flag=true;
             }
-        
+
             return posts;
         }
     
@@ -110,6 +124,7 @@ import NoResult from '../../../component/NoResult';
                 {!flag?loader()
                     :
                 <ScrollView  style={!darkMood?styles.container:styles.containerDark} contentContainerStyle={{ justifyContent: 'flex-start', flexWrap:'wrap',flexDirection: 'row', }} >
+                
                     {flag &&allposts()}
                 </ScrollView>
                 

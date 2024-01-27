@@ -6,20 +6,63 @@ import { PageProvider } from '../PageProvider';
 import { styles } from './ScreensStyles/logInAndSignUp';
 import Dashbords from './mainApp/Dashbord/Dashbords';
 import { Ionicons } from '@expo/vector-icons';
-import Profile from './mainApp/Profile/profile';
+
+import { createStackNavigator , CardStyleInterpolators} from '@react-navigation/stack';
 import { FontAwesome } from '@expo/vector-icons';
 import { usePageContext } from "../PageProvider";
 import React, { useEffect } from 'react';
 import Settings from './mainApp/Settings/Settings';
 import {TopTabsGroup} from './mainApp/Appointment/Appotment';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { Feather } from '@expo/vector-icons';
 import CustomHeader from './layout/Header';
+import AprovelNav from './mainApp/appointmentAprovel/AprovelNav';
+import Dashbord from './mainApp/Dashbord/Dashbords';
+import Main from './MainPage/Main';
 const Tab = createBottomTabNavigator();
 
 const TabGroup =(props)=>{
   const {darkMood,setDarkMood}= usePageContext();
   const {language,setLanguage}= usePageContext();
+  const {userRole,setUserRole}=usePageContext();
   let tabBarBackground=darkMood?'#161616':'#fff';
+  console.log("hii"+userRole);
+  const Stack = createStackNavigator();
+  const MainStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Main"
+          component={Main}
+          options={{
+            header: () => null,
+          }}
+        />
+        <Stack.Screen
+          name="Dashbord"
+          component={Dashbord}
+          options={{
+            header: () => null,
+          }}
+        />
+      </Stack.Navigator>
+    );
+  };
+  
+  const AppointmentStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Appointment"
+          component={TopTabsGroup}
+          options={{
+            header: () => <CustomHeader />,
+          }}
+        />
+        {/* Add other screens to the stack if needed */}
+      </Stack.Navigator>
+    );
+  };
   return(
       <Tab.Navigator
       initialRouteName="Dashbord"
@@ -31,7 +74,7 @@ const TabGroup =(props)=>{
         let iconName;
         let label = ''; // Empty label to remove the text
 
-        if (route.name === 'Dashbord') {
+        if (route.name === 'Main') {
           iconName = focused ? 'home' : 'home-outline';
           color = focused ? '#2374E1' : 'rgb(119, 115, 115)';
           return <Ionicons name={iconName} size={size} color={color}></Ionicons>
@@ -46,6 +89,11 @@ const TabGroup =(props)=>{
           color = focused ? '#2374E1' : 'rgb(119, 115, 115)';
           return <Ionicons name={iconName} size={size} color={color}></Ionicons>
         }
+        else if(route.name ==='AprovelNav'){
+          iconName = focused ? 'check-square' : 'check-square';
+          color = focused ? '#2374E1' : 'rgb(119, 115, 115)';
+          return <Feather name="check-square" size={size} color={color} />
+        }
 
         return <FontAwesome name={iconName} size={size} color={color} />;
       },
@@ -54,10 +102,11 @@ const TabGroup =(props)=>{
         },
       })}
     > 
-      <Tab.Screen name ="Dashbord" component={Dashbords}
+      <Tab.Screen name ="Main" component={MainStack}
               options={{
                 header: () => <CustomHeader />,
               }}
+              navigation={props.logIN}
       />
 
       <Tab.Screen name ="appointment" component={TopTabsGroup}
@@ -65,19 +114,32 @@ const TabGroup =(props)=>{
                 header: () => <CustomHeader />,
               }}
       />
+
+      {userRole ==="\"Dentist\"" && (
+        <Tab.Screen
+        name="AprovelNav"
+        component={AprovelNav}
+        logIN={props.navigation} // Note: Ensure you pass props correctly
+        options={{
+        header: () => <CustomHeader />,
+        }}
+        />
+      )}  
+   
     
       <Tab.Screen name ="Settings" component={Settings} logIN={props.navigation}
               options={{
                 header: () => <CustomHeader />,
               }}
       />
+
     </Tab.Navigator>
   )
 }
 
 const MainAppPage=({ navigation })=> {
 
-
+  const Stack = createStackNavigator();
   useEffect(() => {
     const handleBackButton = () => {
       // Do nothing when the back button is pressed

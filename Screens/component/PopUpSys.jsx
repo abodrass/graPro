@@ -42,7 +42,7 @@ const PopUpSys = () => {
                     return;
                     // Navigate to the next screen or perform other actions
                 } else {
-                    console.error("delet faild with status:", response.status);   
+                    console.error("delet faild with status:", response);   
                     
                     // Handle specific error cases based on response status or content
                 }

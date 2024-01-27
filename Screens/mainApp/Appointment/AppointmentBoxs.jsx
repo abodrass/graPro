@@ -48,21 +48,22 @@ const AppointmentBoxs = (props) => {
             </Text>
             
             <Text style={!language ? [styles.name, { color: darkMood ? 'white' : 'black' }] : [styles.nameAr, { color: darkMood ? 'white' : 'black' }]}>
-                {!language ? `Name` : `الاجراء :${props.name}`}
+                {!language ? `procedure: ${props.nameEn}` : `الاجراء :${props.name}`}
             </Text>
             
             <Text style={!language ? [styles.phone, { color: darkMood ? 'white' : 'black' }] : [styles.phoneAr, { color: darkMood ? 'white' : 'black' }]}>
-                {!language ? "Phone Number" : `رقم الموعد: ${props.id}`}
+                {!language ? `appointment number : ${props.id}` : `رقم الموعد: ${props.id}`}
             </Text>
             
+            {props.type=="past"&&
             <TouchableOpacity style={!language ? [styles.delete, { color: darkMood ? 'white' : 'black' }] : [styles.deleteAr, { color: darkMood ? 'white' : 'black' }]} onPress={handelDelete}>
                 <AntDesign name="delete" size={24} color="red"  />
-            </TouchableOpacity>
-            
+            </TouchableOpacity>}
+            {props.type=="past"&&
             <TouchableOpacity style={!language ? [styles.edit, { color: darkMood ? 'white' : 'black' }] : [styles.editAr, { color: darkMood ? 'white' : 'black' }]} onPress={handelEdit}>
                 <AntDesign name="edit" size={24} color={darkMood ? 'white' : 'black' } />
             </TouchableOpacity>
-    
+            }
         </View>
     )
 }

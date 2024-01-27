@@ -8,14 +8,17 @@ import axios from 'react-native-axios';
 import { StyleSheet, ScrollView,Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
 import { boxData } from './boxData';
 import { url } from '../../../APIURLS';
+
 import Boxs from './Boxs';
 
 const Ashbord = ({ navigation }) => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
+   
     const {token}=usePageContext();
     const [loader,setLoader]=useState(false);
     const [data,setData]=useState();
+
     useEffect(() => {
         console.log("Bearer "+token.replace(/"/g, ''));
         const fetchData = async () => {
@@ -55,7 +58,7 @@ const Ashbord = ({ navigation }) => {
         };
         
         fetchData();
-    }, [token]);
+    }, [token,navigation]);
 
     const boxGen=(data)=>{
         let boxs=[];

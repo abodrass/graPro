@@ -21,67 +21,95 @@ export const styles = StyleSheet.create({
         flexWrap:'wrap',
         overflow:'visible',
         backgroundColor:'#161616'
+        
     },
     mainBox:{
-        width:"100%",
+        width:"95%",
         height:"90%",
         padding:47,
+        backgroundColor:"#dddddd",
         justifyContent:'center',
+        borderRadius:20,
         position:'relative',
         overflow:'scroll',
+        left:"2%",
     },
     mainBoxDark:{
-        width:"100%",
+        width:"95%",
         height:"90%",
         padding:47,
+        backgroundColor:"#2e2d2d",
         justifyContent:'center',
-
+        borderRadius:20,
         position:'relative',
-        backgroundColor:'#161616',
+        left:"2%",
+        backgroundColor:"#2e2d2d",
         overflow:'scroll',
     },
     mainBox1:{
-        width:"100%",
+        width:"95%",
         height:"25%",
         padding:47,
         justifyContent:'center',
         position:'relative',
-
-       
+        backgroundColor:"#dddddd",
+        borderRadius:20,
         overflow:'scroll',
+        left:"2%",
     },
     mainBox1Dark:{
-        width:"100%",
+        width:"95%",
         height:"25%",
         padding:47,
         justifyContent:'center',
         position:'relative',
-        backgroundColor:'#161616',
-
+        backgroundColor:"#2e2d2d",
+        borderRadius:20,
         overflow:'scroll',
+        left:"2%",
     },
 
     aprovelmainBoxDark:{
-        width:"100%",
+        width:"95%",
         height:"120%",
         padding:47,
         justifyContent:'center',
-
+        left:"2%",
         position:'relative',
-        backgroundColor:'#161616',
+        backgroundColor:"#2e2d2d",
+        borderRadius:20,
         overflow:'scroll',
     },
     aprovelmainBox:{
-        width:"100%",
+        width:"95%",
         height:"120%",
         padding:47,
         justifyContent:'center',
+        backgroundColor:"#dddddd",
         position:'relative',
+        borderRadius:20,
         overflow:'scroll',
+        left:"2%",
     },
     profilePic:{
         position:"absolute",
         top:"2%",
+        left:"5%",
+        borderRadius:50,
+        width:45,
+        height:45,
+    },
+    profilePicAprovel:{
+        position:"absolute",
+        top:"10%",
+        left:"5%",
+        borderRadius:50,
+        width:45,
+        height:45,
+    },
+    profilePic1Aprovel:{
+        position:"absolute",
+        top:"7%",
         left:"5%",
         borderRadius:50,
         width:45,
@@ -162,7 +190,7 @@ export const styles = StyleSheet.create({
     },
     des1Dark:{
         position:"absolute",
-        top:"15%",
+        top:"5%",
 
         left:"30%",
         width:"90%",
@@ -190,8 +218,8 @@ export const styles = StyleSheet.create({
     postImage:{
         position:"absolute",
         top:'18%',
-        left:'22%',
-        width:310,
+        left:'10%',
+        width:350,
         height:250,
         borderRadius:21,
         overflow:'hidden',
@@ -238,4 +266,67 @@ export const styles = StyleSheet.create({
         width:"90%",
         height:"100%",
     },
+    AprovelpostImage:{
+        position:"absolute",
+        bottom:"2%",
+        left:'8%',
+        width:350,
+        height:250,
+        borderRadius:21,
+        overflow:'hidden',
+        alignItems:"center",
+    },
+    genderDarkAprovel:{
+        color:'#fff',
+        marginRight:"10%"
+    },
+    genderAprovel:{
+        color:'#161616',
+        marginRight:"10%"
+    },
+    postDateAprovel:{
+        flexDirection:'row',
+        position:"absolute",
+        top:"20%",
+        color:'#fff',
+        left:"10%",
+        width:"90%",
+        height:"100%",
+    },
+    postDateNoImgAprovel:{
+        flexDirection:'row',
+        position:"absolute",
+        top:"150%",
+        color:'#fff',
+        left:"15%",
+        width:"90%",
+        height:"100%",
+    },
+    postinfoNoImgAprovel:{
+        flexDirection:'row',
+        position:"absolute",
+        top:"100%",
+        color:'#fff',
+        left:"15%",
+        width:"90%",
+        height:"100%",
+    },
+    postinfoAprovel:{
+        flexDirection:'row',
+        position:"absolute",
+        top:"15%",
+        color:'#fff',
+        left:"10%",
+        width:"90%",
+        height:"100%",
+    },
+
+    Aproveltime:{
+
+        color:'#fff'
+    },
+    AproveltimeDark:{
+        color:'#161616'
+    },
+    
 })

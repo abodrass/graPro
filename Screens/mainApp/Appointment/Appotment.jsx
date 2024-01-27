@@ -9,13 +9,16 @@ import { styles } from '../../ScreensStyles/appomentStyles';
 import { useEffect } from 'react';
 import PopUpSys from '../../component/PopUpSys';
 import NoResult from '../../component/NoResult';
-import Aprovel from './doctorAppointmentAprovel/Aprovel';
+import AppointmentNotBooked from './AppointmentNotBooked';
+import AppointmentActive from './AppointmentActive';
+import AprovelNav from '../appointmentAprovel/AprovelNav';
+import AppointmentReject from './AppointmentReject';
 const TopTabs = createMaterialTopTabNavigator();
 
 export function TopTabsGroup() {
     const {darkMood,setDarkMood}= usePageContext();
     const {language, setLanguage}=usePageContext();
-
+    const {userRole,setUserRole}=usePageContext();
     return (
         <TopTabs.Navigator
         screenOptions={{
@@ -35,14 +38,28 @@ export function TopTabsGroup() {
         }}
         >
         <TopTabs.Screen
-            name="main"
-            component={Appotment}
+            name="AppointmentActiv"
+            component={AppointmentActive}
             options={{
-            tabBarLabel: "MY Appotment",
+            tabBarLabel:language?"المواعيد المحجوزه":"BOOKED",
             }}
         />
-        <TopTabs.Screen name="Appotment approval" component={Aprovel } />
-        <TopTabs.Screen name="Cancelled" component={AppotmentCancelled } />
+
+    {userRole=="\"Dentist\""&& <TopTabs.Screen 
+            name="Not booked" 
+            component={AppointmentNotBooked }
+            options={{
+                tabBarLabel:language?"المواعيد غير المحجوزه":"BOOKED",
+            }} />}
+
+
+<TopTabs.Screen
+            name="Rejected"
+            component={AppointmentReject}
+            options={{
+            tabBarLabel:language?"المواعيد المرفوضه": "Rejected",
+            }}
+        />
     </TopTabs.Navigator>
     );
 }
@@ -53,7 +70,14 @@ const appointmentGenrate =(type,appointmentsData="")=>{
     for(let i=0;i<appointmentsData.length;i++){
         const dateObject = new Date(appointmentsData[i].date);
         appointments.push(
-            <AppointmentBoxs name={appointmentsData[i].categoryArabicName} key={appointmentsData[i].id} id={appointmentsData[i].id} date={dateObject} type={type} ></AppointmentBoxs>
+            <AppointmentBoxs 
+                name={appointmentsData[i].categoryArabicName} 
+                key={appointmentsData[i].id} 
+                id={appointmentsData[i].id} 
+                date={dateObject} 
+                type={type} 
+                nameEn={appointmentsData[i].categoryEnglishName} 
+                ></AppointmentBoxs>
         )
         appointments.push(<View style={styles.horizontalLine} />)
     }
@@ -109,13 +133,7 @@ const Appotment = () => {
         
             // Initial call
             fetchData();
-        
-            // Set up an interval to call fetchData every 20 seconds
-            const intervalId = setInterval(fetchData, 100000);
-        
-            // Cleanup the interval when the component unmounts
-            return () => clearInterval(intervalId);
-        }, [token,appotmentId]); // Include 'token' as a dependency to update the interval when token changes
+        }, []); // Include 'token' as a dependency to update the interval when token changes
         
 
     const loader =()=>{
@@ -132,7 +150,7 @@ return (
 
     {showDelete&&<PopUpSys></PopUpSys>} 
     
-    {flag&&appointmentGenrate("act",data)}
+    {flag&&!showDelete&&appointmentGenrate("act",data)}
     
     </ScrollView> 
     )

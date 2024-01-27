@@ -56,6 +56,25 @@ export const styles = StyleSheet.create({
         color:"white",
         fontSize:18,
     },
+    desDetels:{
+        width:"100%",
+        top:50,
+        height:140,
+        
+        paddingLeft:15,
+        paddingRight:20,
+        color:"white",
+        fontSize:18,
+    },
+    DarkDesDetels:{
+        width:"100%",
+        top:50,
+        height:140,
+        paddingLeft:15,
+        paddingRight:20,
+        color:"#161616",
+        fontSize:18,
+    },
     Date:{
         alignSelf:'center',
         justifyContent:'center',
@@ -109,6 +128,49 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 9,
         left: 280,
+        right: 0,
+        alignItems:"center",
+        justifyContent:"center",
+        flexDirection:"row",
+    },
+    acceptValue:{
+        borderStyle:"solid",
+        width:'26%',
+        height:26,
+        backgroundColor:"#27ff20",
+        borderRadius:10,
+        position: 'absolute',
+        bottom: 9,
+        left: 280,
+        right: 0,
+        flexDirection:"row",
+        alignSelf:'flex-start',
+        alignItems:"center",
+        justifyContent:"center",
+    },
+    rejectValue:{
+        borderStyle:"solid",
+        width:'26%',
+        height:26,
+        backgroundColor:"#ff4848",
+        borderRadius:10,
+        position: 'absolute',
+        bottom: 9,
+        left: 10,
+        right: 0,
+        alignItems:"center",
+        justifyContent:"center",
+        flexDirection:"row",
+    },
+    messengeValue:{
+        borderStyle:"solid",
+        width:'26%',
+        height:26,
+        backgroundColor:"#4cb5f9",
+        borderRadius:10,
+        position: 'absolute',
+        bottom: 9,
+        left: 145,
         right: 0,
         alignItems:"center",
         justifyContent:"center",
@@ -190,5 +252,107 @@ export const styles = StyleSheet.create({
         },
         allview:{
             flex:1
-        }
+        },
+        profilePic:{
+            width:50,
+            height:50,
+            borderRadius:40,
+            bottom:15,
+            left:"60%"
+        },
+        profilePic1:{
+            width:50,
+            height:50,
+            borderRadius:40,
+            bottom:15,
+            left:80,
+        },
+        patientName:{
+            left:'66%',
+            bottom:30,
+            color:'#161616'
+        },
+        patientNameDark:{
+            left:'66%',
+            bottom:30,
+            color:'#fff'
+        },
+        viewDes:{
+            flexDirection:'row',
+            alignItems:'center',
+            justifyContent:'center'
+        },
+        ArDarkDesDetels:{
+            width:"100%",
+            top:60,
+            right:"40%",
+            paddingLeft:15,
+            paddingRight:20,
+            color:"#161616",
+            fontSize:18,
+        },
+        ArdesDetels:{
+            width:"100%",
+            top:60,
+            right:"40%",
+            height:140,
+            paddingLeft:15,
+            paddingRight:20,
+            color:"white",
+            fontSize:18,
+        },
+
+
+        postinfoNoImgAprovel:{
+                flexDirection:'row',
+                position:"absolute",
+                top:"40%",
+                color:'#fff',
+                left:"5%",
+                width:"90%",
+                height:"100%",
+        },
+        postinfoAprovel:{
+                flexDirection:'row',
+                position:"absolute",
+                top:"80%",
+                color:'#fff',
+                left:"8%",
+                width:"90%",
+                height:"100%",
+        },
+        
+        genderDarkAprovel:{
+            color:'#fff',
+            marginRight:"10%"
+        },
+        genderAprovel:{
+            color:'#161616',
+            marginRight:"10%"
+        },
+        postDateAprovel:{
+            flexDirection:'row',
+            position:"absolute",
+            top:"85%",
+            color:'#fff',
+            left:"8%",
+            width:"90%",
+            height:"100%",
+        },
+        postDateNoImgAprovel:{
+            flexDirection:'row',
+            position:"absolute",
+            top:"50%",
+            color:'#fff',
+            left:"5%",
+            width:"90%",
+            height:"100%",
+        },
+        Aproveltime:{
+
+            color:'#fff'
+        },
+        AproveltimeDark:{
+            color:'#161616'
+        },
 });

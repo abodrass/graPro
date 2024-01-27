@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { usePageContext } from "../../../PageProvider";
 import { styles } from './settingStyle';
 import { StorageKey } from '../../../StorageKey';
@@ -7,12 +7,15 @@ import Nav from '../../../Nav';
 import { useNavigation } from '@react-navigation/native';
 import * as Updates from 'expo-updates';
 import RNRestart from 'react-native-restart';
+import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, ScrollView,Text, SafeAreaView,View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,TouchableWithoutFeedback,  Keyboard } from 'react-native';
 const Settings = () => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
     const {tokenFlag, setTokenFlag}= usePageContext();
     const {setToken}=usePageContext();
+    const {headerTitel,setHeaderTitel}= usePageContext();
+
     const handleLogOut = async () => {
         try {
             await AsyncStorage.removeItem(StorageKey.STORAGE_KEY_TOKEN);
@@ -25,6 +28,10 @@ const Settings = () => {
             console.error(error);
         }
     }
+
+    useFocusEffect(()=>{
+        setHeaderTitel(language?"الإعدادات":"setting")
+    })
 
 
     

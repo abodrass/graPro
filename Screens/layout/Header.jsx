@@ -4,6 +4,7 @@ import { Image, View, SafeAreaView,Text ,TouchableOpacity} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 const CustomHeader = (props) => {
     const {darkMood,setDarkMood}= usePageContext();
+    const {headerTitel,setHeaderTitel}=usePageContext();
     let backGround=darkMood?"#161616":"#fff";
     return (
     <SafeAreaView
@@ -22,8 +23,8 @@ const CustomHeader = (props) => {
         <Image
         source={darkMood?require("../../assets/logo-removebg-preview2.png"):require("../../assets/logo-removebg-preview.png")}
         style={{
-            width: 40,
-            height: 40,
+            width: 55,
+            height: 55,
             borderRadius: 100,
             marginRight: 15,
         }}
@@ -32,9 +33,10 @@ const CustomHeader = (props) => {
         style={{
             fontSize:18,
             fontWeight:400,
-            left:100,
+            alignItems:'center',
+            color:darkMood?"#fff":"#161616"
         }}
-        >{props.name}</Text>
+        >{headerTitel}</Text>
 
 
         <TouchableOpacity  style={{

@@ -101,7 +101,7 @@ export const styles = StyleSheet.create({
     name:{
         fontSize:18,
         position:"absolute",
-        left:"50%",
+        left:"42%",
         top:'70%'
     },
     nameAr:{
@@ -113,7 +113,7 @@ export const styles = StyleSheet.create({
     time:{
         fontSize:18,
         position:"absolute",
-        left:"50%",
+        left:"42%",
         top:'20%',
         fontWeight:"bold",
 
@@ -129,7 +129,7 @@ export const styles = StyleSheet.create({
     phone:{
         fontSize:15,
         position:"absolute",
-        left:"50%",
+        left:"42%",
         top:'120%',
         color:'#C3C5F3',
     },
@@ -148,7 +148,7 @@ export const styles = StyleSheet.create({
     delete:{
         position:'absolute' ,
         top:"115%", 
-        left:"95%",
+        left:"105%",
     },
     editAr:{
         position:'absolute' ,
@@ -158,7 +158,7 @@ export const styles = StyleSheet.create({
     edit:{
         position:'absolute' ,
         top:"20%", 
-        left:"95%",
+        left:"105%",
     },
     noResult:{
         height:'100%',
