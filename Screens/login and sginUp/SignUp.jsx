@@ -96,12 +96,13 @@ const SignUp = ({ navigation }) => {
         try {
             // Display loading indicator or disable the login button here
         
-            const response = await axios.post(url.CreateTokenAndSaveUserOnDb, requestBody, {
+            const response = await axios.post(url.SingUpURL, requestBody, {
                 headers: headers,
             });
         
             if (response.status === 200) {
                 console.log("request good");
+                requestBody.authCode=response.data;
                 navigation.navigate('SingUpEmailAuth', { requestBody: requestBody });
                 
                 return;
@@ -177,13 +178,13 @@ const SignUp = ({ navigation }) => {
     console.log(selectedGender);
     return (
         <KeyboardAvoidingView
-        style={darkMood?styles.container:styles.darkContainer}
+        style={!darkMood?styles.container:styles.darkContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
         enabled={Platform.OS === "ios" ? true : false}
         >
         <LinearGradient
-        colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
+        colors={!darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}
@@ -193,18 +194,18 @@ const SignUp = ({ navigation }) => {
         
         <Animated.View sharedTransitionTag="tag" style={styles.inner}>
             <TouchableOpacity style={styles.darkmodeIcon} onPress={handelBackClick}>
-                <AntDesign name="arrowleft" size={24} color={darkMood?"#494949":'white'}/>
+                <AntDesign name="arrowleft" size={24} color={!darkMood?"#494949":'white'}/>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.langu} onPress={handelLangugeClick}>
-            <FontAwesome name="language" size={27}  color={darkMood?"#494949":'white'} />
+            <FontAwesome name="language" size={27}  color={!darkMood?"#494949":'white'} />
             </TouchableOpacity>
     
-            <Image source={darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
+            <Image source={!darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
             <View style={styles.signUpbox}>
                 
                 
-                <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"انشاء حسابك":"Sign Up"}</Text>
+                <Text style={[ styles.logoInText,language && styles.textLeft,!darkMood && styles.blackColor]}>{language?"انشاء حسابك":"Sign Up"}</Text>
                 <TextInput
                     id='name'
                     placeholder={language?"الاسم الكامل":'full name '}
@@ -296,7 +297,7 @@ const SignUp = ({ navigation }) => {
                         <Text style={[styles.signInButtonText]}>{language?"متابعة":'continue'}</Text>
                     </View>
                 </TouchableOpacity>
-                <Text onPress={handleForgetPassword} style={[language?styles.needHelpR:styles.needHelp,darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
+                <Text onPress={handleForgetPassword} style={[language?styles.needHelpR:styles.needHelp,!darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
                 </View>
             </View>
                 

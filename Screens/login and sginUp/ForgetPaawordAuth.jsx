@@ -55,44 +55,16 @@ const ForgetPaawordAuth = ({ navigation }) => {
     };
 
     const formattedDate = new Date(date).toISOString();
-    const handelContinuationPress=async()=>{
-        requestBody.authCode=code;
-        
-        
-        const headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Origin': 'http://localhost:19006',
-        };
-        
-        try {
-            // Display loading indicator or disable the login button here
-        
-            const response = await axios.post(url.SingUpURL, {
-                headers: headers,
-            });
-        
-            if (response.status === 200) {
-                console.log("request good");
-        
-                
-
-                navigation.navigate('RestPassword',{ requestBody: requestBody });
-                return;
-              // Navigate to the next screen or perform other actions
-            } else {
-                console.error("Request failed with status:", response.status);
-                setWrongInput(true);
-              // Handle specific error cases based on response status or content
-            }
-        } catch (error) {
-            setWrongInput(true);
-            // Handle unexpected errors
-        } finally {
-            // Hide loading indicator or enable the login button here
+    const handelContinuationPress=()=>{
+        console.log(`what is here${requestBody}`);
+        if(code==requestBody.authCode){
+            navigation.navigate('RestPassword',{email:requestBody.email});
+            
         }
-        
-
+        else{
+            console.log(requestBody);
+            setWrongInput(true);
+        }
     }
 
 
@@ -106,13 +78,13 @@ const ForgetPaawordAuth = ({ navigation }) => {
 
     return (
         <KeyboardAvoidingView
-        style={darkMood?styles.container:styles.darkContainer}
+        style={!darkMood?styles.container:styles.darkContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
         enabled={Platform.OS === "ios" ? true : false}
         >
         <LinearGradient
-        colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
+        colors={!darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}
@@ -122,20 +94,20 @@ const ForgetPaawordAuth = ({ navigation }) => {
         
         <Animated.View sharedTransitionTag="tag" style={styles.inner}>
             <TouchableOpacity style={styles.darkmodeIcon} onPress={handelBackClick}>
-                <AntDesign name="arrowleft" size={24} color={darkMood?"#494949":'white'}/>
+                <AntDesign name="arrowleft" size={24} color={!darkMood?"#494949":'white'}/>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.langu} onPress={handelLangugeClick}>
-            <FontAwesome name="language" size={27}  color={darkMood?"#494949":'white'} />
+            <FontAwesome name="language" size={27}  color={!darkMood?"#494949":'white'} />
             </TouchableOpacity>
     
-            <Image source={darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
+            <Image source={!darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
             <View style={styles.signUpbox}>
                 
                 
-                <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"تغير كلمة السر":"reset Password"}</Text>
+                <Text style={[ styles.logoInText,language && styles.textLeft,!darkMood && styles.blackColor]}>{language?"تغير كلمة السر":"reset Password"}</Text>
                 
-                <Text style={{color:!darkMood?"#fff":"#161616",
+                <Text style={{color:darkMood?"#fff":"#161616",
                 fontSize:16,
                 marginBottom:10
             }}>{language?"قد تم ارسال رقم التحقق لبريدك الاكتروني الرجاء ادخله هنا ":"An authentication code has been sent to your email. Please enter it here."}</Text>

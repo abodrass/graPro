@@ -74,15 +74,18 @@ const ForgetPassword = ({ navigation }) => {
         
         try {
             // Display loading indicator or disable the login button here
-        
-            const response = await axios.post(url.SingUpURL, requestBody, {
+            console.log(requestBody.email)
+            const response = await axios.post(`${url.ResetPassword}?email=${requestBody.email}`, {
                 headers: headers,
             });
         
             if (response.status === 200) {
                 console.log("request good");
-        
-                navigation.navigate('ForgetPaawordAuth', { requestBody: requestBody });
+                dataW={
+                    email:email,
+                    authCode:response.data
+                }
+                navigation.navigate('ForgetPaawordAuth', { requestBody: dataW });
                 return;
               // Navigate to the next screen or perform other actions
             } else {
@@ -91,6 +94,7 @@ const ForgetPassword = ({ navigation }) => {
               // Handle specific error cases based on response status or content
             }
         } catch (error) {
+            console.error("Request failed with status:",error);
             setWrongInput(true);
             // Handle unexpected errors
         } finally {
@@ -111,13 +115,13 @@ const ForgetPassword = ({ navigation }) => {
 
     return (
         <KeyboardAvoidingView
-        style={darkMood?styles.container:styles.darkContainer}
+        style={!darkMood?styles.container:styles.darkContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
         enabled={Platform.OS === "ios" ? true : false}
         >
         <LinearGradient
-        colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
+        colors={!darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}
@@ -127,20 +131,20 @@ const ForgetPassword = ({ navigation }) => {
         
         <Animated.View sharedTransitionTag="tag" style={styles.inner}>
             <TouchableOpacity style={styles.darkmodeIcon} onPress={handelBackClick}>
-                <AntDesign name="arrowleft" size={24} color={darkMood?"#494949":'white'}/>
+                <AntDesign name="arrowleft" size={24} color={!darkMood?"#494949":'white'}/>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.langu} onPress={handelLangugeClick}>
-            <FontAwesome name="language" size={27}  color={darkMood?"#494949":'white'} />
+            <FontAwesome name="language" size={27}  color={!darkMood?"#494949":'white'} />
             </TouchableOpacity>
     
-            <Image source={darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
+            <Image source={!darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
             <View style={styles.signUpbox}>
                 
                 
-                <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"تغير كلمة السر":"reset Password"}</Text>
+                <Text style={[ styles.logoInText,language && styles.textLeft,!darkMood && styles.blackColor]}>{language?"تغير كلمة السر":"reset Password"}</Text>
                 
-                <Text style={{color:!darkMood?"#fff":"#161616",
+                <Text style={{color:darkMood?"#fff":"#161616",
                 fontSize:16,
                 marginBottom:10
             }}>{language?"ادخل بريدك الاكتروني":"Enter your Email "}</Text>

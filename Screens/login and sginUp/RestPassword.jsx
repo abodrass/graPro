@@ -18,6 +18,7 @@ import { Picker } from "@react-native-picker/picker";
 import axios from 'react-native-axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StorageKey } from '../../StorageKey';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import GenderSelection from '../component/genderSelction';
 const RestPassword = ({ navigation }) => {
 
@@ -36,6 +37,10 @@ const RestPassword = ({ navigation }) => {
     const [phone ,setPhone]=useState("");
     const [selectedGender, setSelectedGender] = useState('');
     const mainTextColor = "rgba(182, 181, 181, 0.549)";
+    const route = useRoute();
+
+    // Access the requestBody parameter from the route
+    const requestBody1 = route.params?.requestBody || {};
     const handleFocus = (inputId) => {
 
         if (inputId === 'email') {
@@ -64,21 +69,20 @@ const RestPassword = ({ navigation }) => {
 
     const formattedDate = new Date(date).toISOString();
     const handelContinuationPress=async()=>{
-        console.log(userName);
+    
         console.log(password);
         console.log(confirmPassword);
-        console.log(email);
-        console.log(phone);
-        console.log(selectedGender);
-        console.log(formattedDate);
+    
         /*if(password!=confirmPassword||userName==""||phone.length>10||phone.length<8||email==""){
             setWrongInput(true);
             return;
         }*/
 
         const requestBody = {
+            email:requestBody1,
             password: password,
             confirmationPassword: confirmPassword,
+            
         };
         
         const headers = {
@@ -90,7 +94,7 @@ const RestPassword = ({ navigation }) => {
         try {
             // Display loading indicator or disable the login button here
         
-            const response = await axios.post(url.SingUpURL, requestBody, {
+            const response = await axios.put(url.ConfirmResetPassword, requestBody, {
                 headers: headers,
             });
         
@@ -161,13 +165,13 @@ const RestPassword = ({ navigation }) => {
 
     return (
         <KeyboardAvoidingView
-        style={darkMood?styles.container:styles.darkContainer}
+        style={!darkMood?styles.container:styles.darkContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
         enabled={Platform.OS === "ios" ? true : false}
         >
         <LinearGradient
-        colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
+        colors={!darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
         start={{ x: 1, y: .5 }}
         end={{ x: 0, y: 1 }}
         style={styles.container}
@@ -176,18 +180,18 @@ const RestPassword = ({ navigation }) => {
         
         <Animated.View sharedTransitionTag="tag" style={styles.inner}>
             <TouchableOpacity style={styles.darkmodeIcon} onPress={handelBackClick}>
-                <AntDesign name="arrowleft" size={24} color={darkMood?"#494949":'white'}/>
+                <AntDesign name="arrowleft" size={24} color={!darkMood?"#494949":'white'}/>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.langu} onPress={handelLangugeClick}>
-            <FontAwesome name="language" size={27}  color={darkMood?"#494949":'white'} />
+            <FontAwesome name="language" size={27}  color={!darkMood?"#494949":'white'} />
             </TouchableOpacity>
     
-            <Image source={darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
+            <Image source={!darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.SingUplogo}></Image>
             <View style={styles.signUpbox}>
                 
                 
-            <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"تغير كلمة السر":"reset Password"}</Text>
+            <Text style={[ styles.logoInText,language && styles.textLeft,!darkMood && styles.blackColor]}>{language?"تغير كلمة السر":"reset Password"}</Text>
                 
                 <TextInput
                     id='pass'
@@ -228,7 +232,7 @@ const RestPassword = ({ navigation }) => {
                         <Text style={[styles.signInButtonText]}>{language?"متابعة":'continue'}</Text>
                     </View>
                 </TouchableOpacity>
-                <Text style={[language?styles.needHelpR:styles.needHelp,darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
+                <Text style={[language?styles.needHelpR:styles.needHelp,!darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
                 </View>
             </View>
                 

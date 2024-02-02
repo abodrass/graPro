@@ -163,6 +163,18 @@ export const  styles = StyleSheet.create({
       marginTop:25,
       
     },
+      signIn: {
+      width: '45%',
+      borderRadius: 50,
+      height: 45,
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'white',
+      alignSelf:'flex-start',
+      marginLeft:4,
+      marginTop:25,
+      
+    },
     signInage: {
       width: '35%',
       borderRadius: 50,
@@ -180,7 +192,7 @@ export const  styles = StyleSheet.create({
       display:'flex',
       backgroundColor: '#4cb5f9',
       borderRadius: 50,
-      width: '80%',
+      width: '90%',
       height: 35,
       justifyContent: 'center',
       alignItems: 'center',
@@ -215,11 +227,15 @@ export const  styles = StyleSheet.create({
     needHelp: {
       
       alignSelf:'flex-end',
-      bottom:10,
+      top:40,
       paddingLeft:'20%',
       color: 'white',
       fontWeight:'500'
   },
+  needHelpR: {
+      
+ 
+},
   textLeft:{
     textAlign:'left',
     alignSelf:'flex-end',
@@ -265,17 +281,17 @@ export const  styles = StyleSheet.create({
   needHelpR: {
     position:'absolute',
     alignSelf:'flex-start',
-    top:35,
+    top:40,
     paddingRight:'6%',
     marginLeft:19,
     color: 'white',
     fontWeight:'500'
 },
 left25:{
-    left:20,
+    left:60,
 },
 right25:{
-    right:25,
+    right:35,
 },
 blackColor:{
   color:'#494949'
@@ -297,6 +313,15 @@ bottomTextContainerSingUp: {
   justifyContent: 'center',
   borderRadius: 30,
 
+},
+bottomTextContainer1:{
+  alignSelf:'center',
+  alignItems:'center',
+  backgroundColor:'#4cb5f9',
+  width: '80%',
+  height:"8%",
+  justifyContent: 'center',
+  borderRadius: 30,
 },
 navtext:{
   fontSize:12,

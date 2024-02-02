@@ -26,7 +26,7 @@ const SingUpEmailAuth = ({ navigation }) => {
     const {language,setLanguage}= usePageContext();
     const [isFocusedEmail, setIsFocusedEmail] = useState(false);
     const [isFocusedPass, setIsFocusedPass] = useState(false);
-    const [code,setCode]=useState('');
+    const [code,setCode]=useState();
     const [wrongInput,setWrongInput]=useState(false);
     const [date,setDate]=useState( new Date());
 
@@ -63,42 +63,55 @@ const SingUpEmailAuth = ({ navigation }) => {
 
     const formattedDate = new Date(date).toISOString();
     const handelContinuationPress=async()=>{
-        requestBody.authCode=code;
-        
-        
-        const headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Origin': 'http://localhost:19006',
-        };
-        
-        try {
-            // Display loading indicator or disable the login button here
-        
-            const response = await axios.post(url.SingUpURL, requestBody, {
-                headers: headers,
-            });
-        
-            if (response.status === 200) {
-                console.log("request good");
-        
-                const responseData = response.data;
+        if(code==requestBody.authCode){
 
-                navigation.navigate('LogIn');
-                return;
-              // Navigate to the next screen or perform other actions
-            } else {
-                console.error("Request failed with status:", response.status);
+            const headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Origin': 'http://localhost:19006',
+            };
+            const requestBody1 = {
+                fullName: requestBody.fullName,
+                password: requestBody.password,
+                confirmationPassword: requestBody.confirmationPassword,
+                email:requestBody.email,
+                phoneNumber:requestBody.phoneNumber,
+                birthDay: requestBody.birthDay,
+                nationalId: 0,
+                genderId: requestBody.genderId
+            };
+            
+            try {
+                // Display loading indicator or disable the login button here
+            
+                const response = await axios.post(url.CreateTokenAndSaveUserOnDb, requestBody1, {
+                    headers: headers,
+                });
+            
+                if (response.status === 200) {
+                    console.log("request good");
+                    navigation.navigate('LogIn');
+                    
+                    return;
+                  // Navigate to the next screen or perform other actions
+                } else {
+                    console.error("Request failed with status:", response.status);
+                    setWrongInput(true);
+                  // Handle specific error cases based on response status or content
+                }
+            } catch (error) {
+                console.error("Request failed with status:", error);
                 setWrongInput(true);
-              // Handle specific error cases based on response status or content
+                // Handle unexpected errors
+            } finally {
+                // Hide loading indicator or enable the login button here
             }
-        } catch (error) {
-            setWrongInput(true);
-            // Handle unexpected errors
-        } finally {
-            // Hide loading indicator or enable the login button here
+            
+            
         }
-        
+        else{
+            console.log(requestBody);
+        }
 
     }
 

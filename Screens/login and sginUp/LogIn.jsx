@@ -168,7 +168,7 @@ const LogIn=({ navigation })=> {
             </TouchableOpacity>
             <Image source={!darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.logo}></Image>
             <View style={styles.box}>
-              <Text style={[ styles.logoInText,language && styles.textLeft,!darkMood && styles.blackColor]}>{language?"تسجيل الدخول لحسابك":"Login to your account"}</Text>
+              <Text style={[ styles.logoInText,language && styles.textLeft,!darkMood && styles.blackColor]}>{language?"تسجيل الدخول لحسابك":"Login to your account" }</Text>
               <TextInput
                     id='email'
                     placeholder={language?"البريد الالكتروني":'email'}
@@ -193,9 +193,9 @@ const LogIn=({ navigation })=> {
               {wrongInput&& wrongSubmitHandel()}
               
               <View style={styles.signContener}>
-              <TouchableOpacity style={language?styles.loginLeft:styles.signIn} onPress={handleLogin}>
+              <TouchableOpacity style={language?styles.loginLeft:styles.signIn} onPress={handleSignUp}>
                   <View style={styles.buttonGradient}>
-                    <Text style={[styles.signInButtonText]}>{language?"تسجيل الدخول":'Log in'}</Text>
+                    <Text style={[styles.signInButtonText]}>{language?"انشاء حساب جديد":"Create new account"}</Text>
                   </View>
               </TouchableOpacity>
 
@@ -206,8 +206,8 @@ const LogIn=({ navigation })=> {
 
               </View>
             </View>
-              <TouchableOpacity onPress={handleSignUp} style={styles.bottomTextContainer}>
-                <Text style={[styles.signUp,language?styles.right25:styles.left25]} >{language?"انشاء حساب جديد":"Create new account"}</Text>
+              <TouchableOpacity onPress={handleLogin} style={language?styles.bottomTextContainer:styles.bottomTextContainer1}>
+                <Text style={[styles.signUp,language?styles.right25:styles.left25 ]} >{language?"تسجيل الدخول":'Log in'} </Text>
               </TouchableOpacity>
 
               
