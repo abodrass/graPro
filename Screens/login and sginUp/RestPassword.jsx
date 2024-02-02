@@ -19,7 +19,7 @@ import axios from 'react-native-axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StorageKey } from '../../StorageKey';
 import GenderSelection from '../component/genderSelction';
-const SignUp = ({ navigation }) => {
+const RestPassword = ({ navigation }) => {
 
 
     const {darkMood,setDarkMood}= usePageContext();
@@ -77,14 +77,8 @@ const SignUp = ({ navigation }) => {
         }*/
 
         const requestBody = {
-            fullName: userName,
             password: password,
             confirmationPassword: confirmPassword,
-            email:email,
-            phoneNumber:phone,
-            birthDay: date,
-            nationalId: 0,
-            genderId: selectedGender
         };
         
         const headers = {
@@ -96,7 +90,7 @@ const SignUp = ({ navigation }) => {
         try {
             // Display loading indicator or disable the login button here
         
-            const response = await axios.post(url.CreateTokenAndSaveUserOnDb, requestBody, {
+            const response = await axios.post(url.SingUpURL, requestBody, {
                 headers: headers,
             });
         
@@ -124,12 +118,6 @@ const SignUp = ({ navigation }) => {
     const handelagePress=()=>{
         setShowDateBox(true);
     }
-
-    const handleForgetPassword = () => {
-        // Navigate to the SignUp screen
-        console.log('hi');
-        navigation.navigate('ForgetPassword');
-    };
 
     const wrongSubmitHandel=()=>{
         return <Text style={language?styles.wrongTextColorSignUpR:styles.wrongTextColorSignUpL}>{language?"معلومات غير صحيحه او مكرره":"the info is not correct or duplicated "}</Text>
@@ -168,13 +156,9 @@ const SignUp = ({ navigation }) => {
     const handleGenderChange = (gender) => {
         setSelectedGender(gender);
     };
-    console.log(date);
-    console.log(userName);
     console.log(password);
     console.log(confirmPassword);
-    console.log(email);
-    console.log(phone);
-    console.log(selectedGender);
+
     return (
         <KeyboardAvoidingView
         style={darkMood?styles.container:styles.darkContainer}
@@ -188,7 +172,6 @@ const SignUp = ({ navigation }) => {
         end={{ x: 0, y: 1 }}
         style={styles.container}
         >
-       
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
         
         <Animated.View sharedTransitionTag="tag" style={styles.inner}>
@@ -204,30 +187,7 @@ const SignUp = ({ navigation }) => {
             <View style={styles.signUpbox}>
                 
                 
-                <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"انشاء حسابك":"Sign Up"}</Text>
-                <TextInput
-                    id='name'
-                    placeholder={language?"الاسم الكامل":'full name '}
-                    style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
-                    onChangeText={(name) => setUserName(name)}
-                    value={userName}
-                    onFocus={() => handleFocus('email')}
-                    onBlur={handleBlur}
-                    placeholderTextColor={mainTextColor}
-                ></TextInput>
-                
-                
-                <TextInput
-                    id='email'
-                    placeholder={language?"البريد الاكتروني اذا كنت طبيب ادخل ايميلك الجامعي":'Email if you are a doctor enter your university email'}
-                    style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
-                    onChangeText={(email) => setEmail(email)}
-                    value={email}
-                    onFocus={() => handleFocus('email')}
-                    onBlur={handleBlur}
-                    placeholderTextColor={"rgba(182, 181, 181, 0.949)"}
-                ></TextInput>
-                
+            <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"تغير كلمة السر":"reset Password"}</Text>
                 
                 <TextInput
                     id='pass'
@@ -255,39 +215,11 @@ const SignUp = ({ navigation }) => {
                 ></TextInput>
                 
                 
-                <TextInput
-                    id='phone'
-                    placeholder={language?"رقم الهاتف":'phone Number '}
-                    style={[styles.email, isFocusedEmail && styles.focusedInput,wrongInput&&styles.wrongInput]}
-                    onChangeText={(phone) => setPhone(phone)}
-                    value={phone}
-                    keyboardType="numeric"
-                    onFocus={() => handleFocus('phone')}
-                    onBlur={handleBlur}
-                    placeholderTextColor={mainTextColor}
-                ></TextInput>
-                
-                
-                <TouchableOpacity style={language?styles.Leftage:styles.signInage } onPress={handelagePress} >
-                    <View style={styles.buttonGradient}>
-                        <Text style={[styles.signInButtonText]}>{language?"تاريخ الميلاد":'age'}</Text>
-                    </View>
-                </TouchableOpacity>
-                
-                
-                <TouchableOpacity style={[styles.up, !language ? styles.Leftgender : styles.signInage] } >
-                <GenderSelection selectedGender={selectedGender} onGenderChange={handleGenderChange}></GenderSelection>
-                </TouchableOpacity>
-                
+
+
                 
                 {wrongInput&&wrongSubmitHandel()}
 
-                {showDateBox&&
-                <DateTimePicker
-                value={date}
-                onChange={onTimeChange}
-                ></DateTimePicker>
-                }
                 
                 
                 <View style={styles.signContener1}>
@@ -296,7 +228,7 @@ const SignUp = ({ navigation }) => {
                         <Text style={[styles.signInButtonText]}>{language?"متابعة":'continue'}</Text>
                     </View>
                 </TouchableOpacity>
-                <Text onPress={handleForgetPassword} style={[language?styles.needHelpR:styles.needHelp,darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
+                <Text style={[language?styles.needHelpR:styles.needHelp,darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
                 </View>
             </View>
                 
@@ -305,8 +237,7 @@ const SignUp = ({ navigation }) => {
         </TouchableWithoutFeedback>
         </LinearGradient>
     </KeyboardAvoidingView>
-   
     )
 }
 
-export default SignUp
+export default RestPassword;

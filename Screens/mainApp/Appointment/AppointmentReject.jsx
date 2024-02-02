@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import PopUpSys from '../../component/PopUpSys';
 import NoResult from '../../component/NoResult';
 import Refresh from '../../component/Refresh';
+import { useFocusEffect } from '@react-navigation/native';
 const AppointmentReject = () => {
 
         const {darkMood,setDarkMood}= usePageContext();
@@ -24,7 +25,10 @@ const AppointmentReject = () => {
         const [NoPost,setNoPost]= useState(false);
         const backGround=darkMood?" #161616":"#fff"
         const [refresh ,setRefresh]=useState(0);
-
+        const {headerTitel,setHeaderTitel}= usePageContext();
+        useFocusEffect(()=>{
+            setHeaderTitel(language?"المواعيد":"appointments");
+        });
         useEffect(() => {
             const fetchData = async () => {
                 console.log("Bearer " + token.replace(/"/g, ''));
@@ -58,9 +62,10 @@ const AppointmentReject = () => {
                 }
             };
         
-            // Initial call
-            fetchData();
-        }, [refresh]);
+            if (headerTitel === "appointments"||headerTitel ==="المواعيد"){ 
+                fetchData();
+                }
+        }, [refresh,headerTitel]);
 
         const handelRefresh=()=>{
             setRefresh((prev)=>{
@@ -92,7 +97,7 @@ const AppointmentReject = () => {
         
         const loader =()=>{
             console.log(NoPost)
-            return  (!NoPost?
+            return  (NoPost?
                     <ActivityIndicator color={"#4cb5f9"} style={{top:"5%",left:"2%", }}></ActivityIndicator>:
                     <NoResult des={language?"ليس لديك مواعيد":"You do not have appointments"}></NoResult>
             )

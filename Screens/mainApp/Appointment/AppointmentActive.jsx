@@ -21,6 +21,7 @@ const AppointmentActive = () => {
         const [showPopUp,setShowPopUp]=useState();
 
         const {showDelete, setShowDelete}= usePageContext();
+        const {userRole,setUserRole}= usePageContext();
         const {appotmentId,setappotmentId}= usePageContext();
         const {headerTitel,setHeaderTitel}= usePageContext();
         const [NoPost,setNoPost]= useState(false);
@@ -30,6 +31,12 @@ const AppointmentActive = () => {
             setHeaderTitel(language?"المواعيد":"appointments");
         });
 
+        let urlF;
+        if(userRole=="\"Patient\""){
+            urlF=url.GetAllActiveAppointmentBookedForPatient;
+        }
+        else
+            urlF=url.GetAllActiveAppointmentBookedForDentist;
         const handelRefresh=()=>{
             setRefresh((prev)=>{
                 return prev+1;
@@ -47,7 +54,8 @@ const AppointmentActive = () => {
                     'Authorization': "Bearer " + token.replace(/"/g, ''),
                 };
                 try {
-                    const response = await axios.get(url.GetAllActiveAppointmentBookedForDentist, {
+                    console.log(urlF)
+                    const response = await axios.get(urlF, {
                         headers: headers,
                     });
                     if (response.status === 200) {
@@ -71,13 +79,16 @@ const AppointmentActive = () => {
             };
         
             // Initial call
-            fetchData();
-        }, [refresh]);
+            if (headerTitel === "appointments"||headerTitel ==="المواعيد"){ 
+                fetchData();
+                }
+
+        }, [refresh,headerTitel]);
 
         const appointmentGenrate =(type,appointmentsData="")=>{
             //must be the number of the appotment in the database 
             let appointments=[];
-            appointments.push(<Refresh handelRefresh={handelRefresh} type={true}></Refresh>)
+            appointments.push(<Refresh handelRefresh={handelRefresh} type={true} no={true}></Refresh>)
             for(let i=0;i<appointmentsData.length;i++){
                 const dateObject = new Date(appointmentsData[i].appointmentBookedDto.date);
                 appointments.push(
@@ -87,7 +98,7 @@ const AppointmentActive = () => {
                         id={appointmentsData[i].appointmentBookedDto.id} 
                         date={dateObject} 
                         type={type} 
-                        nameEn={appointmentsData[i].appointmentBookedDto.categoryName.arabicName} 
+                        nameEn={appointmentsData[i].appointmentBookedDto.categoryName.englishName} 
                         >
                     </AppointmentBoxs>
                 )
@@ -99,7 +110,7 @@ const AppointmentActive = () => {
         
         const loader =()=>{
             console.log(NoPost)
-            return  (!NoPost?
+            return  (NoPost?
                     <ActivityIndicator color={"#4cb5f9"} style={{top:"5%",left:"2%", }}></ActivityIndicator>:
                     <NoResult des={language?"ليس لديك مواعيد":"You do not have appointments"}></NoResult>
             )

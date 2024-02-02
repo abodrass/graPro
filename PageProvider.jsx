@@ -23,7 +23,7 @@ export const PageProvider = ({ children }) => {
         console.log("Stored Dark Mode:", storedDarkMode);
         if (storedDarkMode !== null) {
           console.log(storedDarkMode);
-          setDarkMood(Boolean(storedDarkMode));
+          setDarkMood(JSON.parse(storedDarkMode));
         }
       })   
       .catch((error) => {
@@ -36,7 +36,7 @@ export const PageProvider = ({ children }) => {
         console.log("Stored language Mode:",storedLan);
         if (storedLan !== null) {
           console.log(storedLan);
-          setLanguage(Boolean(storedLan));
+          setLanguage(JSON.parse(storedLan));
         }
       })   
       .catch((error) => {
@@ -63,22 +63,6 @@ export const PageProvider = ({ children }) => {
       });
   }, []);
 
-  useEffect(() => {
-    console.log("saving dark mode to AsyncStorage:")
-    AsyncStorage.setItem(StorageKey.STORAGE_KEY_DARK_MODE, JSON.stringify(darkMood))
-      .catch((error) => {
-        console.error('Error saving dark mode to AsyncStorage:', error);
-      });
-  }, [darkMood]);
-  
-  useEffect(() => {
-    console.log("saving language to AsyncStorage")
-    AsyncStorage.setItem(StorageKey.STORAGE_KEY_LANGUAGE, JSON.stringify(language))
-      .catch((error) => {
-        console.error('Error saving language to AsyncStorage:', error);
-      });
-  }, [language]);
-  
 
 
   return (

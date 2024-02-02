@@ -12,8 +12,9 @@ export const url={
     GetAllWaitingApprovalAppointments:"http://192.168.1.241:5126/AppointmentBookedAPI/GetAllWaitingApprovalAppointments",
     AppointmentBookedAccepted:"http://192.168.1.241:5126/AppointmentBookedAPI/AppointmentBooked Accepted",
     AppointmentBookedRejected:"http://192.168.1.241:5126/AppointmentBookedAPI/AppointmentBooked Rejected",
-    GetAllActiveAppointmentBookedForPatient:"http://192.168.1.241:5126/AppointmentBookedAPI/GetAllActiveAppointmentBookedForPatient",
+    GetAllActiveAppointmentBookedForPatient:"http://192.168.1.241:5126/AppointmentBookedAPI/GetAllActiveAppointmentBookedForPatient?Status=Active",
     GetAllMyAppointmentNotBookedYet:"http://192.168.1.241:5126/AppointmentAPI/GetAllMyAppointmentNotBookedYet",
     GetAllActiveAppointmentBookedForDentist:"http://192.168.1.241:5126/AppointmentBookedAPI/GetAllActiveAppointmentBookedForDentist?Status=Active",
     GetAllRejectAppointmentBookedForDentist:"http://192.168.1.241:5126/AppointmentBookedAPI/GetAllActiveAppointmentBookedForDentist?Status=Closed",
+    CreateTokenAndSaveUserOnDb:"http://192.168.1.241:5126/UserAPI/CreateTokenAndSaveUserOnDb"
 }

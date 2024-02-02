@@ -13,6 +13,7 @@ import AppointmentNotBooked from './AppointmentNotBooked';
 import AppointmentActive from './AppointmentActive';
 import AprovelNav from '../appointmentAprovel/AprovelNav';
 import AppointmentReject from './AppointmentReject';
+
 const TopTabs = createMaterialTopTabNavigator();
 
 export function TopTabsGroup() {
@@ -65,6 +66,8 @@ export function TopTabsGroup() {
 }
 
 const appointmentGenrate =(type,appointmentsData="")=>{
+
+
     //must be the number of the appotment in the database 
     let appointments=[];
     for(let i=0;i<appointmentsData.length;i++){
@@ -100,6 +103,7 @@ const Appotment = () => {
         const {appotmentId,setappotmentId}= usePageContext();
         const [NoPost,setNoPost]= useState(false);
         const backGround=darkMood?" #161616":"#fff"
+        
         useEffect(() => {
             const fetchData = async () => {
                 console.log("Bearer " + token.replace(/"/g, ''));

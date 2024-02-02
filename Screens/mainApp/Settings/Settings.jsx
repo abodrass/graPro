@@ -36,15 +36,18 @@ const Settings = () => {
 
     
 
-    const handelDarkMoodClick=()=>{
+    const handelDarkMoodClick=async()=>{
         setDarkMood((prev)=>{
             return !prev;
         });
+        await AsyncStorage.setItem(StorageKey.STORAGE_KEY_DARK_MODE, JSON.stringify(!darkMood));
+
     }
-    const handelLangugeClick=()=>{
+    const handelLangugeClick=async()=>{
         setLanguage((prev)=>{
             return !prev;
-        })
+        });
+        await AsyncStorage.setItem(StorageKey.STORAGE_KEY_LANGUAGE , JSON.stringify(!language));
     }
     return (
         <ScrollView

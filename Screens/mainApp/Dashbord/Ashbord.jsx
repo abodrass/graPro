@@ -14,7 +14,6 @@ import Boxs from './Boxs';
 const Ashbord = ({ navigation }) => {
     const {darkMood,setDarkMood}= usePageContext();
     const {language,setLanguage}= usePageContext();
-   
     const {token}=usePageContext();
     const [loader,setLoader]=useState(false);
     const [data,setData]=useState();
@@ -62,7 +61,7 @@ const Ashbord = ({ navigation }) => {
 
     const boxGen=(data)=>{
         let boxs=[];
-        for (let i=0;i<2;i++){
+        for (let i=0;i<data.length;i++){
         
 
             boxs.push(

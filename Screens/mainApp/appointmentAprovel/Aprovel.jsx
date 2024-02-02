@@ -49,11 +49,16 @@ import Refresh from '../../component/Refresh';
                     // Navigate to the next screen or perform other actions
                 } else {
                     console.error("Request failed with status:", response);   
+
                     setNoPost(true);
                     // Handle specific error cases based on response status or content
                 }
                 } catch (error) {
-                    console.error("An error occurred", error);
+                    console.log(error);
+                    if (error=="Error: Request failed with status code 404"){
+                        setData(null);
+                        setFlag(false);
+                    }
                     setNoPost(true);
                 } finally {
                     setNoPost(true);
@@ -76,12 +81,16 @@ import Refresh from '../../component/Refresh';
         
         const allposts=()=>{
             let posts=[];
-            let flag=true;
+            let flag1=true;
+            if (data===null){
+                return;
+            }
+            posts.push(<Refresh handelRefresh={handelRefresh} type={false}></Refresh>)
             for (let i = 0; i < data.length; i++) {
                 if(!data[i].images[0]?.imageData){
-                    flag=false
+                    flag1=false
                 }
-                posts.push(<Refresh handelRefresh={handelRefresh} type={false}></Refresh>)
+                
     
                 console.log(data[i].date);
                 posts.push(
@@ -90,7 +99,7 @@ import Refresh from '../../component/Refresh';
                         id={data[i].appointmentBookedId}
                         date={data[i].date}
                         imageUrl={data[i].images}
-                        isImageE={flag}
+                        isImageE={flag1}
                         patientUser={data[i].patientUser}
                         status={data[i].status}
                         navigations={navigation}
@@ -105,7 +114,7 @@ import Refresh from '../../component/Refresh';
                     <View style={styles.horizontalLine} />
                 )
                 
-                flag=true;
+                flag1=true;
             }
 
             return posts;
@@ -113,8 +122,7 @@ import Refresh from '../../component/Refresh';
     
         const loader =()=>{
             console.log(NoPost)
-            return  (!NoPost?
-                    <ActivityIndicator color={"#4cb5f9"} style={{top:"50%",left:"2%", }}></ActivityIndicator>:
+            return  (
                     <NoResult des={language?"لا يوجد هناك مواعيد عد لاحقا":"no appointment founded"}></NoResult>
             )
         }

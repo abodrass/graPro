@@ -194,14 +194,14 @@ const PatientPostPick = ({ navigation, route  }) => {
                 <Feather name="x" size={27} color={darkMood?"white":"black"} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.postbo} onPress={handelPostPress}>
-                <Text style={styles.PostInButtonText}>{language?"Book":"احجز"}</Text>
+                <Text style={styles.PostInButtonText}>{!language?"Book":"احجز"}</Text>
             </TouchableOpacity>
             
             </View>
             <TextInput 
                 style={styles.des}
                 placeholderTextColor={mainTextColor}
-                placeholder={!language?"اكتب الوصف الذي تريده"  :'Description|'}
+                placeholder={language?"اكتب الوصف الذي تريده"  :'Description|'}
                 value={des}
                 onChangeText={handelDesChange}
             ></TextInput>

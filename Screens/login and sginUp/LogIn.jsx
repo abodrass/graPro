@@ -12,6 +12,7 @@ import { StorageKey } from '../../StorageKey';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { url } from '../../APIURLS';
 import * as SecureStore from 'expo-secure-store';
+import ForgetPassword from './ForgetPassword';
 import Nav from '../../Nav';
 
 const isBrowser = typeof window !== 'undefined';
@@ -105,6 +106,12 @@ const LogIn=({ navigation })=> {
     };
   
 
+    const handleForgetPassword = () => {
+      // Navigate to the SignUp screen
+      console.log('hi');
+      navigation.navigate('ForgetPassword');
+    };
+
     const handleSignUp = () => {
       // Navigate to the SignUp screen
       console.log('hi');
@@ -112,17 +119,18 @@ const LogIn=({ navigation })=> {
     };
 
 
-    const handelDarkMoodClick=()=>{
-      console.log("hi");
+    const handelDarkMoodClick= async()=>{
       setDarkMood((prev)=>{
         return !prev;
       });
+      await AsyncStorage.setItem(StorageKey.STORAGE_KEY_DARK_MODE, JSON.stringify(!darkMood));
     }
 
-    const handelLangugeClick=()=>{
+    const handelLangugeClick=async()=>{
       setLanguage((prev)=>{
         return !prev;
-      })
+      });
+      await AsyncStorage.setItem(StorageKey.STORAGE_KEY_LANGUAGE , JSON.stringify(!language));
     }
 
     const wrongSubmitHandel=()=>{
@@ -139,7 +147,7 @@ const LogIn=({ navigation })=> {
       >
 
       <LinearGradient
-      colors={darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
+      colors={!darkMood?['#ececea',"#5F6B6F"]:["#3E3E3E","#3E3E3E",'#ececea']}
       start={{ x: 1, y: .5 }}
       end={{ x: 0, y: 1 }}
       style={styles.container}
@@ -151,16 +159,16 @@ const LogIn=({ navigation })=> {
     
         <Animated.View sharedTransitionTag="tag" style={styles.inner}>
             <TouchableOpacity style={styles.darkmodeIcon} onPress={handelDarkMoodClick}>
-            {darkMood?<Ionicons name="ios-moon" size={27} color="#494949" />
+            {!darkMood?<Ionicons name="ios-moon" size={27} color="#494949" />
             :<Ionicons name="sunny-sharp" size={27} color="white" />
             }
             </TouchableOpacity>
             <TouchableOpacity style={styles.langu} onPress={handelLangugeClick}>
-            <FontAwesome name="language" size={27}  color={darkMood?"#494949":'white'} />
+            <FontAwesome name="language" size={27}  color={!darkMood?"#494949":'white'} />
             </TouchableOpacity>
-            <Image source={darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.logo}></Image>
+            <Image source={!darkMood?require("../../assets/logo-removebg-preview.png"):require("../../assets/logo-removebg-preview2.png")} style={styles.logo}></Image>
             <View style={styles.box}>
-              <Text style={[ styles.logoInText,language && styles.textLeft,darkMood && styles.blackColor]}>{language?"تسجيل الدخول لحسابك":"Login to your account"}</Text>
+              <Text style={[ styles.logoInText,language && styles.textLeft,!darkMood && styles.blackColor]}>{language?"تسجيل الدخول لحسابك":"Login to your account"}</Text>
               <TextInput
                     id='email'
                     placeholder={language?"البريد الالكتروني":'email'}
@@ -190,7 +198,12 @@ const LogIn=({ navigation })=> {
                     <Text style={[styles.signInButtonText]}>{language?"تسجيل الدخول":'Log in'}</Text>
                   </View>
               </TouchableOpacity>
-              <Text style={[language?styles.needHelpR:styles.needHelp,darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
+
+              <TouchableOpacity  onPress={handleForgetPassword}>
+              <Text onPress={handleForgetPassword} style={[language?styles.needHelpR:styles.needHelp,!darkMood&&styles.blackColor]}>{language?"هل نسيت كلمة المرور":"forget password?"}</Text>
+              </TouchableOpacity>
+
+
               </View>
             </View>
               <TouchableOpacity onPress={handleSignUp} style={styles.bottomTextContainer}>

@@ -17,7 +17,14 @@ const Refresh = (props) => {
     const {darkMood}=usePageContext();
     const {language}=usePageContext();
     return (
-        <TouchableOpacity style={{alignSelf:'center',left:props.type?"25%":"27%",marginTop:20 ,marginBottom:20}} onPress={props.handelRefresh}>
+        <TouchableOpacity style={{alignSelf:'center',left:
+        props.no?
+        props.type?"32%":"27%"
+        :
+        props.type?"20%":"27%"
+
+        
+        ,marginTop:20 ,marginBottom:20}} onPress={props.handelRefresh}>
         
             <FontAwesome  name="refresh" size={24} color={darkMood?"#fff":"#161616"} style={{left:5}} />
             <Text style={{color:darkMood?"#fff":"#161616", right:language?20:7}}>{!language?"refresh":"اعادة التحميل"}</Text>

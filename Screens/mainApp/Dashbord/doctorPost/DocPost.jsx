@@ -30,7 +30,7 @@ const DocPost = ({ route, navigation  }) => {
 
 
     const handelPostPress = async () => {
-        
+        console.log(`this is the time :${date.getHours()}`);
         const requestBody = {
             date: date,
             dentistDescription: des.substring(0, 200),

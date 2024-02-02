@@ -10,6 +10,10 @@ import { StorageKey } from './StorageKey';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SingUpEmailAuth from './Screens/login and sginUp/SingUpEmailAuth';
+import ForgetPaawordAuth from './Screens/login and sginUp/ForgetPaawordAuth';
+import ForgetPassword from './Screens/login and sginUp/ForgetPassword';
+import RestPassword from'./Screens/login and sginUp/RestPassword';
 export default function Nav() {
     const {tokenFlag, setTokenFlag}= usePageContext();
     const Stack = createStackNavigator();
@@ -47,6 +51,10 @@ export default function Nav() {
                     }}>
                     <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false, tabBarVisible: false }} />
                     <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false, tabBarVisible: false }} />
+                    <Stack.Screen name="SingUpEmailAuth" component={SingUpEmailAuth} options={{ headerShown: false, tabBarVisible: false }} />
+                    <Stack.Screen name="ForgetPassword" component={ForgetPassword} options={{ headerShown: false, tabBarVisible: false }} />
+                    <Stack.Screen name="ForgetPaawordAuth" component={ForgetPaawordAuth} options={{ headerShown: false, tabBarVisible: false }} />
+                    <Stack.Screen name="RestPassword" component={RestPassword} options={{ headerShown: false, tabBarVisible: false }} />
                     {/* Additional screens as needed */}
                 </Stack.Navigator>
             )}
