@@ -63,9 +63,14 @@ const Posts = (props) => {
                 </View>  
                     <Text  style={!darkMood?
                         hasArabicCharacters(props.des)?
-                        props.isImageE?styles.des:styles.des1:props.isImageE?
+                        props.isImageE?
+                        styles.des:styles.des1 : 
+                        
+                        props.isImageE?
                         styles.desEn:styles.des1:
+
                         hasArabicCharacters(props.des)?
+                        
                         props.isImageE?
                         styles.desDark:styles.des1Dark
                         :props.isImageE?

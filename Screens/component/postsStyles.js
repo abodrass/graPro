@@ -181,7 +181,7 @@ export const styles = StyleSheet.create({
     },
     des1:{
         position:"absolute",
-        top:"5%",
+        top:"25%",
 
         left:"30%",
         width:"90%",
@@ -190,7 +190,7 @@ export const styles = StyleSheet.create({
     },
     des1Dark:{
         position:"absolute",
-        top:"5%",
+        top:"25%",
 
         left:"30%",
         width:"90%",
@@ -260,9 +260,9 @@ export const styles = StyleSheet.create({
     postDateNoImg:{
         flexDirection:'row',
         position:"absolute",
-        top:"150%",
+        top:"120%",
         color:'#fff',
-        left:"31%",
+        left:"10%",
         width:"90%",
         height:"100%",
     },

@@ -19,6 +19,8 @@ import CustomHeader from './layout/Header';
 import AprovelNav from './mainApp/appointmentAprovel/AprovelNav';
 import Dashbord from './mainApp/Dashbord/Dashbords';
 import Main from './MainPage/Main';
+import Notes from './mainApp/notes/Notes';
+import Location from './mainApp/location/Location';
 const Tab = createBottomTabNavigator();
 
 const TabGroup =(props)=>{
@@ -44,6 +46,23 @@ const TabGroup =(props)=>{
           options={{
             header: () => null,
           }}
+          
+        />
+            <Stack.Screen
+          name="Notes"
+          component={Notes}
+          options={{
+            header: () => null,
+          }}
+          
+        />
+              <Stack.Screen
+          name="Location"
+          component={Location}
+          options={{
+            header: () => null,
+          }}
+          
         />
       </Stack.Navigator>
     );

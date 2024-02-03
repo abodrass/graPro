@@ -40,7 +40,7 @@ const RestPassword = ({ navigation }) => {
     const route = useRoute();
 
     // Access the requestBody parameter from the route
-    const requestBody1 = route.params?.requestBody || {};
+    const requestBody1 = route.params?.email || {};
     const handleFocus = (inputId) => {
 
         if (inputId === 'email') {
@@ -77,7 +77,7 @@ const RestPassword = ({ navigation }) => {
             setWrongInput(true);
             return;
         }*/
-
+        
         const requestBody = {
             email:requestBody1,
             password: password,
@@ -85,6 +85,7 @@ const RestPassword = ({ navigation }) => {
             
         };
         
+        console.log(requestBody);
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -100,7 +101,7 @@ const RestPassword = ({ navigation }) => {
         
             if (response.status === 200) {
                 console.log("request good");
-                navigation.navigate('SingUpEmailAuth', { requestBody: requestBody });
+                navigation.navigate('LogIn');
                 
                 return;
               // Navigate to the next screen or perform other actions

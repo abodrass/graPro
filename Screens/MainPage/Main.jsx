@@ -77,7 +77,7 @@ const Main = (props) => {
 
 
         <TouchableOpacity  style={darkMood?styles.widthBox:styles.widthBoxDark } onPress={()=>{
-            navigation.navigate("Dashbord");
+            navigation.navigate("Location");
 
         }} >
                 
@@ -103,7 +103,7 @@ const Main = (props) => {
 
 
         <TouchableOpacity  style={darkMood?styles.smallBox1:styles.smallBox1Dark } onPress={()=>{
-            navigation.navigate("Dashbord");
+            navigation.navigate("Notes");
 
         }} >
                 

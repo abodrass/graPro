@@ -8,6 +8,7 @@ import { StyleSheet, ScrollView,Text, View, Image, TextInput, TouchableOpacity, 
 import Dashbord from '../mainApp/Dashbord/Dashbords';
 import Main from './Main';
 import Appotment from '../mainApp/Appointment/Appotment';
+import Notes from '../mainApp/notes/Notes';
 import { useFocusEffect } from '@react-navigation/native';
 const MainNav = (props) => {
     const Stack = createStackNavigator();
@@ -29,6 +30,7 @@ const MainNav = (props) => {
                 <Stack.Screen name="Dashbord" component={Dashbord} options={{ headerShown: false, tabBarVisible: false }} />
                 <Stack.Screen name="Main" navigation={props.navigation} component={Main} options={{ headerShown: false, tabBarVisible: false }} />
                 <Stack.Screen name="app" navigation={props.navigation} component={Appotment} options={{ headerShown: false, tabBarVisible: false }} />
+                <Stack.Screen name="Notes" navigation={props.navigation} component={Notes} options={{ headerShown: false, tabBarVisible: false }} />
             </Stack.Navigator>
         </NavigationContainer> 
     )
